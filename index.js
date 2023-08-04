@@ -5,6 +5,7 @@ import express from 'express';
 import indexRoutes from './routes/index.js';
 // This should be declared under import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
+import animalRoutes from "./routes/animal.js";
 import aboutRoutes from './routes/about.js';
 import contactRoutes from './routes/contact.js';
 import coursesRoutes from './routes/courses.js';
@@ -18,6 +19,7 @@ app.use(express.json()); // To parse the incoming requests with JSON payloads. F
 // Use the routes module
 app.use('/', indexRoutes);
 app.use("/api/institutions", institutionRoutes);
+app.use("/api/animals", animalRoutes);
 
 app.use('/about', aboutRoutes);
 app.use('/contact',contactRoutes);
@@ -26,7 +28,7 @@ app.use('/courses',coursesRoutes);
 
 // Start the server on port 3000
 app.listen(3000, () => {
-  console.log('Server is listening on port 3000.');
+  console.log('Server is listening on port 3000.'); 
 });
 
 // Export the Express application. Other modules may use it. For example, API testing
