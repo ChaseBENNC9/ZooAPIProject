@@ -10,6 +10,7 @@ import serverRoutes from "./routes/server.js"
 import aboutRoutes from './routes/about.js';
 import contactRoutes from './routes/contact.js';
 import coursesRoutes from './routes/courses.js';
+import studentRoutes from './routes/student.js';
 
 
 // Create an Express application
@@ -22,6 +23,7 @@ app.use('/', indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 app.use("/api/animals", animalRoutes);
 app.use('/api/servers',serverRoutes);
+app.use('/api/students',studentRoutes);
 
 
 app.use('/about', aboutRoutes);

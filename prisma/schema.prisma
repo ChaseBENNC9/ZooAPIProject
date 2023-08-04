@@ -26,10 +26,10 @@ model Animal {
   birthday DateTime
 }
 
-model Class {
-  id    Int    @id @default(autoincrement())
-  name  String
-  level Int
+model Student {
+  id   Int    @id @default(autoincrement())
+  name String
+  year Int
 }
 
 model Server {
