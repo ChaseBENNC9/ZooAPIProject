@@ -6,6 +6,7 @@ import indexRoutes from './routes/index.js';
 // This should be declared under import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 import animalRoutes from "./routes/animal.js";
+import serverRoutes from "./routes/server.js"
 import aboutRoutes from './routes/about.js';
 import contactRoutes from './routes/contact.js';
 import coursesRoutes from './routes/courses.js';
@@ -20,6 +21,8 @@ app.use(express.json()); // To parse the incoming requests with JSON payloads. F
 app.use('/', indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 app.use("/api/animals", animalRoutes);
+app.use('/api/servers',serverRoutes);
+
 
 app.use('/about', aboutRoutes);
 app.use('/contact',contactRoutes);
