@@ -1,19 +1,18 @@
 import express from "express";
 
 import {
-  createInstitution,
-  getInstitutions,
-  getInstitution,
-  updateInstitution,
-  deleteInstitution,
-} from "../controllers/institution.js";
+  createModel,
+  getModel,
+  updateModel,
+  deleteModel,
+} from "../controllers/api.js";
+import { getInstitutions } from "../controllers/institution.js";
 
 const router = express.Router();
-
-router.post("/", createInstitution);
+router.post("/", createModel("institution"));
 router.get("/", getInstitutions);
-router.get("/:id", getInstitution);
-router.put("/:id", updateInstitution);
-router.delete("/:id", deleteInstitution);
+router.get("/:id", getModel("institution"));
+router.put("/:id", updateModel("institution"));
+router.delete("/:id", deleteModel("institution"));
 
 export default router;

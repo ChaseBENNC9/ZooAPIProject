@@ -10,7 +10,7 @@ import departmentRoutes from "./routes/department.js";
 
 
 import animalRoutes from "./routes/animal.js";
-import serverRoutes from "./routes/server.js"
+import serverRoutes from "./routes/server.js" 
 import aboutRoutes from './routes/about.js';
 import contactRoutes from './routes/contact.js';
 import coursesRoutes from './routes/courses.js';
