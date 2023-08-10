@@ -4,17 +4,11 @@ import express from 'express';
 // Import the index routes module
 import indexRoutes from './routes/index.js';
 // This should be declared under import indexRoutes from "./routes/index.js";
-import institutionRoutes from "./routes/institution.js";
-import departmentRoutes from "./routes/department.js";
+import institutionRoutes from "./routes/api/institution.js";
+import departmentRoutes from "./routes/api/department.js";
 
 
 
-import animalRoutes from "./routes/animal.js";
-import serverRoutes from "./routes/server.js" 
-import aboutRoutes from './routes/about.js';
-import contactRoutes from './routes/contact.js';
-import coursesRoutes from './routes/courses.js';
-import studentRoutes from './routes/student.js';
 
 
 // Create an Express application
@@ -29,15 +23,6 @@ app.use("/api/departments",departmentRoutes);
 
 
 
-
-app.use("/api/animals", animalRoutes);
-app.use('/api/servers',serverRoutes);
-app.use('/api/students',studentRoutes);
-
-
-app.use('/about', aboutRoutes);
-app.use('/contact',contactRoutes);
-app.use('/courses',coursesRoutes);
 
 
 // Start the server on port 3000

@@ -6,7 +6,7 @@ import {
   getModel,
   updateModel,
   deleteModel,
-} from "../controllers/api.js";
+} from "../../controllers/api/api.js";
 
 const router = express.Router();
 router.post("/", createModel("department")); 
@@ -15,4 +15,4 @@ router.get("/:id", getModel("department"));
 router.put("/:id", updateModel("department"));
 router.delete("/:id", deleteModel("department"));
 
-export default router;
+export default router; 

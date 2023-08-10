@@ -5,8 +5,8 @@ import {
   getModel,
   updateModel,
   deleteModel,
-} from "../controllers/api.js";
-import { getInstitutions } from "../controllers/institution.js";
+} from "../../controllers/api/api.js";
+import { getInstitutions } from "../../controllers/api/institution.js";
 
 const router = express.Router();
 router.post("/", createModel("institution"));
