@@ -13,8 +13,8 @@ datasource db {
 model Institution {
   id          Int          @id @default(autoincrement())
   name        String
-  region     String
-  country    String
+  region      String
+  country     String
   departments Department[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
@@ -24,11 +24,39 @@ model Department {
   id            Int         @id @default(autoincrement())
   name          String
   institutionId Int
+  courses       Course[]
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
 }
 
+model Course {
+  id           Int        @id @default(autoincrement())
+  code         Int        @unique
+  name         String     @unique
+  description  String
+  departmentId Int
+  userId       Int
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  role  Role  @default(LEARNER)
+  firstName    String
+  lastName     String
+  emailAddress String   @unique
+  password     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  LEARNER
+  LECTURER
+}
 
 model Animal {
   id       Int      @id @default(autoincrement())

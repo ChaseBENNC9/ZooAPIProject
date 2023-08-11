@@ -6,6 +6,8 @@ import indexRoutes from './routes/index.js';
 // This should be declared under import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/api/institution.js";
 import departmentRoutes from "./routes/api/department.js";
+import courseRoutes from "./routes/api/course.js";
+import userRoutes from "./routes/api/user.js";
 
 
 
@@ -20,7 +22,8 @@ app.use(express.json()); // To parse the incoming requests with JSON payloads. F
 app.use('/', indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 app.use("/api/departments",departmentRoutes);
-
+app.use("/api/courses",courseRoutes);
+app.use("/api/users",userRoutes);
 
 
 
