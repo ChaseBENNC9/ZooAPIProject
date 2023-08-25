@@ -7,9 +7,9 @@ import {
   deleteModel,
 } from "../../controllers/api/api.js";
 import { getInstitutions } from "../../controllers/api/institution.js";
-
+import { validatePostInstitution } from "../../middleware/validation.js";
 const router = express.Router();
-router.post("/", createModel("institution"));
+router.post("/", validatePostInstitution,createModel("institution"));
 router.get("/", getInstitutions);
 router.get("/:id", getModel("institution"));
 router.put("/:id", updateModel("institution"));
