@@ -10,6 +10,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Zoo {
+  id          Int      @id @default(autoincrement())
+  name        String
+  city        String
+  country     String
+  established DateTime
+  entryFee    Decimal
+
+  enclosures Enclosure[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}
+
+model Animal {
+  id          Int       @id @default(autoincrement())
+  name        String
+  species     String
+  sex         Sex
+  birthDate   DateTime
+  deathDate   DateTime
+  enclosureId Int
+  enclosure   Enclosure @relation(fields: [enclosureId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Enclosure {
+  id              Int      @id @default(autoincrement())
+  zooId           Int
+  name            String
+  type            String
+  visitorCapacity Int
+  animalCapacity  Int
+  established     DateTime
+  animals         Animal[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  zoo             Zoo      @relation(fields: [zooId], references: [id], onDelete: Cascade)
+}
+
 model Institution {
   id          Int          @id @default(autoincrement())
   name        String
@@ -44,7 +84,7 @@ model Course {
 
 model User {
   id           Int      @id @default(autoincrement())
-  role  Role  @default(LEARNER)
+  role         Role     @default(LEARNER)
   firstName    String
   lastName     String
   emailAddress String   @unique
@@ -58,22 +98,7 @@ enum Role {
   LECTURER
 }
 
-model Animal {
-  id       Int      @id @default(autoincrement())
-  name     String
-  species  String
-  birthday DateTime
-}
-
-model Student {
-  id   Int    @id @default(autoincrement())
-  name String
-  year Int
-}
-
-model Server {
-  id      Int     @id @default(autoincrement())
-  name    String
-  address String
-  active  Boolean
+enum Sex {
+  MALE
+  FEMALE
 }
