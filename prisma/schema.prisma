@@ -16,7 +16,6 @@ model Zoo {
   city        String
   country     String
   established DateTime
-  entryFee    Decimal
 
   enclosures Enclosure[]
   createdAt  DateTime    @default(now())

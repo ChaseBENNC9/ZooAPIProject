@@ -3,11 +3,7 @@ import express from 'express';
 
 // Import the index routes module
 import indexRoutes from './routes/index.js';
-// This should be declared under import indexRoutes from "./routes/index.js";
-import institutionRoutes from "./routes/api/institution.js";
-import departmentRoutes from "./routes/api/department.js";
-import courseRoutes from "./routes/api/course.js";
-import userRoutes from "./routes/api/user.js";
+import zooRoutes from './routes/api/zoo.js';
 
 
 
@@ -19,11 +15,10 @@ app.use(express.urlencoded({ extended: false })); // To parse the incoming reque
 app.use(express.json()); // To parse the incoming requests with JSON payloads. For example, REST API requests
 
 // Use the routes module
-app.use('/', indexRoutes);
-app.use("/api/institutions", institutionRoutes);
-app.use("/api/departments",departmentRoutes);
-app.use("/api/courses",courseRoutes);
-app.use("/api/users",userRoutes);
+app.use('/api', indexRoutes);
+app.use('/api/v1/zoos',zooRoutes);
+
+
 
 
 

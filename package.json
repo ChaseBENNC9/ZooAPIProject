@@ -28,6 +28,7 @@
     "joi": "^17.9.2"
   },
   "devDependencies": {
+    "@prisma/studio": "^0.494.0",
     "chai": "^4.3.8",
     "chai-http": "^4.4.0",
     "mocha": "^10.2.0",
