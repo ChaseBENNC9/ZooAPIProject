@@ -4,7 +4,7 @@ import express from 'express';
 // Import the index routes module
 import indexRoutes from './routes/index.js';
 import zooRoutes from './routes/api/zoo.js';
-
+import enclosureRoutes from './routes/api/enclosure.js';
 
 
 
@@ -17,7 +17,7 @@ app.use(express.json()); // To parse the incoming requests with JSON payloads. F
 // Use the routes module
 app.use('/api', indexRoutes);
 app.use('/api/v1/zoos',zooRoutes);
-
+app.use('/api/v1/enclosures',enclosureRoutes);
 
 
 

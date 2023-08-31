@@ -11,15 +11,15 @@ datasource db {
 }
 
 model Zoo {
-  id          Int      @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   name        String
   city        String
   country     String
-  established DateTime
-
-  enclosures Enclosure[]
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  established DateTime    @db.Date
+  enclosures  Enclosure[]
+  visitors    Visitor[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
 }
 
 model Animal {
@@ -42,59 +42,27 @@ model Enclosure {
   type            String
   visitorCapacity Int
   animalCapacity  Int
-  established     DateTime
   animals         Animal[]
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   zoo             Zoo      @relation(fields: [zooId], references: [id], onDelete: Cascade)
 }
 
-model Institution {
-  id          Int          @id @default(autoincrement())
-  name        String
-  region      String
-  country     String
-  departments Department[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+model Visitor {
+  id         Int      @id @default(autoincrement())
+  zooId      Int
+  firstName  String
+  lastName   String
+  ticketType String
+  ticketCost Decimal
+  visitDate  DateTime @db.Date
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  zoo        Zoo      @relation(fields: [zooId], references: [id], onDelete: Cascade)
 }
 
-model Department {
-  id            Int         @id @default(autoincrement())
-  name          String
-  institutionId Int
-  courses       Course[]
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
-}
-
-model Course {
-  id           Int        @id @default(autoincrement())
-  code         Int        @unique
-  name         String     @unique
-  description  String
-  departmentId Int
-  userId       Int
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  department   Department @relation(fields: [departmentId], references: [id], onDelete: Cascade)
-}
-
-model User {
-  id           Int      @id @default(autoincrement())
-  role         Role     @default(LEARNER)
-  firstName    String
-  lastName     String
-  emailAddress String   @unique
-  password     String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
-
-enum Role {
-  LEARNER
-  LECTURER
+model Worker {
+  id Int @id @default(autoincrement())
 }
 
 enum Sex {
