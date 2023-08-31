@@ -18,6 +18,7 @@ model Zoo {
   established DateTime    @db.Date
   enclosures  Enclosure[]
   visitors    Visitor[]
+  Worker      Worker[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }
@@ -62,7 +63,15 @@ model Visitor {
 }
 
 model Worker {
-  id Int @id @default(autoincrement())
+  id              Int       @id @default(autoincrement())
+  zooId           Int
+  firstName       String
+  lastName        String
+  hireDate        DateTime
+  terminationDate DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  zoo             Zoo       @relation(fields: [zooId], references: [id], onDelete: Cascade)
 }
 
 enum Sex {
