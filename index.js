@@ -5,7 +5,7 @@ import express from 'express';
 import indexRoutes from './routes/index.js';
 import zooRoutes from './routes/api/zoo.js';
 import enclosureRoutes from './routes/api/enclosure.js';
-
+import animalRoutes from './routes/api/animal.js';
 
 
 
@@ -18,6 +18,7 @@ app.use(express.json()); // To parse the incoming requests with JSON payloads. F
 app.use('/api', indexRoutes);
 app.use('/api/v1/zoos',zooRoutes);
 app.use('/api/v1/enclosures',enclosureRoutes);
+app.use('/api/v1/animals',animalRoutes);
 
 
 
