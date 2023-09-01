@@ -1,6 +1,18 @@
+/**
+ * @file Manages all of the Different Zoo's
+ * @author Chase Bennett-Hill
+ * 
+ */
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
+
+/**
+ * @description This function creates a new Zoo
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @returns {object} - The response object
+ */
 const createZoo = async (req, res) => {
     try {
       await prisma.zoo.create({
@@ -20,6 +32,12 @@ const createZoo = async (req, res) => {
     }
   };
 
+  /**
+ * @description This function gets all of the Zoo's in the API
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @returns {object} - The response object
+ */
   const getZoos = async (req, res) => {
     try {
       const Zoos = await prisma.zoo.findMany();
@@ -35,11 +53,20 @@ const createZoo = async (req, res) => {
       });
     }
   };
-
+  /**
+ * @description This function gets a Zoo with the specific ID
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @param {number} id - the ID number of the Zoo
+ * @returns {object} - The response object
+ */
   const getZoo = async (req, res) => {
     try {
       const zoo = await prisma.zoo.findUnique({
         where: { id: Number(req.params.id) },
+        include: {
+          enclosures: true,
+      },
       });
   
       if (!zoo) {
@@ -57,7 +84,13 @@ const createZoo = async (req, res) => {
       });
     }
   };
-
+  /**
+ * @description This function Updates information for a Zoo with the specific ID
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @param {number} id - the ID number of the Zoo
+ * @returns {object} - The response object
+ */
   const updateZoo = async (req, res) => {
     try {
       let zoo = await prisma.zoo.findUnique({
@@ -85,7 +118,13 @@ const createZoo = async (req, res) => {
       });
     }
   };
-
+  /**
+ * @description This function deletes a Zoo with the specific ID
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @param {number} id - the ID number of the Zoo
+ * @returns {object} - The response object
+ */
   const deleteZoo = async (req, res) => {
     try {
       const zoo = await prisma.zoo.findUnique({
