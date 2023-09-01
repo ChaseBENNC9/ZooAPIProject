@@ -29,7 +29,7 @@ model Animal {
   species     String
   sex         Sex
   birthDate   DateTime
-  deathDate   DateTime
+  deathDate   DateTime?
   enclosureId Int
   enclosure   Enclosure @relation(fields: [enclosureId], references: [id], onDelete: Cascade)
   createdAt   DateTime  @default(now())
@@ -37,41 +37,57 @@ model Animal {
 }
 
 model Enclosure {
-  id              Int      @id @default(autoincrement())
+  id              Int         @id @default(autoincrement())
   zooId           Int
-  name            String
+  name            String      @unique
   type            String
   visitorCapacity Int
   animalCapacity  Int
   animals         Animal[]
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  zoo             Zoo      @relation(fields: [zooId], references: [id], onDelete: Cascade)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  zoo             Zoo         @relation(fields: [zooId], references: [id], onDelete: Cascade)
+  TourGroup       TourGroup[]
 }
 
 model Visitor {
-  id         Int      @id @default(autoincrement())
-  zooId      Int
-  firstName  String
-  lastName   String
-  ticketType String
-  ticketCost Decimal
-  visitDate  DateTime @db.Date
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  zoo        Zoo      @relation(fields: [zooId], references: [id], onDelete: Cascade)
+  id          Int       @id @default(autoincrement())
+  zooId       Int
+  tourGroupId Int
+  firstName   String
+  lastName    String
+  ticketType  String
+  ticketCost  Decimal
+  visitDate   DateTime  @db.Date
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  zoo         Zoo       @relation(fields: [zooId], references: [id], onDelete: Cascade)
+  tourGroup   TourGroup @relation(fields: [tourGroupId], references: [id], onDelete: Cascade)
 }
 
 model Worker {
-  id              Int       @id @default(autoincrement())
-  zooId           Int
+  id    Int @id @default(autoincrement())
+  zooId Int
+
   firstName       String
   lastName        String
   hireDate        DateTime
   terminationDate DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-  zoo             Zoo       @relation(fields: [zooId], references: [id], onDelete: Cascade)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  zoo             Zoo         @relation(fields: [zooId], references: [id], onDelete: Cascade)
+  TourGroup       TourGroup[]
+}
+
+model TourGroup {
+  id            Int       @id @default(autoincrement())
+  zooId         Int
+  workerId      Int
+  enclosureId   Int
+  visitors      Visitor[]
+  startTime     DateTime
+  guide         Worker    @relation(fields: [workerId], references: [id])
+  startLocation Enclosure @relation(fields: [enclosureId], references: [id])
 }
 
 enum Sex {
