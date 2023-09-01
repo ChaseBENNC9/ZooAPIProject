@@ -1,6 +1,8 @@
 // Import the Express module
 import express from 'express';
 
+
+
 // Import the index routes module
 import indexRoutes from './routes/index.js';
 import indexApiRoutes from './routes/indexApi.js';
@@ -12,6 +14,16 @@ import animalRoutes from './routes/api/animal.js';
 
 // Create an Express application
 const app = express();
+import { rateLimit } from 'express-rate-limit'
+
+const limiter = rateLimit({
+	windowMs: 60 * 1000, // 1 minute
+	max: 100, // Limit each IP to 100 requests per `window` (1 minute)
+  message: "You have exceeded the number of requests per minute: 100. Please try again later."
+})
+
+// Apply the rate limiting middleware to all requests
+app.use(limiter)
 app.use(express.urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
 app.use(express.json()); // To parse the incoming requests with JSON payloads. For example, REST API requests
 
