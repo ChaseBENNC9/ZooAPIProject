@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "s2-23-project-ChaseBENNC9 created by GitHub Classroom",
   "main": "index.js",
+  "engines" :{
+    "node" : ">= 16.13"
+  },
   "scripts": {
     "test": "npx prisma migrate reset --force && npx mocha --timeout 10000 --exit",
     "dev": "nodemon index.js"
