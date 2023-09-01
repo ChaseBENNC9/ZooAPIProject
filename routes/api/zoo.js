@@ -1,3 +1,7 @@
+/**
+ * @file This is the Zoo Route and handles the types of requests for the zoo model
+ * @author Chase Bennett-Hill
+ */
 import express from "express";
 
 import {

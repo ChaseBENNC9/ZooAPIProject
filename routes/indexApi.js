@@ -1,3 +1,7 @@
+/**
+ * @file this Is the Index route for the API 
+ * @author Chase Bennett-Hill
+ */
 // Import the Express module
 import express from 'express';
 
