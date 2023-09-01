@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "npx prisma migrate reset --force && npx mocha --timeout 10000 --exit",
-    "dev": "nodemon index.js"
+    "dev": "npx prisma generate && nodemon index.js"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
