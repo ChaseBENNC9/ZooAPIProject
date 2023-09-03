@@ -1,9 +1,9 @@
-/**
+e; /**
  * @file This is the Index route, It automatically redirects to the Api Index route
  * @author Chase Bennett-Hill
  */
 // Import the Express module
-import express from 'express';
+import express from "express";
 
 // Import the index controllers module
 import { get } from "../controllers/index.js";

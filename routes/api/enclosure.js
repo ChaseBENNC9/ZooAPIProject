@@ -11,7 +11,7 @@ import {
 const router = express.Router();
 router.post("/", createEnclosure);
 router.get("/", getEnclosures);
-router.get("/:id",getEnclosure);
+router.get("/:id", getEnclosure);
 router.put("/:id", updateEnclosure);
 router.delete("/:id", deleteEnclosure);
 

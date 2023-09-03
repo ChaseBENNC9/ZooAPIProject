@@ -1,7 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import zooSeed from '../data/zooSeed.json' assert {
-    type: 'json'
-}
+import zooSeed from "../data/zooSeed.json" assert { type: "json" };
 import { json } from "express";
 const prisma = new PrismaClient();
 

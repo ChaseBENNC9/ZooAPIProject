@@ -13,10 +13,10 @@ import {
 } from "../../controllers/api/zoo.js";
 
 const router = express.Router();
-router.post("/", createZoo); 
+router.post("/", createZoo);
 router.get("/", getZoos);
-router.get("/:id", getZoo); 
+router.get("/:id", getZoo);
 router.put("/:id", updateZoo);
 router.delete("/:id", deleteZoo);
 
-export default router; 
+export default router;

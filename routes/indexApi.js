@@ -1,9 +1,9 @@
 /**
- * @file this Is the Index route for the API 
+ * @file this Is the Index route for the API
  * @author Chase Bennett-Hill
  */
 // Import the Express module
-import express from 'express';
+import express from "express";
 
 // Import the index controllers module
 import { get } from "../controllers/indexApi.js";

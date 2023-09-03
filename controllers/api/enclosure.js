@@ -147,4 +147,10 @@ const deleteEnclosure = async (req, res) => {
   }
 };
 
-export { createEnclosure, getEnclosures, getEnclosure, updateEnclosure, deleteEnclosure };
+export {
+  createEnclosure,
+  getEnclosures,
+  getEnclosure,
+  updateEnclosure,
+  deleteEnclosure,
+};

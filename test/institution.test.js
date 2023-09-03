@@ -75,7 +75,7 @@
 //       });
 //   });
 
-//   it("should delete institution by id", (done) => { 
+//   it("should delete institution by id", (done) => {
 //     chai
 //       .request(app)
 //       .delete("/api/institutions/1")
