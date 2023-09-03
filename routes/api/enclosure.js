@@ -1,18 +1,18 @@
 import express from "express";
 
 import {
-  createModel,
-  getModels,
-  getModel,
-  updateModel,
-  deleteModel,
-} from "../../controllers/api/api.js";
+  createEnclosure,
+  getEnclosures,
+  getEnclosure,
+  updateEnclosure,
+  deleteEnclosure,
+} from "../../controllers/api/enclosure.js";
 
 const router = express.Router();
-router.post("/", createModel("enclosure")); 
-router.get("/", getModels("enclosure"));
-router.get("/:id", getModel("enclosure"));
-router.put("/:id", updateModel("enclosure"));
-router.delete("/:id", deleteModel("enclosure"));
+router.post("/", createEnclosure);
+router.get("/", getEnclosures);
+router.get("/:id",getEnclosure);
+router.put("/:id", updateEnclosure);
+router.delete("/:id", deleteEnclosure);
 
-export default router; 
+export default router;
