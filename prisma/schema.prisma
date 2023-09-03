@@ -18,7 +18,7 @@ model Zoo {
   established DateTime    @db.Date
   enclosures  Enclosure[]
   visitors    Visitor[]
-  Worker      Worker[]
+  workers      Worker[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }
