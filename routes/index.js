@@ -1,4 +1,4 @@
-e; /**
+/**
  * @file This is the Index route, It automatically redirects to the Api Index route
  * @author Chase Bennett-Hill
  */
