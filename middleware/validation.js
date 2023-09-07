@@ -1,3 +1,8 @@
+/**
+ * @file Manages the Validation for Post and Update Requests for each Route
+ * @author Chase Bennett-Hill
+ */
+
 import Joi from "joi";
 /**
  * @description This function is for validating the Post Request of a Zoo
