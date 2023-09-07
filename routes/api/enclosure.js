@@ -10,10 +10,10 @@ import {
 import { validatePostEnclosure } from "../../middleware/validation.js";
 
 const router = express.Router();
-router.post("/",validatePostEnclosure ,createEnclosure);
+router.post("/", validatePostEnclosure, createEnclosure);
 router.get("/", getEnclosures);
 router.get("/:id", getEnclosure);
-router.put("/:id", validatePostEnclosure,updateEnclosure);
+router.put("/:id", validatePostEnclosure, updateEnclosure);
 router.delete("/:id", deleteEnclosure);
 
 export default router;

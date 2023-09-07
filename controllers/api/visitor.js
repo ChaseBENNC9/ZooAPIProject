@@ -147,10 +147,4 @@ const deleteVisitor = async (req, res) => {
   }
 };
 
-export {
-  createVisitor,
-  getVisitors,
-  getVisitor,
-  updateVisitor,
-  deleteVisitor,
-};
+export { createVisitor, getVisitors, getVisitor, updateVisitor, deleteVisitor };

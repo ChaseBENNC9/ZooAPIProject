@@ -46,7 +46,7 @@ const validatePostEnclosure = (req, res, next) => {
     zooId: Joi.number().min(1).required().messages({
       "number.base": "Zoo Id needs to be a number",
       "number.empty": "Zoo Id cannot be empty",
-      "any.required": "Zoo Id is required"
+      "any.required": "Zoo Id is required",
     }),
     name: Joi.string().min(8).max(100).required().messages({
       "string.base": "Name should be a string",
@@ -69,14 +69,13 @@ const validatePostEnclosure = (req, res, next) => {
     temporary: Joi.bool().required().messages({
       "bool.base": "Temporary should be true or false",
       "bool.empty": "Temporary cannot be empty",
-      "any.required": "Temporary is required"
+      "any.required": "Temporary is required",
     }),
     animals: Joi.object({
-      create: Joi.array().items(Joi.object())
+      create: Joi.array().items(Joi.object()),
     }).messages({
       "array.base": "Animal should be an Animal Object",
-      
-    }) 
+    }),
   });
 
   const { error } = enclosureSchema.validate(req.body);
