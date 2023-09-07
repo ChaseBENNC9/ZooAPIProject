@@ -15,7 +15,7 @@ model Zoo {
   name        String      @unique
   city        String
   country     String
-  established DateTime    @db.Date
+  established DateTime    @db.Date //When the Zoo was established - the db.date means that it only keeps track of the Date and the time is defaulted to 00:00:00
   enclosures  Enclosure[]
   visitors    Visitor[]
   workers     Worker[]
@@ -29,7 +29,7 @@ model Animal {
   species     String
   sex         Sex
   birthDate   DateTime
-  deathDate   DateTime?
+  deathDate   DateTime? //Optional date for animals that have died
   enclosureId Int
   enclosure   Enclosure @relation(fields: [enclosureId], references: [id], onDelete: Cascade)
   createdAt   DateTime  @default(now())
@@ -39,10 +39,10 @@ model Animal {
 model Enclosure {
   id              Int         @id @default(autoincrement())
   zooId           Int
-  name            String      @unique
-  type            String
+  name            String      @unique //The Name of the enlosure and must be unique
+  type            String //The Type of enclosure eg Habitat or an Aviary
   visitorCapacity Int? //Only needed in enclosures where visitors can physically enter
-  temporary       Boolean
+  temporary       Boolean //Whether the enclosure is temporary and only available for a limited time
   animals         Animal[]
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
@@ -55,7 +55,7 @@ model Visitor {
   zooId      Int
   firstName  String
   lastName   String
-  ticketType String
+  ticketType String //The type of ticket eg Adult or Child
   ticketCost Decimal
   visitDate  DateTime
   createdAt  DateTime    @default(now())
@@ -84,9 +84,9 @@ model TourGroup {
   workerId      Int
   enclosureId   Int
   visitors      Visitor[]
-  startTime     DateTime
-  guide         Worker    @relation(fields: [workerId], references: [id])
-  startLocation Enclosure @relation(fields: [enclosureId], references: [id])
+  startTime     DateTime //The Time That the tour is going to start
+  guide         Worker    @relation(fields: [workerId], references: [id]) //The Guide references the workerId field 
+  startLocation Enclosure @relation(fields: [enclosureId], references: [id]) //the starting location of the tour will be an enclosure
 }
 
 enum Sex {
