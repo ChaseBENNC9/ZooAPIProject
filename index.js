@@ -9,6 +9,7 @@ import zooRoutes from "./routes/api/zoo.js";
 import enclosureRoutes from "./routes/api/enclosure.js";
 import animalRoutes from "./routes/api/animal.js";
 import visitorRoutes from "./routes/api/visitor.js";
+import workerRoutes from "./routes/api/worker.js";
 // Create an Express application
 const app = express();
 
@@ -31,6 +32,7 @@ app.use("/api/v1/zoos", zooRoutes);
 app.use("/api/v1/enclosures", enclosureRoutes);
 app.use("/api/v1/animals", animalRoutes);
 app.use("/api/v1/visitors", visitorRoutes);
+app.use("/api/v1/workers",workerRoutes);
 
 // Start the server on port 3000
 app.listen(3000, () => {
