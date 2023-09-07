@@ -12,13 +12,13 @@ datasource db {
 
 model Zoo {
   id          Int         @id @default(autoincrement())
-  name        String
+  name        String      @unique
   city        String
   country     String
   established DateTime    @db.Date
   enclosures  Enclosure[]
   visitors    Visitor[]
-  workers      Worker[]
+  workers     Worker[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }
@@ -41,8 +41,8 @@ model Enclosure {
   zooId           Int
   name            String      @unique
   type            String
-  visitorCapacity Int
-  animalCapacity  Int
+  visitorCapacity Int? //Only needed in enclosures where visitors can physically enter
+  temporary       Boolean
   animals         Animal[]
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
@@ -51,18 +51,17 @@ model Enclosure {
 }
 
 model Visitor {
-  id          Int       @id @default(autoincrement())
-  zooId       Int
-  tourGroupId Int
-  firstName   String
-  lastName    String
-  ticketType  String
-  ticketCost  Decimal
-  visitDate   DateTime  @db.Date
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  zoo         Zoo       @relation(fields: [zooId], references: [id], onDelete: Cascade)
-  tourGroup   TourGroup @relation(fields: [tourGroupId], references: [id], onDelete: Cascade)
+  id         Int         @id @default(autoincrement())
+  zooId      Int
+  firstName  String
+  lastName   String
+  ticketType String
+  ticketCost Decimal
+  visitDate  DateTime
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  zoo        Zoo         @relation(fields: [zooId], references: [id], onDelete: Cascade)
+  tourGroup  TourGroup[]
 }
 
 model Worker {
