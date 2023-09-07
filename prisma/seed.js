@@ -11,7 +11,35 @@ const main = async () => {
     await prisma.zoo.create({
       data: zooSeed,
     });
-
+    await prisma.visitor.createMany({
+      data: 
+      [
+        {
+          "zooId": 1,
+          "firstName": "Chase",
+          "lastName": "Bennett-Hill",
+          "ticketType": "Adult",
+          "ticketCost": 15.60,
+          "visitDate": "2023-01-01T00:00:00Z"
+        },
+        {
+          "zooId": 1,
+          "firstName": "Bryan",
+          "lastName": "Bennett-Hill",
+          "ticketType": "Adult",
+          "ticketCost": 15.60,
+          "visitDate": "2023-01-01T00:00:00Z"
+        },
+        {
+          "zooId": 1,
+          "firstName": "John",
+          "lastName": "Doe",
+          "ticketType": "Child",
+          "ticketCost": 10.25,
+          "visitDate": "2023-01-01T00:00:00Z"
+        }
+      ]
+    });
     console.log("Database successfully seeded");
 
     await prisma.$disconnect(); // Disconnect from the database

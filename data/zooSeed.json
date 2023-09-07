@@ -1,66 +1,67 @@
-{
-  "name": "Auckland Zoo",
-  "city": "Auckland",
-  "country": "New Zealand",
-  "established": "2000-01-01T00:00:00Z",
-  "enclosures": {
-    "create": [
-      {
-        "name": "The Lion Den",
-        "type": "Cage",
-        "temporary": false,
-        "visitorCapacity": 25,
-        "animals": {
-          "create": [
-            {
-              "name": "Leo",
-              "species": "Lion",
-              "sex": "MALE",
-              "birthDate": "2017-12-24T00:00:00Z"
-            },
-            {
-              "name": "Larry",
-              "species": "Lion",
-              "sex": "MALE",
-              "birthDate": "2019-11-14T00:00:00Z"
-            }
-          ]
+  {
+    "id": 1,
+    "name": "Auckland Zoo",
+    "city": "Auckland",
+    "country": "New Zealand",
+    "established": "2000-01-01T00:00:00Z",
+    "enclosures": {
+      "create": [
+        {
+          "name": "The Lion Den",
+          "type": "Habitat",
+          "temporary": false,
+          "visitorCapacity": 25,
+          "animals": {
+            "create": [
+              {
+                "name": "Leo",
+                "species": "Lion",
+                "sex": "MALE",
+                "birthDate": "2017-12-24T00:00:00Z"
+              },
+              {
+                "name": "Larry",
+                "species": "Lion",
+                "sex": "MALE",
+                "birthDate": "2019-11-14T00:00:00Z"
+              }
+            ]
+          }
+        },
+        {
+          "name": "Native Birds",
+          "type": "Aviary",
+          "visitorCapacity": 15,
+          "temporary": false,
+          "animals": {
+            "create": [
+              {
+                "name": "Barry",
+                "species": "Kea",
+                "sex": "MALE",
+                "birthDate": "2017-12-24T00:00:00Z"
+              },
+              {
+                "name": "Benny",
+                "species": "Kea",
+                "sex": "MALE",
+                "birthDate": "2019-11-14T00:00:00Z"
+              },
+              {
+                "name": "Susan",
+                "species": "Kaka",
+                "sex": "FEMALE",
+                "birthDate": "2017-12-24T00:00:00Z"
+              },
+              {
+                "name": "Daisy",
+                "species": "Tui",
+                "sex": "FEMALE",
+                "birthDate": "2017-12-24T00:00:00Z"
+              }
+            ]
+          }
         }
-      },
-      {
-        "name": "Native Birds",
-        "type": "Aviary",
-        "visitorCapacity": 15,
-        "temporary": false,
-        "animals": {
-          "create": [
-            {
-              "name": "Barry",
-              "species": "Kea",
-              "sex": "MALE",
-              "birthDate": "2017-12-24T00:00:00Z"
-            },
-            {
-              "name": "Benny",
-              "species": "Kea",
-              "sex": "MALE",
-              "birthDate": "2019-11-14T00:00:00Z"
-            },
-            {
-              "name": "Susan",
-              "species": "Kaka",
-              "sex": "FEMALE",
-              "birthDate": "2017-12-24T00:00:00Z"
-            },
-            {
-              "name": "Daisy",
-              "species": "Tui",
-              "sex": "FEMALE",
-              "birthDate": "2017-12-24T00:00:00Z"
-            }
-          ]
-        }
-      }
-    ]
+      ]
+    }
   }
-}
