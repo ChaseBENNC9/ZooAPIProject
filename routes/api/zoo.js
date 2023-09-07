@@ -12,8 +12,10 @@ import {
   deleteZoo,
 } from "../../controllers/api/zoo.js";
 
+import { validatePostZoo } from "../../middleware/validation.js";
+
 const router = express.Router();
-router.post("/", createZoo);
+router.post("/", validatePostZoo,createZoo);
 router.get("/", getZoos);
 router.get("/:id", getZoo);
 router.put("/:id", updateZoo);
