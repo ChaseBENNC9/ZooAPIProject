@@ -1,3 +1,7 @@
+/**
+ * @file Manages the Express Application 
+ * @author Chase Bennett-Hill
+ */
 // Import the Express module
 import express from "express";
 // Import the express rate limit module
@@ -10,6 +14,7 @@ import enclosureRoutes from "./routes/api/enclosure.js";
 import animalRoutes from "./routes/api/animal.js";
 import visitorRoutes from "./routes/api/visitor.js";
 import workerRoutes from "./routes/api/worker.js";
+import tourGroupRoutes from "./routes/api/tourGroup.js";
 // Create an Express application
 const app = express();
 
@@ -33,7 +38,7 @@ app.use("/api/v1/enclosures", enclosureRoutes);
 app.use("/api/v1/animals", animalRoutes);
 app.use("/api/v1/visitors", visitorRoutes);
 app.use("/api/v1/workers",workerRoutes);
-
+app.use("/api/v1/tourgroups",tourGroupRoutes);
 // Start the server on port 3000
 app.listen(3000, () => {
   console.log("Server is listening on port 3000.");
