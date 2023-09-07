@@ -8,8 +8,8 @@
       {
         "name": "The Lion Den",
         "type": "Cage",
+        "temporary": false,
         "visitorCapacity": 25,
-        "animalCapacity": 6,
         "animals": {
           "create": [
             {
@@ -31,7 +31,7 @@
         "name": "Native Birds",
         "type": "Aviary",
         "visitorCapacity": 15,
-        "animalCapacity": 12,
+        "temporary": false,
         "animals": {
           "create": [
             {
