@@ -63,6 +63,9 @@ const getEnclosure = async (req, res) => {
   try {
     const enclosure = await prisma.enclosure.findUnique({
       where: { id: Number(req.params.id) },
+      include: {
+        animals: true,
+      },
     });
 
     if (!enclosure) {
