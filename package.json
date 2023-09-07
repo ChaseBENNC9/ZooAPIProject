@@ -10,10 +10,9 @@
     "test": "npx prisma migrate reset --force && npx mocha --timeout 10000 --exit",
     "dev": "npx prisma generate && nodemon index.js",
     "migrate": "npx prisma migrate dev",
-    "migrate -reset": "npx prisma migrate reset",
+    "reset": "npx prisma migrate reset",
     "studio": "npx prisma studio",
-    "format -write": "npx prettier . --write",
-    "format -check": "npx prettier . --check"
+    "format": "npx prettier . --write"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
