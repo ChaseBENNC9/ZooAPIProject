@@ -39,8 +39,38 @@ const createZoo = async (req, res) => {
  */
 const getZoos = async (req, res) => {
   try {
-    const Zoos = await prisma.zoo.findMany();
+    const sortBy = req.query.sortBy || "name";
+    const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
 
+
+    const query = {
+      orderBy: {
+        [sortBy]: sortOrder,
+      },
+      include: {
+        enclosures: true,
+      },
+      
+    };
+    if (req.query.name || req.query.city || req.query.country) {
+      query.where = {
+        name: {
+          in: req.query.name || undefined,
+        },
+        city: {
+          in: req.query.city || undefined
+        },
+        country: {
+          in: req.query.country || undefined
+        },
+        established: {
+          in: req.query.established || undefined
+        }
+      };
+    }
+    const Zoos = await prisma.zoo.findMany(query);
+
+    
     if (Zoos.length === 0) {
       return res.status(404).json({ msg: "No Zoos found" });
     }
