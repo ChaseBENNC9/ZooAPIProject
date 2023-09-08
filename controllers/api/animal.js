@@ -39,7 +39,29 @@ const createAnimal = async (req, res) => {
  */
 const getAnimals = async (req, res) => {
   try {
-    const Animals = await prisma.animal.findMany();
+    const sortBy = req.query.sortBy || "name";
+    const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
+
+
+    const query = {
+      orderBy: {
+        [sortBy]: sortOrder,
+      },
+    };
+    if (req.query.name || req.query.species || req.query.sex || req.query.birthDate || req.query.deathDate) {
+      query.where = {
+        name: {
+          in: req.query.name || undefined,
+        },
+        species: {
+          in: req.query.species || undefined
+        },
+        sex: {
+          in: req.query.sex || undefined
+        },
+      };
+    }   
+    const Animals = await prisma.animal.findMany(query);
 
     if (Animals.length === 0) {
       return res.status(404).json({ msg: "No Animals found" });
