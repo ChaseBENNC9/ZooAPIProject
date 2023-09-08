@@ -48,7 +48,7 @@ const getAnimals = async (req, res) => {
         [sortBy]: sortOrder,
       },
     };
-    if (req.query.name || req.query.species || req.query.sex || req.query.birthDate || req.query.deathDate) {
+    if (req.query.name || req.query.species || req.query.sex) {
       query.where = {
         name: {
           in: req.query.name || undefined,
