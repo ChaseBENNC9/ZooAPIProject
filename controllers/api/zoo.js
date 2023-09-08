@@ -47,10 +47,6 @@ const getZoos = async (req, res) => {
       orderBy: {
         [sortBy]: sortOrder,
       },
-      include: {
-        enclosures: true,
-      },
-      
     };
     if (req.query.name || req.query.city || req.query.country) {
       query.where = {

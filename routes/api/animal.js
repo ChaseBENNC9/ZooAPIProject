@@ -12,8 +12,9 @@ import {
   deleteAnimal,
 } from "../../controllers/api/animal.js";
 
+import { validatePostAnimal } from "../../middleware/validation.js";
 const router = express.Router();
-router.post("/", createAnimal);
+router.post("/",validatePostAnimal,createAnimal);
 router.get("/", getAnimals);
 router.get("/:id", getAnimal);
 router.put("/:id", updateAnimal);
