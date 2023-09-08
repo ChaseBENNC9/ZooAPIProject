@@ -18,7 +18,7 @@ const main = async () => {
           "zooId": 1,
           "firstName": "Chase",
           "lastName": "Bennett-Hill",
-          "ticketType": "Adult",
+          "ticketType": "ADULT",
           "ticketCost": 15.60,
           "visitDate": "2023-01-01T00:00:00Z"
         },
@@ -26,7 +26,7 @@ const main = async () => {
           "zooId": 1,
           "firstName": "Bryan",
           "lastName": "Bennett-Hill",
-          "ticketType": "Adult",
+          "ticketType": "SENIOR",
           "ticketCost": 15.60,
           "visitDate": "2023-01-01T00:00:00Z"
         },
@@ -34,7 +34,7 @@ const main = async () => {
           "zooId": 1,
           "firstName": "John",
           "lastName": "Doe",
-          "ticketType": "Child",
+          "ticketType": "CHILD",
           "ticketCost": 10.25,
           "visitDate": "2023-01-01T00:00:00Z"
         }

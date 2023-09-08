@@ -40,7 +40,7 @@ model Enclosure {
   id              Int         @id @default(autoincrement())
   zooId           Int
   name            String      @unique //The Name of the enlosure and must be unique
-  type            String //The Type of enclosure eg Habitat or an Aviary
+  type            String //The Type of enclosure eg Aviary
   visitorCapacity Int? //Only needed in enclosures where visitors can physically enter
   temporary       Boolean //Whether the enclosure is temporary and only available for a limited time
   animals         Animal[]
@@ -55,7 +55,7 @@ model Visitor {
   zooId      Int
   firstName  String
   lastName   String
-  ticketType String //The type of ticket eg Adult or Child
+  ticketType TicketType //The type of ticket eg Adult or Child
   ticketCost Decimal
   visitDate  DateTime
   createdAt  DateTime    @default(now())
@@ -85,11 +85,19 @@ model TourGroup {
   enclosureId   Int
   visitors      Visitor[]
   startTime     DateTime //The Time That the tour is going to start
+  description   String //A description for the focus of the tour
   guide         Worker    @relation(fields: [workerId], references: [id]) //The Guide references the workerId field 
   startLocation Enclosure @relation(fields: [enclosureId], references: [id]) //the starting location of the tour will be an enclosure
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 enum Sex {
   MALE
   FEMALE
+}
+enum TicketType {
+  ADULT
+  CHILD
+  SENIOR
 }
