@@ -39,7 +39,28 @@ const createEnclosure = async (req, res) => {
  */
 const getEnclosures = async (req, res) => {
   try {
-    const Enclosures = await prisma.enclosure.findMany();
+    const sortBy = req.query.sortBy || "name";
+    const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
+
+    const query = {
+      orderBy: {
+        [sortBy]: sortOrder,
+      },
+    };
+    if (req.query.name || req.query.type || req.query.temporary || req.query.visitorCapacity) {
+      query.where = {
+        name: {
+          in: req.query.name || undefined,
+        },
+        type: {
+          in: req.query.type || undefined,
+        },
+        visitorCapacity: {
+          in: req.query.visitorCapacity || undefined,
+        },
+      };
+    }   
+    const Enclosures = await prisma.enclosure.findMany(query);
 
     if (Enclosures.length === 0) {
       return res.status(404).json({ msg: "No Enclosures found" });
