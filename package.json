@@ -12,7 +12,8 @@
     "migrate": "npx prisma migrate dev",
     "reset": "npx prisma migrate reset",
     "studio": "npx prisma studio",
-    "format": "npx prettier . --write"
+    "format": "npx prettier . --write",
+    "seed": "npx prisma db seed"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
