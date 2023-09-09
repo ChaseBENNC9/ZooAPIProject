@@ -39,7 +39,22 @@ const createVisitor = async (req, res) => {
  */
 const getVisitors = async (req, res) => {
   try {
-    const Visitors = await prisma.visitor.findMany();
+    const sortBy = req.query.sortBy || "id";
+    const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
+
+    const page = req.query.page || 1 ;
+    const count = req.query.count || 25;
+
+
+    const query = {
+      take: Number(count),
+      skip: Number((page - 1) * count),
+      orderBy: {
+        [sortBy]: sortOrder,
+      },
+
+    };
+    const Visitors = await prisma.visitor.findMany(query);
 
     if (Visitors.length === 0) {
       return res.status(404).json({ msg: "No Visitors found" });

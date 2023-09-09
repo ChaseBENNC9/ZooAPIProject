@@ -39,7 +39,22 @@ const createWorker = async (req, res) => {
  */
 const getWorkers = async (req, res) => {
   try {
-    const Workers = await prisma.worker.findMany();
+    const sortBy = req.query.sortBy || "id";
+    const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
+
+    const page = req.query.page || 1 ;
+    const count = req.query.count || 25;
+
+
+    const query = {
+      take: Number(count),
+      skip: Number((page - 1) * count),
+      orderBy: {
+        [sortBy]: sortOrder,
+      },
+
+    };
+    const Workers = await prisma.worker.findMany(query);
 
     if (Workers.length === 0) {
       return res.status(404).json({ msg: "No Workers found" });

@@ -38,7 +38,22 @@ const createTourGroup = async (req, res) => {
  */
 const getTourGroups = async (req, res) => {
   try {
-    const TourGroups = await prisma.tourGroup.findMany();
+    const sortBy = req.query.sortBy || "id";
+    const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
+
+    const page = req.query.page || 1 ;
+    const count = req.query.count || 25;
+
+
+    const query = {
+      take: Number(count),
+      skip: Number((page - 1) * count),
+      orderBy: {
+        [sortBy]: sortOrder,
+      },
+
+    };
+    const TourGroups = await prisma.tourGroup.findMany(query);
 
     if (TourGroups.length === 0) {
       return res.status(404).json({ msg: "No TourGroups found" });

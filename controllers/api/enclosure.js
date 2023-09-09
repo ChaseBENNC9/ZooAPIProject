@@ -39,13 +39,20 @@ const createEnclosure = async (req, res) => {
  */
 const getEnclosures = async (req, res) => {
   try {
-    const sortBy = req.query.sortBy || "name";
+    const sortBy = req.query.sortBy || "id";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
 
+    const page = req.query.page || 1 ;
+    const count = req.query.count || 25;
+
+
     const query = {
+      take: Number(count),
+      skip: Number((page - 1) * count),
       orderBy: {
         [sortBy]: sortOrder,
       },
+
     };
     if (req.query.name || req.query.type || req.query.temporary || req.query.visitorCapacity) {
       query.where = {
@@ -56,8 +63,9 @@ const getEnclosures = async (req, res) => {
           in: req.query.type || undefined,
         },
         visitorCapacity: {
-          in: req.query.visitorCapacity || undefined,
+          in: parseInt(req.query.visitorCapacity) || undefined, //Convert the string Value into an integer
         },
+        temporary: req.query.temporary === 'true', // Convert string to boolean
       };
     }   
     const Enclosures = await prisma.enclosure.findMany(query);

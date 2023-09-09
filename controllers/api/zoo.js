@@ -39,14 +39,20 @@ const createZoo = async (req, res) => {
  */
 const getZoos = async (req, res) => {
   try {
-    const sortBy = req.query.sortBy || "name";
+    const sortBy = req.query.sortBy || "id";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
+
+    const page = req.query.page || 1 ;
+    const count = req.query.count || 25;
 
 
     const query = {
+      take: Number(count),
+      skip: Number((page - 1) * count),
       orderBy: {
         [sortBy]: sortOrder,
       },
+
     };
     if (req.query.name || req.query.city || req.query.country) {
       query.where = {

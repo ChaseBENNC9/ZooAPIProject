@@ -39,14 +39,20 @@ const createAnimal = async (req, res) => {
  */
 const getAnimals = async (req, res) => {
   try {
-    const sortBy = req.query.sortBy || "name";
+    const sortBy = req.query.sortBy || "id";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
+
+    const page = req.query.page || 1 ;
+    const count = req.query.count || 25;
 
 
     const query = {
+      take: Number(count),
+      skip: Number((page - 1) * count),
       orderBy: {
         [sortBy]: sortOrder,
       },
+
     };
     if (req.query.name || req.query.species || req.query.sex) {
       query.where = {
