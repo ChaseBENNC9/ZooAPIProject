@@ -63,7 +63,7 @@ const validatePostZoo = (req, res, next) => {
  * @param {} next - Next
  * @returns {object} - Validation message
  */
- 
+
 const validateUpdateZoo = (req, res, next) => {
   const zooSchema = Joi.object({
     name: Joi.string().min(3).max(100).messages({
@@ -161,19 +161,16 @@ const validateUpdateEnclosure = (req, res, next) => {
     zooId: Joi.number().min(1).messages({
       "number.base": "Zoo Id needs to be a number",
       "number.min": "Zoo ID must be at least {#limit}",
-
     }),
     name: Joi.string().min(8).max(100).messages({
       "string.base": "Name should be a string",
       "string.min": "Name should have a minimum length of {#limit}",
       "string.max": "Name should have a maximum length of {#limit}",
-
     }),
     type: Joi.string().min(3).max(100).messages({
       "string.base": "Type should be a string",
       "string.min": "Type should have a minimum length of {#limit}",
       "string.max": "Type should have a maximum length of {#limit}",
-
     }),
     visitorCapacity: Joi.number().min(1).max(50).messages({
       "number.base": "Visitor Capacity should be an Integer",
@@ -181,7 +178,6 @@ const validateUpdateEnclosure = (req, res, next) => {
     }),
     temporary: Joi.bool().messages({
       "bool.base": "Temporary should be true or false",
-
     }),
     animals: Joi.object({
       create: Joi.array().items(Joi.object()),
@@ -207,7 +203,6 @@ const validatePostAnimal = (req, res, next) => {
       "number.empty": "Enclosure Id cannot be empty",
       "number.min": "Enclosure ID must be at least {#limit}",
       "any.required": "Enclosure Id is required",
-
     }),
     name: Joi.string().min(3).max(12).required().messages({
       "string.base": "Name should be a string",
@@ -223,7 +218,7 @@ const validatePostAnimal = (req, res, next) => {
       "string.max": "Species should have a maximum length of {#limit}",
       "any.required": "Species is required",
     }),
-    sex: Joi.string().valid("MALE","FEMALE").required().messages({
+    sex: Joi.string().valid("MALE", "FEMALE").required().messages({
       "string.base": "Sex should be a string",
       "string.empty": "Sex cannot be empty",
     }),
@@ -233,9 +228,8 @@ const validatePostAnimal = (req, res, next) => {
       "any.required": "Birth Date is required",
     }),
     deathDate: Joi.date().allow(null).messages({
-      "date.base": "Death Date should be a Date"
+      "date.base": "Death Date should be a Date",
     }),
-    
   });
 
   const { error } = animalSchema.validate(req.body);
@@ -248,4 +242,10 @@ const validatePostAnimal = (req, res, next) => {
 
   next();
 };
-export { validatePostZoo, validatePostEnclosure,validatePostAnimal,validateUpdateEnclosure,validateUpdateZoo };
+export {
+  validatePostZoo,
+  validatePostEnclosure,
+  validatePostAnimal,
+  validateUpdateEnclosure,
+  validateUpdateZoo,
+};

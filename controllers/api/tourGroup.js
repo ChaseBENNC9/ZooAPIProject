@@ -1,7 +1,7 @@
 /**
  * @file Manages all of the Different TourGroup's
  * @author Chase Bennett-Hill
-*/
+ */
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
@@ -41,9 +41,8 @@ const getTourGroups = async (req, res) => {
     const sortBy = req.query.sortBy || "id";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
 
-    const page = req.query.page || 1 ;
+    const page = req.query.page || 1;
     const count = req.query.count || 25;
-
 
     const query = {
       take: Number(count),
@@ -51,7 +50,6 @@ const getTourGroups = async (req, res) => {
       orderBy: {
         [sortBy]: sortOrder,
       },
-
     };
     const TourGroups = await prisma.tourGroup.findMany(query);
 

@@ -12,33 +12,32 @@ const main = async () => {
       data: zooSeed,
     });
     await prisma.visitor.createMany({
-      data: 
-      [
+      data: [
         {
-          "zooId": 1,
-          "firstName": "Chase",
-          "lastName": "Bennett-Hill",
-          "ticketType": "ADULT",
-          "ticketCost": 15.60,
-          "visitDate": "2023-01-01T00:00:00Z"
+          zooId: 1,
+          firstName: "Chase",
+          lastName: "Bennett-Hill",
+          ticketType: "ADULT",
+          ticketCost: 15.6,
+          visitDate: "2023-01-01T00:00:00Z",
         },
         {
-          "zooId": 1,
-          "firstName": "Bryan",
-          "lastName": "Bennett-Hill",
-          "ticketType": "SENIOR",
-          "ticketCost": 15.60,
-          "visitDate": "2023-01-01T00:00:00Z"
+          zooId: 1,
+          firstName: "Bryan",
+          lastName: "Bennett-Hill",
+          ticketType: "SENIOR",
+          ticketCost: 15.6,
+          visitDate: "2023-01-01T00:00:00Z",
         },
         {
-          "zooId": 1,
-          "firstName": "John",
-          "lastName": "Doe",
-          "ticketType": "CHILD",
-          "ticketCost": 10.25,
-          "visitDate": "2023-01-01T00:00:00Z"
-        }
-      ]
+          zooId: 1,
+          firstName: "John",
+          lastName: "Doe",
+          ticketType: "CHILD",
+          ticketCost: 10.25,
+          visitDate: "2023-01-01T00:00:00Z",
+        },
+      ],
     });
     console.log("Database successfully seeded");
 

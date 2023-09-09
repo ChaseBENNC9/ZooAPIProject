@@ -14,7 +14,7 @@ import {
 
 import { validatePostAnimal } from "../../middleware/validation.js";
 const router = express.Router();
-router.post("/",validatePostAnimal,createAnimal);
+router.post("/", validatePostAnimal, createAnimal);
 router.get("/", getAnimals);
 router.get("/:id", getAnimal);
 router.put("/:id", updateAnimal);

@@ -1,11 +1,11 @@
 import express from "express";
 
 import {
-    createTourGroup,
-    getTourGroups,
-    getTourGroup,
-    updateTourGroup,
-    deleteTourGroup,
+  createTourGroup,
+  getTourGroups,
+  getTourGroup,
+  updateTourGroup,
+  deleteTourGroup,
 } from "../../controllers/api/tourGroup.js";
 
 const router = express.Router();

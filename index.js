@@ -1,5 +1,5 @@
 /**
- * @file Manages the Express Application 
+ * @file Manages the Express Application
  * @author Chase Bennett-Hill
  */
 // Import the Express module
@@ -37,8 +37,8 @@ app.use("/api/v1/zoos", zooRoutes);
 app.use("/api/v1/enclosures", enclosureRoutes);
 app.use("/api/v1/animals", animalRoutes);
 app.use("/api/v1/visitors", visitorRoutes);
-app.use("/api/v1/workers",workerRoutes);
-app.use("/api/v1/tourgroups",tourGroupRoutes);
+app.use("/api/v1/workers", workerRoutes);
+app.use("/api/v1/tourgroups", tourGroupRoutes);
 // Start the server on port 3000
 app.listen(3000, () => {
   console.log("Server is listening on port 3000.");

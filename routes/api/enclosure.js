@@ -7,7 +7,10 @@ import {
   updateEnclosure,
   deleteEnclosure,
 } from "../../controllers/api/enclosure.js";
-import { validatePostEnclosure,validateUpdateEnclosure } from "../../middleware/validation.js";
+import {
+  validatePostEnclosure,
+  validateUpdateEnclosure,
+} from "../../middleware/validation.js";
 
 const router = express.Router();
 router.post("/", validatePostEnclosure, createEnclosure);

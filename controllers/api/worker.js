@@ -42,9 +42,8 @@ const getWorkers = async (req, res) => {
     const sortBy = req.query.sortBy || "id";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
 
-    const page = req.query.page || 1 ;
+    const page = req.query.page || 1;
     const count = req.query.count || 25;
-
 
     const query = {
       take: Number(count),
@@ -52,7 +51,6 @@ const getWorkers = async (req, res) => {
       orderBy: {
         [sortBy]: sortOrder,
       },
-
     };
     const Workers = await prisma.worker.findMany(query);
 

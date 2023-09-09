@@ -42,9 +42,8 @@ const getZoos = async (req, res) => {
     const sortBy = req.query.sortBy || "id";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
 
-    const page = req.query.page || 1 ;
+    const page = req.query.page || 1;
     const count = req.query.count || 25;
-
 
     const query = {
       take: Number(count),
@@ -52,7 +51,6 @@ const getZoos = async (req, res) => {
       orderBy: {
         [sortBy]: sortOrder,
       },
-
     };
     if (req.query.name || req.query.city || req.query.country) {
       query.where = {
@@ -60,19 +58,18 @@ const getZoos = async (req, res) => {
           in: req.query.name || undefined,
         },
         city: {
-          in: req.query.city || undefined
+          in: req.query.city || undefined,
         },
         country: {
-          in: req.query.country || undefined
+          in: req.query.country || undefined,
         },
         established: {
-          in: req.query.established || undefined
-        }
+          in: req.query.established || undefined,
+        },
       };
     }
     const Zoos = await prisma.zoo.findMany(query);
 
-    
     if (Zoos.length === 0) {
       return res.status(404).json({ msg: "No Zoos found" });
     }

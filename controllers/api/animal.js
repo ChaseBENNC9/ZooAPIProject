@@ -42,9 +42,8 @@ const getAnimals = async (req, res) => {
     const sortBy = req.query.sortBy || "id";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
 
-    const page = req.query.page || 1 ;
+    const page = req.query.page || 1;
     const count = req.query.count || 25;
-
 
     const query = {
       take: Number(count),
@@ -52,7 +51,6 @@ const getAnimals = async (req, res) => {
       orderBy: {
         [sortBy]: sortOrder,
       },
-
     };
     if (req.query.name || req.query.species || req.query.sex) {
       query.where = {
@@ -60,13 +58,13 @@ const getAnimals = async (req, res) => {
           in: req.query.name || undefined,
         },
         species: {
-          in: req.query.species || undefined
+          in: req.query.species || undefined,
         },
         sex: {
-          in: req.query.sex || undefined
+          in: req.query.sex || undefined,
         },
       };
-    }   
+    }
     const Animals = await prisma.animal.findMany(query);
 
     if (Animals.length === 0) {
