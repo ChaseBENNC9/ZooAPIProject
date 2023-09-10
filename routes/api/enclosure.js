@@ -1,3 +1,7 @@
+/**
+ * @file This is the Enclosure Route and handles the types of requests for the Enclosure model
+ * @author Chase Bennett-Hill
+ */
 import express from "express";
 
 import {

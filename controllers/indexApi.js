@@ -3,6 +3,7 @@
  * @author Chase Bennett-Hill
  */
 const routes = [
+  //Hard coded array of routes
   "/api/v1/zoos",
   "/api/v1/enclosures",
   "/api/v1/animals",
@@ -10,7 +11,7 @@ const routes = [
   "/api/v1/visitors",
   "/api/v1/tourGroups",
 ];
-const routeList = routes
+const routeList = routes //List each route in the array as a Link
   .map((route) => `<li><a href="${route}">${route}</a></li>`)
   .join("");
 
