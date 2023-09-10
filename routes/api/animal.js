@@ -12,12 +12,15 @@ import {
   deleteAnimal,
 } from "../../controllers/api/animal.js";
 
-import { validatePostAnimal } from "../../middleware/validation.js";
+import {
+  validatePostAnimal,
+  validateUpdateAnimal,
+} from "../../middleware/validation.js";
 const router = express.Router();
 router.post("/", validatePostAnimal, createAnimal);
 router.get("/", getAnimals);
 router.get("/:id", getAnimal);
-router.put("/:id", updateAnimal);
+router.put("/:id", validateUpdateAnimal, updateAnimal);
 router.delete("/:id", deleteAnimal);
 
 export default router;
