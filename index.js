@@ -39,6 +39,10 @@ app.use("/api/v1/animals", animalRoutes);
 app.use("/api/v1/visitors", visitorRoutes);
 app.use("/api/v1/workers", workerRoutes);
 app.use("/api/v1/tourgroups", tourGroupRoutes);
+app.use((req, res) =>{
+  // Invalid request
+  res.send("Error: This Endpoint is not available")
+  });
 // Start the server on port 3000
 app.listen(3000, () => {
   console.log("Server is listening on port 3000.");
