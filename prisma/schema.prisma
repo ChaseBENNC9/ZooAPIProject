@@ -65,9 +65,8 @@ model Visitor {
 }
 
 model Worker {
-  id    Int @id @default(autoincrement())
-  zooId Int
-
+  id              Int         @id @default(autoincrement())
+  zooId           Int
   firstName       String
   lastName        String
   hireDate        DateTime
@@ -80,7 +79,6 @@ model Worker {
 
 model TourGroup {
   id            Int       @id @default(autoincrement())
-  zooId         Int
   workerId      Int
   enclosureId   Int
   visitors      Visitor[]
@@ -96,6 +94,7 @@ enum Sex {
   MALE
   FEMALE
 }
+
 enum TicketType {
   ADULT
   CHILD

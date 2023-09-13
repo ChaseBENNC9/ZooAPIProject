@@ -76,7 +76,8 @@ const getTourGroup = async (req, res) => {
     const tourGroup = await prisma.tourGroup.findUnique({
       where: { id: Number(req.params.id) },
       include: {
-        animals: true,
+        startLocation: true,
+        guide: true,
       },
     });
 
