@@ -7,17 +7,16 @@ This is my Rest API for Project 1 of ID607001. My API is a Zoo management system
 This API is developed using Node and Express and it has been deployed to a service called Render which also hosts the PostgreSQL Database, the Database is managed using Prisma and PostgreSQL.
 
 ## Important Links
+|              Render Web Service               |                   Postman Documentation                      |
+|-----------------------------------------------|--------------------------------------------------------------| 
+| https://id607001-bennc9-bit.onrender.com/api  |   https://documenter.getpostman.com/view/28768657/2s9Y5csKZr |
 
-**Render Web Service:**
-This is the link to the Web service hosted by render
-https://id607001-bennc9-bit.onrender.com/api
-
-**Documentation:**
-This is the link to the documentation of the API using Postman it contains examples for Post, Get , Put and Delete for each model.
 
 ## Entity Relationship Diagram
 
-Here is the Entity Relationship Diagram for my Database that i created using Lucid Chart.
+Here is the Entity Relationship Diagram for my Database that i created using Lucid Chart. 
+![image](https://github.com/otago-polytechnic-bit-courses/s2-23-project-ChaseBENNC9/assets/104808214/c840f923-782f-4139-afb5-4c1d1f76fa8d)
+
 
 ### Software
 
