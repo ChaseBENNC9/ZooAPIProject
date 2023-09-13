@@ -14,7 +14,9 @@ This API is developed using Node and Express and it has been deployed to a servi
 
 ## Entity Relationship Diagram
 
-Here is the Entity Relationship Diagram for my Database that i created using Lucid Chart.
+Here is the Entity Relationship Diagram for my Database that i created using Lucid Chart. 
+![image](https://github.com/otago-polytechnic-bit-courses/s2-23-project-ChaseBENNC9/assets/104808214/c840f923-782f-4139-afb5-4c1d1f76fa8d)
+
 
 ### Software
 
