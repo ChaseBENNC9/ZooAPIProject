@@ -75,6 +75,8 @@ const validateUpdateZoo = (req, res, next) => {
     }),
     established: Joi.date().messages({
       "date.base": "Established should be a Date",
+      "date.empty": "Established cannot be empty",
+
     }),
     enclosures: Joi.object({
       create: Joi.array().items(Joi.object()),
@@ -390,9 +392,103 @@ const validateUpdateVisitor = (req, res, next) => {
   next();
 };
 
-const validatePostWorker = (req, res, next) => {};
+const validatePostWorker = (req, res, next) => { 
+    const workerSchema = Joi.object({
+      zooId: Joi.number().min(1).required().messages({
+        "number.base": "Zoo Id needs to be a number",
+        "number.null": "Zoo Id cannot be null",
+        "number.min": "Zoo ID must be at least {#limit}",
+        "any.required": "Zoo Id is required",
+      }),
+      firstName: Joi.string().min(3).max(12).required().messages({
+        "string.base": "First Name should be a string",
+        "string.empty": "First Name cannot be empty",
+        "string.min": "First Name should have a minimum length of {#limit}",
+        "string.max": "First Name should have a maximum length of {#limit}",
+        "any.required": "First Name is required",
 
-const validateUpdateWorker = (req, res, next) => {};
+      }),
+      lastName: Joi.string().min(3).max(12).required().messages({
+        "string.base": "Last Name should be a string",
+        "string.empty": "Last Name cannot be empty",
+        "string.min": "Last Name should have a minimum length of {#limit}",
+        "string.max": "Last Name should have a maximum length of {#limit}",
+        "any.required": "Last Name is required",
+
+      }),
+      hireDate: Joi.date().required().messages({
+        "date.base": "Hire Date should be a Date and Time",
+        "date.empty": "Hire Date cannot be empty",
+        "any.required": "Hire Date is required",
+      }),
+      terminationDate: Joi.date().allow(null).messages({
+        "date.base": "Termination Date should be a Date and Time",
+        "date.empty": "Termination Date cannot be empty",
+      }),
+      tourGroup: Joi.object({
+        create: Joi.array().items(Joi.object()),
+      }).messages({
+        "array.base": "Tour Group should be a Tour Group Object",
+      }),
+    });
+  
+    const { error } = tourGroupSchema.validate(req.body);
+  
+    if (error) {
+      return res.status(400).json({
+        msg: error.details[0].message,
+      });
+    }
+  
+    next();
+};
+
+const validateUpdateWorker = (req, res, next) => { 
+  const workerSchema = Joi.object({
+    zooId: Joi.number().min(1).messages({
+      "number.base": "Zoo Id needs to be a number",
+      "number.null": "Zoo Id cannot be null",
+      "number.min": "Zoo ID must be at least {#limit}",
+    }),
+    firstName: Joi.string().min(3).max(12).messages({
+      "string.base": "First Name should be a string",
+      "string.empty": "First Name cannot be empty",
+      "string.min": "First Name should have a minimum length of {#limit}",
+      "string.max": "First Name should have a maximum length of {#limit}",
+    }),
+    lastName: Joi.string().min(3).max(12).messages({
+      "string.base": "Last Name should be a string",
+      "string.empty": "Last Name cannot be empty",
+      "string.min": "Last Name should have a minimum length of {#limit}",
+      "string.max": "Last Name should have a maximum length of {#limit}",
+    }),
+    hireDate: Joi.date().messages({
+      "date.base": "Hire Date should be a Date and Time",
+      "date.empty": "Hire Date cannot be empty",
+    }),
+    terminationDate: Joi.date().allow(null).messages({
+      "date.base": "Hire Date should be a Date and Time",
+      "date.empty": "Hire Date cannot be empty",
+    }),
+    tourGroup: Joi.object({
+      create: Joi.array().items(Joi.object()),
+    }).messages({
+      "array.base": "Tour Group should be a Tour Group Object",
+    }),
+  });
+
+  const { error } = tourGroupSchema.validate(req.body);
+
+  if (error) {
+    return res.status(400).json({
+      msg: error.details[0].message,
+    });
+  }
+
+  next();
+};
+
+
 const validatePostTourGroup = (req, res, next) => {
   const tourGroupSchema = Joi.object({
     zooId: Joi.number().min(1).required().messages({
