@@ -32,7 +32,7 @@ Here is the Entity Relationship Diagram for my Database that i created using Luc
 
 ### Create and Apply a Migration
 
-- In the terminal run: `npm migrate`
+- In the terminal run: `npm run migrate`
 
 ### Reset the Database
 
