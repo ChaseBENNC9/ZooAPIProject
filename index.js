@@ -4,6 +4,7 @@
  */
 // Import the Express module
 import express from "express";
+import cors from "cors";
 // Import the express rate limit module
 import { rateLimit } from "express-rate-limit";
 // Import all the routes of the API
@@ -17,7 +18,7 @@ import workerRoutes from "./routes/api/worker.js";
 import tourGroupRoutes from "./routes/api/tourGroup.js";
 // Create an Express application
 const app = express();
-
+app.use(cors);
 const limiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   max: 100, // Limit each IP to 100 requests per `window` (1 minute)
