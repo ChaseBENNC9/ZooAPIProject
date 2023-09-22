@@ -18,7 +18,7 @@ import workerRoutes from "./routes/api/worker.js";
 import tourGroupRoutes from "./routes/api/tourGroup.js";
 // Create an Express application
 const app = express();
-app.use(cors);
+app.use(cors());
 const limiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   max: 100, // Limit each IP to 100 requests per `window` (1 minute)
