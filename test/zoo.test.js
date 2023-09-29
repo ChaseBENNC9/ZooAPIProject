@@ -25,7 +25,7 @@ describe("Zoos", () => {
         chai.expect(res.body).to.be.a("object");
         chai
           .expect(res.body.msg)
-          .to.be.equal("zoo successfully created");
+          .to.be.equal("Zoo successfully created");
         done();
       });
   });
@@ -74,7 +74,7 @@ describe("Zoos", () => {
         chai.expect(res.body).to.be.a("object");
         chai
           .expect(res.body.msg)
-          .to.be.equal("zoo with the id: 1 successfully updated");
+          .to.be.equal("Zoo with the id: 1 successfully updated");
         done();
       });
   });
@@ -89,7 +89,7 @@ describe("Zoos", () => {
         chai.expect(res.body).to.be.a("object");
         chai
           .expect(res.body.msg)
-          .to.be.equal("zoo with the id: 1 successfully deleted");
+          .to.be.equal("Zoo with the id: 1 successfully deleted");
         done();
       });
   });

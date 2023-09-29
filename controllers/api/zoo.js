@@ -21,7 +21,7 @@ const createZoo = async (req, res) => {
     const newZoos = await prisma.zoo.findMany();
 
     return res.status(201).json({
-      msg: "zoo successfully created",
+      msg: "Zoo successfully created",
       data: newZoos,
     });
   } catch (err) {
@@ -100,7 +100,7 @@ const getZoo = async (req, res) => {
     if (!zoo) {
       return res
         .status(404)
-        .json({ msg: `No zoo with the id: ${req.params.id} found` });
+        .json({ msg: `No Zoo with the id: ${req.params.id} found` });
     }
 
     return res.json({
@@ -128,7 +128,7 @@ const updateZoo = async (req, res) => {
     if (!zoo) {
       return res
         .status(404)
-        .json({ msg: `No zoo with the id: ${req.params.id} found` });
+        .json({ msg: `No Zoo with the id: ${req.params.id} found` });
     }
 
     zoo = await prisma.zoo.update({
@@ -137,7 +137,7 @@ const updateZoo = async (req, res) => {
     });
 
     return res.json({
-      msg: `zoo with the id: ${req.params.id} successfully updated`,
+      msg: `Zoo with the id: ${req.params.id} successfully updated`,
       data: zoo,
     });
   } catch (err) {
@@ -162,7 +162,7 @@ const deleteZoo = async (req, res) => {
     if (!zoo) {
       return res
         .status(404)
-        .json({ msg: `No zoo with the id: ${req.params.id} found` });
+        .json({ msg: `No Zoo with the id: ${req.params.id} found` });
     }
 
     await prisma.zoo.delete({
@@ -170,7 +170,7 @@ const deleteZoo = async (req, res) => {
     });
 
     return res.json({
-      msg: `zoo with the id: ${req.params.id} successfully deleted`,
+      msg: `Zoo with the id: ${req.params.id} successfully deleted`,
     });
   } catch (err) {
     return res.status(500).json({
