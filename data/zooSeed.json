@@ -9,7 +9,6 @@
         "name": "The Lion Den",
         "type": "Habitat",
         "temporary": false,
-        "visitorCapacity": 25,
         "animals": {
           "create": [
             {
