@@ -20,12 +20,9 @@ describe("Enclosures", () => {
       .post("/api/v1/enclosures")
       .send(Enclosure)
       .end((req, res) => {
-
         chai.expect(res.status).to.be.equal(201);
         chai.expect(res.body).to.be.a("object");
-        chai
-          .expect(res.body.msg)
-          .to.be.equal("Enclosure successfully created");
+        chai.expect(res.body.msg).to.be.equal("Enclosure successfully created");
         done();
       });
   });
@@ -35,7 +32,6 @@ describe("Enclosures", () => {
       .request(app)
       .get("/api/v1/enclosures")
       .end((req, res) => {
-
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("array");
@@ -48,7 +44,6 @@ describe("Enclosures", () => {
       .request(app)
       .get("/api/v1/enclosures/1")
       .end((req, res) => {
-
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("object");
@@ -60,13 +55,10 @@ describe("Enclosures", () => {
     chai
       .request(app)
       .put("/api/v1/enclosures/1")
-      .send(
-        {
-            name: "Enclosure of Lions",
-        }
-      )
+      .send({
+        name: "Enclosure of Lions",
+      })
       .end((req, res) => {
-
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
@@ -81,7 +73,6 @@ describe("Enclosures", () => {
       .request(app)
       .delete("/api/v1/enclosures/1")
       .end((req, res) => {
-
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai

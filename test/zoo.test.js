@@ -20,12 +20,9 @@ describe("Zoos", () => {
       .post("/api/v1/zoos")
       .send(Zoo)
       .end((req, res) => {
-
         chai.expect(res.status).to.be.equal(201);
         chai.expect(res.body).to.be.a("object");
-        chai
-          .expect(res.body.msg)
-          .to.be.equal("Zoo successfully created");
+        chai.expect(res.body.msg).to.be.equal("Zoo successfully created");
         done();
       });
   });
@@ -35,7 +32,6 @@ describe("Zoos", () => {
       .request(app)
       .get("/api/v1/zoos")
       .end((req, res) => {
-
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("array");
@@ -48,7 +44,6 @@ describe("Zoos", () => {
       .request(app)
       .get("/api/v1/zoos/1")
       .end((req, res) => {
-
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("object");
@@ -60,16 +55,13 @@ describe("Zoos", () => {
     chai
       .request(app)
       .put("/api/v1/zoos/1")
-      .send(
-        {
-            name: "Zoo of Pavlova",
-            city: "Melbourne",
-            country: "Australia",
-            established: "2023-01-01T00:00:00.000Z",
-        }
-      )
+      .send({
+        name: "Zoo of Pavlova",
+        city: "Melbourne",
+        country: "Australia",
+        established: "2023-01-01T00:00:00.000Z",
+      })
       .end((req, res) => {
-
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
@@ -84,7 +76,6 @@ describe("Zoos", () => {
       .request(app)
       .delete("/api/v1/zoos/1")
       .end((req, res) => {
-
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
