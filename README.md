@@ -45,3 +45,9 @@ Here is the Entity Relationship Diagram for my Database that i created using Luc
 
 this project uses prettier for all formatting
 to format all the files run the command `npm run format`
+
+### Seed
+to seed the database run the command `npm run seed`
+
+### Testing
+To run all the tests for the API run the command `npm run test`
