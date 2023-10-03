@@ -5,7 +5,7 @@ import { describe, it } from "mocha";
 import app from "../index.js";
 
 chai.use(chaiHttp);
-describe("Index Routes", () => {
+describe("Route Testing", () => {
     it("should get all routes", (done) => {
         chai
             .request(app)
@@ -23,6 +23,16 @@ describe("Index Routes", () => {
                         "<li><a href='/api/v1/visitors'>/api/v1/visitors</a></li>",
                         "<li><a href='/api/v1/tourGroups'>/api/v1/tourGroups</a></li></ul>",
                     );
+                done();
+            });
+    });
+    it("Should return message for invalid routes", (done) => {
+        chai
+            .request(app)
+            .get("/api/v1/zoos/1/invalid")
+            .end((req, res) => {
+                chai.expect(res.status).to.be.equal(404);
+                chai.expect(res.text).to.be.equal("Error: This Endpoint is not available");
                 done();
             });
     });
