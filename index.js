@@ -42,7 +42,7 @@ app.use("/api/v1/workers", workerRoutes);
 app.use("/api/v1/tourgroups", tourGroupRoutes);
 app.use((req, res) => {
   // Invalid request
-  res.send("Error: This Endpoint is not available", 404);
+  res.status(404).send("Error: This Endpoint is not available");
 });
 // Start the server on port 3000
 app.listen(3000, () => {
