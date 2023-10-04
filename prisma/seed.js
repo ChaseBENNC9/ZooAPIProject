@@ -8,7 +8,7 @@ const main = async () => {
     const deleteZoos = await prisma.zoo.deleteMany({});
     const deleteVisitors = await prisma.visitor.deleteMany({});
     const deleteAnimals = await prisma.animal.deleteMany({});
-    await prisma.zoo.create({
+    await prisma.zoo.createMany({
       data: zooSeed,
     });
     await prisma.visitor.createMany({

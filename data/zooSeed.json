@@ -1,65 +1,62 @@
-{
-  "name": "Auckland Zoo",
-  "city": "Auckland",
-  "country": "New Zealand",
-  "established": "2000-01-01T00:00:00Z",
-  "enclosures": {
-    "create": [
-      {
-        "name": "The Lion Den",
-        "type": "Habitat",
-        "temporary": false,
-        "animals": {
-          "create": [
-            {
-              "name": "Leo",
-              "species": "Lion",
-              "sex": "MALE",
-              "birthDate": "2017-12-24T00:00:00Z"
-            },
-            {
-              "name": "Larry",
-              "species": "Lion",
-              "sex": "MALE",
-              "birthDate": "2019-11-14T00:00:00Z"
-            }
-          ]
-        }
-      },
-      {
-        "name": "Native Birds",
-        "type": "Aviary",
-        "visitorCapacity": 15,
-        "temporary": false,
-        "animals": {
-          "create": [
-            {
-              "name": "Barry",
-              "species": "Kea",
-              "sex": "MALE",
-              "birthDate": "2017-12-24T00:00:00Z"
-            },
-            {
-              "name": "Benny",
-              "species": "Kea",
-              "sex": "MALE",
-              "birthDate": "2019-11-14T00:00:00Z"
-            },
-            {
-              "name": "Susan",
-              "species": "Kaka",
-              "sex": "FEMALE",
-              "birthDate": "2017-12-24T00:00:00Z"
-            },
-            {
-              "name": "Daisy",
-              "species": "Tui",
-              "sex": "FEMALE",
-              "birthDate": "2017-12-24T00:00:00Z"
-            }
-          ]
-        }
-      }
-    ]
+[
+  {
+    "name": "Auckland Zoo",
+    "city": "Auckland",
+    "country": "New Zealand",
+    "established": "2000-01-01T00:00:00Z"
+  },
+  {
+    "name": "Orana Wildlife Reserve",
+    "city": "Christchurch",
+    "country": "New Zealand",
+    "established": "2000-02-01T00:00:00Z"
+  },
+  {
+    "name": "Wellington Zoo",
+    "city": "Wellington",
+    "country": "New Zealand",
+    "established": "2000-03-01T00:00:00Z"
+  },
+  {
+    "name": "Hamilton Zoo",
+    "city": "Hamilton",
+    "country": "New Zealand",
+    "established": "2000-04-01T00:00:00Z"
+  },
+  {
+    "name": "Paradise Valley Springs",
+    "city": "Rotorua",
+    "country": "New Zealand",
+    "established": "2000-05-01T00:00:00Z"
+  },
+  {
+    "name": "Napier Zoo",
+    "city": "Napier",
+    "country": "New Zealand",
+    "established": "2000-06-01T00:00:00Z"
+  },
+  {
+    "name": "National Aquarium of New Zealand",
+    "city": "Napier",
+    "country": "New Zealand",
+    "established": "2000-07-01T00:00:00Z"
+  },
+  {
+    "name": "Kiwi Birdlife Park",
+    "city": "Queenstown",
+    "country": "New Zealand",
+    "established": "2000-08-01T00:00:00Z"
+  },
+  {
+    "name": "Willowbank Wildlife Reserve",
+    "city": "Christchurch",
+    "country": "New Zealand",
+    "established": "2000-09-01T00:00:00Z"
+  },
+  {
+    "name": "Pukaha Mount Bruce National Wildlife Centre",
+    "city": "Masterton",
+    "country": "New Zealand",
+    "established": "1980-01-01T00:00:00Z"
   }
-}
+]

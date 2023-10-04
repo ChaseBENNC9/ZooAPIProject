@@ -52,7 +52,7 @@ const getZoos = async (req, res) => {
         [sortBy]: sortOrder,
       },
     };
-    if (req.query.name || req.query.city || req.query.country) {
+    if (req.query.name || req.query.city || req.query.country || req.query.established) {
       query.where = {
         name: {
           in: req.query.name || undefined,
