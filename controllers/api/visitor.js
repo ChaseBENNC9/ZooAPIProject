@@ -52,7 +52,15 @@ const getVisitors = async (req, res) => {
         [sortBy]: sortOrder,
       },
     };
-    if (req.query.id || req.query.zooId || req.query.firatName || req.query.lastName || req.query.ticketType  || req.query.ticketCost || req.query.visitDate) {
+    if (
+      req.query.id ||
+      req.query.zooId ||
+      req.query.firatName ||
+      req.query.lastName ||
+      req.query.ticketType ||
+      req.query.ticketCost ||
+      req.query.visitDate
+    ) {
       query.where = {
         id: {
           in: parseInt(req.query.id) || undefined,

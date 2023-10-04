@@ -6,34 +6,36 @@ import app from "../index.js";
 
 chai.use(chaiHttp);
 describe("Route Testing", () => {
-    it("should get all routes", (done) => {
+  it("should get all routes", (done) => {
+    chai
+      .request(app)
+      .get("/api/")
+      .end((req, res) => {
+        chai.expect(res.status).to.be.equal(200);
         chai
-            .request(app)
-            .get("/api/")
-            .end((req, res) => {
-                chai.expect(res.status).to.be.equal(200);
-                chai
-                    .expect(res.text)
-                    .to.be.be.include(
-                        "<h1>Available Routes:</h1>",
-                        "<ul><li><a href='/api/v1/zoos'>/api/v1/zoos</a></li>",
-                        "<li><a href='/api/v1/enclosures'>/api/v1/enclosures</a></li>",
-                        "<li><a href='/api/v1/animals'>/api/v1/animals</a></li>",
-                        "<li><a href='/api/v1/workers'>/api/v1/workers</a></li>",
-                        "<li><a href='/api/v1/visitors'>/api/v1/visitors</a></li>",
-                        "<li><a href='/api/v1/tourGroups'>/api/v1/tourGroups</a></li></ul>",
-                    );
-                done();
-            });
-    });
-    it("Should return message for invalid routes", (done) => {
+          .expect(res.text)
+          .to.be.be.include(
+            "<h1>Available Routes:</h1>",
+            "<ul><li><a href='/api/v1/zoos'>/api/v1/zoos</a></li>",
+            "<li><a href='/api/v1/enclosures'>/api/v1/enclosures</a></li>",
+            "<li><a href='/api/v1/animals'>/api/v1/animals</a></li>",
+            "<li><a href='/api/v1/workers'>/api/v1/workers</a></li>",
+            "<li><a href='/api/v1/visitors'>/api/v1/visitors</a></li>",
+            "<li><a href='/api/v1/tourGroups'>/api/v1/tourGroups</a></li></ul>",
+          );
+        done();
+      });
+  });
+  it("Should return message for invalid routes", (done) => {
+    chai
+      .request(app)
+      .get("/api/v1/zoos/1/invalid")
+      .end((req, res) => {
+        chai.expect(res.status).to.be.equal(404);
         chai
-            .request(app)
-            .get("/api/v1/zoos/1/invalid")
-            .end((req, res) => {
-                chai.expect(res.status).to.be.equal(404);
-                chai.expect(res.text).to.be.equal("Error: This Endpoint is not available");
-                done();
-            });
-    });
+          .expect(res.text)
+          .to.be.equal("Error: This Endpoint is not available");
+        done();
+      });
+  });
 });
