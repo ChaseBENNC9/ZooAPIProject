@@ -53,12 +53,16 @@ const getEnclosures = async (req, res) => {
       },
     };
     if (
+      req.query.id ||
       req.query.name ||
       req.query.type ||
       req.query.temporary ||
       req.query.visitorCapacity
     ) {
       query.where = {
+        id: {
+          in: parseInt(req.query.id) || undefined,
+        },
         name: {
           in: req.query.name || undefined,
         },

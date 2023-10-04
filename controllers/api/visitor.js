@@ -52,6 +52,31 @@ const getVisitors = async (req, res) => {
         [sortBy]: sortOrder,
       },
     };
+    if (req.query.id || req.query.zooId || req.query.firatName || req.query.lastName || req.query.ticketType  || req.query.ticketCost || req.query.visitDate) {
+      query.where = {
+        id: {
+          in: parseInt(req.query.id) || undefined,
+        },
+        zooId: {
+          in: req.query.zooId || undefined,
+        },
+        firstName: {
+          in: req.query.firstName || undefined,
+        },
+        lastName: {
+          in: req.query.lastName || undefined,
+        },
+        ticketType: {
+          in: req.query.ticketType || undefined,
+        },
+        ticketCost: {
+          in: req.query.ticketCost || undefined,
+        },
+        visitDate: {
+          in: req.query.visitDate || undefined,
+        },
+      };
+    }
     const Visitors = await prisma.visitor.findMany(query);
 
     if (Visitors.length === 0) {
