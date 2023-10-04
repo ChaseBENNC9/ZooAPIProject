@@ -1,0 +1,72 @@
+[
+    {
+        "zooId": 1,
+        "name": "Lion Den",
+        "type": "Habitat",
+        "temporary": false
+    },
+    {
+        "zooId": 1,
+        "name": "Native Birds",
+        "type": "Aviary",
+        "visitorCapacity": 40,
+        "temporary": false
+    },
+    {
+        "zooId": 1,
+        "name": "Penguin Pool",
+        "type": "Aquarium",
+        "visitorCapacity": 20,
+        "temporary": false
+    },
+    {
+        "zooId": 7,
+        "name": "Exotic Fish",
+        "type": "Aquarium",
+        "temporary": false
+    },
+    {
+        "zooId": 7,
+        "name": "Turtle Town",
+        "type": "Aquarium",
+        "temporary": false
+    },
+    {
+        "zooId": 7,
+        "name": "Orca Ocean",
+        "type": "Aquarium",
+        "temporary": false
+    },
+    {
+        "zooId": 7,
+        "name": "Stingray Bay",
+        "type": "Aquarium",
+        "temporary": false
+    },
+    {
+        "zooId": 8,
+        "name": "The Kaka House",
+        "type": "Habitat",
+        "temporary": false
+    },
+    {
+        "zooId": 8,
+        "name": "The Kea Perch",
+        "type": "Habitat",
+        "temporary": false
+    },
+    {
+        "zooId": 8,
+        "name": "Birds of the Forest",
+        "type": "Aviary",
+        "visitorCapacity": 40,
+        "temporary": false
+    },
+    {
+        "zooId": 8,
+        "name": "The Kiwi Burrow",
+        "type": "Habitat",
+        "visitorCapacity": 12,
+        "temporary": false
+    }
+]
