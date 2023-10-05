@@ -11,30 +11,9 @@
     "country": "New Zealand",
     "established": "2000-02-01T00:00:00Z"
   },
-  {
-    "name": "Wellington Zoo",
-    "city": "Wellington",
-    "country": "New Zealand",
-    "established": "2000-03-01T00:00:00Z"
-  },
-  {
-    "name": "Hamilton Zoo",
-    "city": "Hamilton",
-    "country": "New Zealand",
-    "established": "2000-04-01T00:00:00Z"
-  },
-  {
-    "name": "Paradise Valley Springs",
-    "city": "Rotorua",
-    "country": "New Zealand",
-    "established": "2000-05-01T00:00:00Z"
-  },
-  {
-    "name": "Napier Zoo",
-    "city": "Napier",
-    "country": "New Zealand",
-    "established": "2000-06-01T00:00:00Z"
-  },
+
+
+ 
   {
     "name": "National Aquarium of New Zealand",
     "city": "Napier",
@@ -46,17 +25,6 @@
     "city": "Queenstown",
     "country": "New Zealand",
     "established": "2000-08-01T00:00:00Z"
-  },
-  {
-    "name": "Willowbank Wildlife Reserve",
-    "city": "Christchurch",
-    "country": "New Zealand",
-    "established": "2000-09-01T00:00:00Z"
-  },
-  {
-    "name": "Pukaha Mount Bruce National Wildlife Centre",
-    "city": "Masterton",
-    "country": "New Zealand",
-    "established": "1980-01-01T00:00:00Z"
   }
+
 ]
