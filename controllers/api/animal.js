@@ -52,8 +52,14 @@ const getAnimals = async (req, res) => {
         [sortBy]: sortOrder,
       },
     };
-    if (req.query.name || req.query.species || req.query.sex) {
+    if (req.query.id || req.query.enclosureId || req.query.name || req.query.species || req.query.sex || req.query.birthDate || req.query.deathDate) {
       query.where = {
+        id: {
+          in: parseInt(req.query.id) || undefined,
+        },
+        enclosureId: {
+          in: parseInt(req.query.enclosureId) || undefined,
+        },
         name: {
           in: req.query.name || undefined,
         },
@@ -62,6 +68,12 @@ const getAnimals = async (req, res) => {
         },
         sex: {
           in: req.query.sex || undefined,
+        },
+        birthDate: {
+          in: req.query.birthDate || undefined,
+        },
+        deathDate: {
+          in: req.query.deathDate || undefined,
         },
       };
     }
