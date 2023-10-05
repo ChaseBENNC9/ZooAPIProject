@@ -37,7 +37,17 @@ it("Should show all Zoos in Australia", (done) => {
   });
 });
 
-
+//Pagination
+it("Should return 2 Zoos", (done) => {
+  chai
+      .request(app)
+      .get("/api/v1/zoos?count=2")
+      .end((req, res) => {
+          chai.expect(res.body.data).to.be.a("array");
+          chai.expect(res.body.data.length).to.be.equal(2);
+          done();
+      });
+});
   it("should create Zoo", (done) => {
     chai
       .request(app)
