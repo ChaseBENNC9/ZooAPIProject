@@ -32,79 +32,7 @@
       "visitDate": "2023-01-04T00:00:00Z"
     },
     {
-      "zooId": 5,
-      "firstName": "Olivia",
-      "lastName": "Johnson",
-      "ticketType": "ADULT",
-      "ticketCost": 13.75,
-      "visitDate": "2023-01-05T00:00:00Z"
-    },
-    {
-      "zooId": 6,
-      "firstName": "James",
-      "lastName": "Davis",
-      "ticketType": "CHILD",
-      "ticketCost": 11.0,
-      "visitDate": "2023-01-06T00:00:00Z"
-    },
-    {
-      "zooId": 7,
-      "firstName": "Charlotte",
-      "lastName": "Miller",
-      "ticketType": "SENIOR",
-      "ticketCost": 7.5,
-      "visitDate": "2023-01-07T00:00:00Z"
-    },
-    {
-      "zooId": 8,
-      "firstName": "Liam",
-      "lastName": "Smith",
-      "ticketType": "ADULT",
-      "ticketCost": 14.25,
-      "visitDate": "2023-01-08T00:00:00Z"
-    },
-    {
-      "zooId": 9,
-      "firstName": "Ava",
-      "lastName": "Jones",
-      "ticketType": "CHILD",
-      "ticketCost": 10.5,
-      "visitDate": "2023-01-09T00:00:00Z"
-    },
-    {
-      "zooId": 10,
-      "firstName": "Mason",
-      "lastName": "Taylor",
-      "ticketType": "SENIOR",
-      "ticketCost": 9.25,
-      "visitDate": "2023-01-10T00:00:00Z"
-    },
-    {
       "zooId": 1,
-      "firstName": "Ethan",
-      "lastName": "Brown",
-      "ticketType": "ADULT",
-      "ticketCost": 13.0,
-      "visitDate": "2023-01-11T00:00:00Z"
-    },
-    {
-      "zooId": 2,
-      "firstName": "Amelia",
-      "lastName": "Wilson",
-      "ticketType": "CHILD",
-      "ticketCost": 9.75,
-      "visitDate": "2023-01-12T00:00:00Z"
-    },
-    {
-      "zooId": 3,
-      "firstName": "Lucas",
-      "lastName": "Harris",
-      "ticketType": "SENIOR",
-      "ticketCost": 8.0,
-      "visitDate": "2023-01-13T00:00:00Z"
-    },
-    {
-      "zooId": 4,
       "firstName": "Sophia",
       "lastName": "Anderson",
       "ticketType": "ADULT",
@@ -112,7 +40,7 @@
       "visitDate": "2023-01-14T00:00:00Z"
     },
     {
-      "zooId": 5,
+      "zooId": 2,
       "firstName": "Alexander",
       "lastName": "Martin",
       "ticketType": "CHILD",
@@ -120,7 +48,7 @@
       "visitDate": "2023-01-15T00:00:00Z"
     },
     {
-      "zooId": 6,
+      "zooId": 3,
       "firstName": "Mia",
       "lastName": "Thompson",
       "ticketType": "SENIOR",
@@ -128,7 +56,7 @@
       "visitDate": "2023-01-16T00:00:00Z"
     },
     {
-      "zooId": 7,
+      "zooId": 4,
       "firstName": "Logan",
       "lastName": "Lewis",
       "ticketType": "ADULT",
@@ -136,7 +64,7 @@
       "visitDate": "2023-01-17T00:00:00Z"
     },
     {
-      "zooId": 8,
+      "zooId": 1,
       "firstName": "Harper",
       "lastName": "Johnson",
       "ticketType": "CHILD",
@@ -144,7 +72,7 @@
       "visitDate": "2023-01-18T00:00:00Z"
     },
     {
-      "zooId": 9,
+      "zooId": 2,
       "firstName": "Benjamin",
       "lastName": "Brown",
       "ticketType": "SENIOR",
@@ -152,7 +80,7 @@
       "visitDate": "2023-01-19T00:00:00Z"
     },
     {
-      "zooId": 10,
+      "zooId": 3,
       "firstName": "Evelyn",
       "lastName": "Smith",
       "ticketType": "ADULT",
@@ -160,7 +88,7 @@
       "visitDate": "2023-01-20T00:00:00Z"
     },
     {
-      "zooId": 1,
+      "zooId": 4,
       "firstName": "Daniel",
       "lastName": "Clark",
       "ticketType": "CHILD",
@@ -168,7 +96,7 @@
       "visitDate": "2023-01-21T00:00:00Z"
     },
     {
-      "zooId": 2,
+      "zooId": 1,
       "firstName": "Madison",
       "lastName": "Jones",
       "ticketType": "SENIOR",
@@ -176,12 +104,28 @@
       "visitDate": "2023-01-22T00:00:00Z"
     },
     {
-      "zooId": 3,
+      "zooId": 2,
       "firstName": "Aiden",
       "lastName": "Brown",
       "ticketType": "ADULT",
       "ticketCost": 13.25,
       "visitDate": "2023-01-23T00:00:00Z"
+    },
+    {
+      "zooId": 3,
+      "firstName": "Abigail",
+      "lastName": "Taylor",
+      "ticketType": "CHILD",
+      "ticketCost": 11.0,
+      "visitDate": "2023-01-24T00:00:00Z"
+    },
+    {
+      "zooId": 4,
+      "firstName": "Oliver",
+      "lastName": "Anderson",
+      "ticketType": "SENIOR",
+      "ticketCost": 8.25,
+      "visitDate": "2023-01-25T00:00:00Z"
     }
 ]
   
