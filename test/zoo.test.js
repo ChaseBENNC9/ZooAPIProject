@@ -27,9 +27,17 @@ describe("Zoos", () => {
         });
 });
 //Filtering
+it("Should show all Zoos in Australia", (done) => {
+  chai.request(app)
+  .get("/api/v1/zoos?country=Australia")
+  .end((req, res) => {
+      chai.expect(res.body.data).to.be.a("array");
+      chai.expect(res.body.data[0].country).to.be.equal("Australia");
+      done();
+  });
+});
 
 
-//Pagination
   it("should create Zoo", (done) => {
     chai
       .request(app)
