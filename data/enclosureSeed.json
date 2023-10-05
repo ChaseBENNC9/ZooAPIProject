@@ -20,50 +20,86 @@
         "temporary": false
     },
     {
-        "zooId": 7,
+        "zooId": 2,
+        "name": "Giraffe Grove",
+        "type": "Habitat",
+        "visitorCapacity": 30,
+        "temporary": false
+    },
+    {
+        "zooId": 2,
+        "name": "Tiger Territory",
+        "type": "Habitat",
+        "temporary": false
+    },
+    {
+        "zooId": 2,
+        "name": "Cheetah Run",
+        "type": "Habitat",
+        "temporary": false
+    },
+    {
+        "zooId": 2,
+        "name": "Ape Attraction",
+        "type": "Habitat",
+        "temporary": false
+    },
+    {
+        "zooId": 2,
+        "name": "Reptile House",
+        "type": "Habitat",
+        "temporary": false
+
+
+    },
+
+    
+ 
+    {
+        "zooId": 3,
         "name": "Exotic Fish",
         "type": "Aquarium",
         "temporary": false
     },
     {
-        "zooId": 7,
+        "zooId": 3,
         "name": "Turtle Town",
         "type": "Aquarium",
         "temporary": false
     },
     {
-        "zooId": 7,
+        "zooId": 3,
         "name": "Orca Ocean",
         "type": "Aquarium",
         "temporary": false
     },
     {
-        "zooId": 7,
+        "zooId": 3,
         "name": "Stingray Bay",
         "type": "Aquarium",
         "temporary": false
     },
     {
-        "zooId": 8,
+        "zooId": 4,
         "name": "The Kaka House",
         "type": "Habitat",
         "temporary": false
     },
     {
-        "zooId": 8,
+        "zooId": 4,
         "name": "The Kea Perch",
         "type": "Habitat",
         "temporary": false
     },
     {
-        "zooId": 8,
+        "zooId": 4,
         "name": "Birds of the Forest",
         "type": "Aviary",
         "visitorCapacity": 40,
         "temporary": false
     },
     {
-        "zooId": 8,
+        "zooId": 4,
         "name": "The Kiwi Burrow",
         "type": "Habitat",
         "visitorCapacity": 12,
