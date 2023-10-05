@@ -52,6 +52,30 @@ const getWorkers = async (req, res) => {
         [sortBy]: sortOrder,
       },
     };
+    if(req.query.id || req.query.zooId || req.query.firstName || req.query.lastName || req.query.hireDate || req.query.terminationDate) {
+      query.where = {
+        id: {
+          in: parseInt(req.query.id) || undefined,
+        },
+        zooId: {
+          in: parseInt(req.query.zooId) || undefined,
+        },
+        firstName: {
+          in: req.query.firstName || undefined,
+        },
+        lastName: {
+          in: req.query.lastName || undefined,
+        },
+        hireDate: {
+          in: req.query.hireDate || undefined,
+        },
+        terminationDate: {
+          in: req.query.terminationDate || undefined,
+        }
+      };
+
+
+    }
     const Workers = await prisma.worker.findMany(query);
 
     if (Workers.length === 0) {
