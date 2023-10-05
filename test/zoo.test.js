@@ -14,6 +14,22 @@ const Zoo = {
 };
 
 describe("Zoos", () => {
+//Sorting
+  it("should sort Zoos descending by id", (done) => {
+    chai
+        .request(app)
+        .get("/api/v1/zoos?sortBy=id&sortOrder=desc")
+        .end((req, res) => {
+            chai.expect(res.body.data).to.be.a("array");
+            console.log(res.body.data.length);
+            chai.expect(res.body.data[0].id).to.be.equal(res.body.data.length);
+            done();
+        });
+});
+//Filtering
+
+
+//Pagination
   it("should create Zoo", (done) => {
     chai
       .request(app)
