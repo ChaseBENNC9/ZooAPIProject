@@ -1,7 +1,11 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
-
+import { testStatusCreate } from "./statusCodes.js";
+import { testStatusGetAll } from "./statusCodes.js";
+import { testStatusGetOne } from "./statusCodes.js";
+import { testStatusUpdate } from "./statusCodes.js";
+import { testStatusDelete } from "./statusCodes.js";
 import app from "../index.js";
 
 chai.use(chaiHttp);
@@ -29,7 +33,7 @@ describe("Animals", () => {
             });
     });
 
-    
+
     it("should create Animal", (done) => {
         chai
             .request(app)
@@ -99,55 +103,10 @@ describe("Animals", () => {
     });
 
 
-    it("should verify Create Status Code", (done) => {
-        chai
-            .request(app)
-            .post("/api/v1/animals")
-            .send(Animal)
-            .end((req, res) => {
-                chai.expect(res.status).to.be.equal(201);
-                done();
-            });
-    
-    });
-    it("should verify Get All Status Code", (done) => {
-        chai
-            .request(app)
-            .get("/api/v1/animals")
-            .end((req, res) => {
-                chai.expect(res.status).to.be.equal(200);
-                done();
-            });
-    });
-    it("should verify Get by ID Status Code", (done) => {
-        chai
-            .request(app)
-            .get("/api/v1/animals/2")
-            .end((req, res) => {
-                chai.expect(res.status).to.be.equal(200);
-                done();
-            });
-    });
-    it("should verify Update Status Code", (done) => {
-        chai
-            .request(app)
-            .put("/api/v1/animals/2")
-            .send({
-                deathDate: "2023-05-10T00:00:00.000Z",
-            })
-            .end((req, res) => {
-                chai.expect(res.status).to.be.equal(200);
-                done();
-            });
-    });
-    it("should verify Delete Status Code", (done) => {
-        chai
-            .request(app)
-            .delete("/api/v1/animals/2")
-            .end((req, res) => {
-                chai.expect(res.status).to.be.equal(200);
-                done();
-            });
-    });
+    testStatusCreate("animals", Animal);
+    testStatusGetAll("animals");
+    testStatusGetOne("animals");
+    testStatusUpdate("animals", { deathDate: "2023-05-10T00:00:00.000Z" });
+
 
 });
