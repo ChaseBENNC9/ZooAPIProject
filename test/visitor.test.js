@@ -8,11 +8,11 @@ chai.use(chaiHttp);
 
 const Visitor = {
     zooId: 1,
-    firstName: "John",
-    lastName: "Smith",
+    firstName: "Perry",
+    lastName: "ThePlatypus",
     ticketType: "ADULT",
     ticketCost: 11,
-    visitDate: "2021-18-01T00:00:00.000Z",
+    visitDate: "2021-01-01T00:00:00.000Z",
 };
 
 describe("Visitors", () => {
