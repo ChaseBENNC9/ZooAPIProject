@@ -51,6 +51,25 @@ const getTourGroups = async (req, res) => {
         [sortBy]: sortOrder,
       },
     };
+    if ( req.query.id || req.query.workerId || req.query.enclosureId || req.query.startTime || req.query.description) {
+      query.where = {
+        id: {
+          in: parseInt(req.query.id) || undefined,
+        },
+        workerId: {
+          in: parseInt(req.query.workerId) || undefined,
+        },
+        enclosureId: {
+          in: parseInt(req.query.enclosureId) || undefined,
+        },
+        startTime: {
+          in: req.query.startTime || undefined,
+        },
+        description: {
+          in: req.query.description || undefined,
+        },
+      };
+    }
     const TourGroups = await prisma.tourGroup.findMany(query);
 
     if (TourGroups.length === 0) {
