@@ -25,6 +25,12 @@
     "city": "Queenstown",
     "country": "New Zealand",
     "established": "2000-08-01T00:00:00Z"
+  },
+  {
+    "name": "Melbourne Zoo",
+    "city": "Melbourne",
+    "country": "Australia",
+    "established": "2000-09-01T00:00:00Z"
   }
 
 ]
