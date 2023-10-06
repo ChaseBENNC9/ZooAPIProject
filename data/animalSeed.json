@@ -1,0 +1,30 @@
+[
+    {
+        "enclosureId": 1,
+        "name": "Simba",
+        "species": "Lion",
+        "sex": "MALE",
+        "birthDate": "2019-01-01T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 1,
+        "name": "Nala",
+        "species":"Lion",
+        "sex":"FEMALE",
+        "birthDate":"2019-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 1,
+        "name": "Mufasa",
+        "species":"Lion",
+        "sex":"MALE",
+        "birthDate":"2015-03-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 2,
+        "name": "Timon",
+        "species": "Kea",
+        "sex":"MALE",
+        "birthDate":"2018-01-01T00:00:00.000Z"
+    }
+]
