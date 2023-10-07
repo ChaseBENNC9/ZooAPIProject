@@ -1,0 +1,33 @@
+[
+    {
+        "zooId": 1,
+        "firstName": "John",
+        "lastName": "Doe",
+        "hireDate": "2019-01-01T00:00:00.000Z"
+        
+    },
+    {
+        "zooId": 2,
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "hireDate": "2019-01-01T00:00:00.000Z"
+    },
+    {
+        "zooId": 3,
+        "firstName": "John",
+        "lastName": "Smith",
+        "hireDate": "2019-01-01T00:00:00.000Z"
+    },
+    {
+        "zooId": 4,
+        "firstName": "Jane",
+        "lastName": "Smith",
+        "hireDate": "2019-01-01T00:00:00.000Z"
+    },
+    {
+        "zooId": 5,
+        "firstName": "John",
+        "lastName": "Jones",
+        "hireDate": "2019-01-01T00:00:00.000Z"
+    }
+]
