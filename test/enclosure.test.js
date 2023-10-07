@@ -26,6 +26,17 @@ describe("Enclosures", () => {
         done();
     });
   });
+  it("Get Enclosures that are Aquariums", (done) => {
+    chai.request(app)
+    .get("/api/v1/enclosures?type=Aquarium")
+    .end((req, res) => {
+        chai.expect(res.body.data).to.be.a("array");
+        chai.expect(res.body.data[0].type).to.be.equal("Aquarium");
+        done();
+    });
+  });
+
+
   it("should create Enclosure", (done) => {
     chai
       .request(app)
