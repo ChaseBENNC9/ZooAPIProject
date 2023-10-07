@@ -15,6 +15,17 @@ const Enclosure = {
 };
 
 describe("Enclosures", () => {
+  it("should sort enclosures descending by ID", (done) => {
+    chai
+      .request(app)
+      .get("/api/v1/enclosures?sortBy=id&sortOrder=desc")
+      .end((req, res) => {
+        chai.expect(res.body.data).to.be.a("array");
+        console.log(res.body.data.length);
+        chai.expect(res.body.data[0].id).to.be.greaterThan(res.body.data[1].id);
+        done();
+    });
+  });
   it("should create Enclosure", (done) => {
     chai
       .request(app)
