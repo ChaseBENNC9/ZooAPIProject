@@ -1,3 +1,8 @@
+/**
+ * @file This file manages the testing for the Index route and an Invalid Route
+ * @author Chase Bennett-Hill
+ */
+
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
@@ -11,7 +16,7 @@ describe("Route Testing", () => {
       .request(app)
       .get("/api/")
       .end((req, res) => {
-        chai.expect(res.status).to.be.equal(200);
+        chai.expect(res.status).to.be.equal(200); //this test sends a request to the index route and expects a 200 status code and a list of available routes
         chai
           .expect(res.text)
           .to.be.be.include(
@@ -26,7 +31,7 @@ describe("Route Testing", () => {
         done();
       });
   });
-  it("Should return message for invalid routes", (done) => {
+  it("Should return message for invalid routes", (done) => { //this test sends a request to an invalid route and expects a 404 error and a relevant message
     chai
       .request(app)
       .get("/api/v1/zoos/1/invalid")

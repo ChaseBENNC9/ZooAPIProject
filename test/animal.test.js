@@ -1,3 +1,8 @@
+/**
+ * @file This file manages the testing for the Animal model, it tests for CRUD operations , validation and imports testing for queries and status codes
+ * @author Chase Bennett-Hill
+ *  */
+
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
@@ -38,7 +43,7 @@ testFiltering("animals", "species", "Orca");
             });
     });
 
-    it("should not create an Animal", (done) => {
+    it("should not create an Animal", (done) => { //this test is to check validation, by not sending a name
         chai.request(app)
             .post("/api/v1/animals")
             .send({
@@ -93,7 +98,7 @@ testFiltering("animals", "species", "Orca");
                 done();
             });
     });
-    it("should not update animal by id", (done) => {
+    it("should not update animal by id", (done) => { //this test is to check validation, by sending a number instead of a string
         chai
             .request(app)
             .put("/api/v1/animals/1")

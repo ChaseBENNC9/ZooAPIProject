@@ -1,3 +1,7 @@
+/**
+ * @file This file manages the testing for the Worker model, it tests for CRUD operations , validation and imports testing for queries and status codes
+ * @author Chase Bennett-Hill
+*/
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
