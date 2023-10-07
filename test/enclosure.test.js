@@ -1,6 +1,7 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
+import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
 
 import app from "../index.js";
 
@@ -143,4 +144,16 @@ describe("Enclosures", () => {
         done();
       });
   });
+  testStatusCreate("enclosures",    {
+    zooId: 1,
+    name: "The Other Penguin Enclosure",
+    type: "Habitat",
+    temporary: false,
+});
+testStatusGetAll("enclosures");
+testStatusGetOne("enclosures");
+testStatusUpdate("enclosures", {
+  name: "The Old Penguin Enclosure",
+});
+testStatusDelete("enclosures");
 });

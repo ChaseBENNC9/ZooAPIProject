@@ -1,9 +1,9 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
+import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
 
 import app from "../index.js";
-
 chai.use(chaiHttp);
 
 const Animal = {
@@ -14,41 +14,42 @@ const Animal = {
     birthDate: "2019-01-01T00:00:00.000Z",
 };
 
-describe("Animals", () => {
-//Sorting
-it("should sort animals descending by id", (done) => {
-    chai
-        .request(app)
-        .get("/api/v1/animals?sortBy=id&sortOrder=desc")
-        .end((req, res) => {
-            chai.expect(res.body.data).to.be.a("array");
-            console.log(res.body.data.length);
-            chai.expect(res.body.data[0].id).to.be.greaterThan(res.body.data[1].id);
-            done();
-        });
-});
-//Filtering
-it("Should return an Orca", (done) => {
-  chai.request(app)
-  .get("/api/v1/animals?species=Orca")
-  .end((req, res) => {
-      chai.expect(res.body.data).to.be.a("array");
-      chai.expect(res.body.data[0].species).to.be.equal("Orca");
-      done();
-  });
-});
 
-//Pagination
-it("Should return `12 Animals", (done) => {
-  chai
-      .request(app)
-      .get("/api/v1/animals?count=12")
-      .end((req, res) => {
-          chai.expect(res.body.data).to.be.a("array");
-          chai.expect(res.body.data.length).to.be.equal(12);
-          done();
-      });
-});
+describe("Animals", () => {
+    //Sorting
+    it("should sort animals descending by id", (done) => {
+        chai
+            .request(app)
+            .get("/api/v1/animals?sortBy=id&sortOrder=desc")
+            .end((req, res) => {
+                chai.expect(res.body.data).to.be.a("array");
+                console.log(res.body.data.length);
+                chai.expect(res.body.data[0].id).to.be.greaterThan(res.body.data[1].id);
+                done();
+            });
+    });
+    //Filtering
+    it("Should return an Orca", (done) => {
+        chai.request(app)
+            .get("/api/v1/animals?species=Orca")
+            .end((req, res) => {
+                chai.expect(res.body.data).to.be.a("array");
+                chai.expect(res.body.data[0].species).to.be.equal("Orca");
+                done();
+            });
+    });
+
+    //Pagination
+    it("Should return `12 Animals", (done) => {
+        chai
+            .request(app)
+            .get("/api/v1/animals?count=12")
+            .end((req, res) => {
+                chai.expect(res.body.data).to.be.a("array");
+                chai.expect(res.body.data.length).to.be.equal(12);
+                done();
+            });
+    });
 
 
 
@@ -64,21 +65,21 @@ it("Should return `12 Animals", (done) => {
                 done();
             });
     });
-    
+
     it("should not create an Animal", (done) => {
         chai.request(app)
-        .post("/api/v1/animals")
-        .send({
-            enclosureId: 1,
-            species: "Lion",
-            sex: "MALE",
-            birthDate: "2019-01-01T00:00:00.000Z",
-        })
-        .end((req, res) => {
-            chai.expect(res.body).to.be.a("object");
-            chai.expect(res.body.msg).to.be.equal("Name is required");
-            done();
-        });
+            .post("/api/v1/animals")
+            .send({
+                enclosureId: 1,
+                species: "Lion",
+                sex: "MALE",
+                birthDate: "2019-01-01T00:00:00.000Z",
+            })
+            .end((req, res) => {
+                chai.expect(res.body).to.be.a("object");
+                chai.expect(res.body.msg).to.be.equal("Name is required");
+                done();
+            });
 
     });
 
@@ -149,6 +150,22 @@ it("Should return `12 Animals", (done) => {
                 done();
             });
     });
+
+    //Status Codes
+    testStatusCreate("animals", {
+        enclosureId: 3,
+        name: "LarryBarry",
+        species: "Lion",
+        sex: "MALE",
+        birthDate: "2019-01-01T00:00:00.000Z",
+    }
+    );
+    testStatusGetAll("animals");
+    testStatusGetOne("animals");
+    testStatusUpdate("animals", {
+        deathDate: "2023-05-10T00:00:00.000Z",
+    });
+    testStatusDelete("animals");
 
 
 

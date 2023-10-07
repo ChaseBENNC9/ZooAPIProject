@@ -2,6 +2,7 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
 
+import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
 
 import app from "../index.js";
 
@@ -115,4 +116,19 @@ it("Should return 2 Zoos", (done) => {
       });
   });
 
+  //Status Codes
+  testStatusCreate("zoos",    {
+    name: "Some Zoo in Dunedin",
+    city: "Dunedin",
+    country: "New Zealand",
+    established: "2021-01-01T00:00:00.000Z",
+});
+testStatusGetAll("zoos");
+testStatusGetOne("zoos");
+testStatusUpdate("zoos", {
+  name: "Some Zoo in Auckland",
+  city: "Auckland"
+});
+
+testStatusDelete("zoos");
 });

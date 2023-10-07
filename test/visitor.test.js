@@ -1,6 +1,7 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
+import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
 
 import app from "../index.js";
 
@@ -148,4 +149,20 @@ describe("Visitors", () => {
         done();
       });
   });
+
+  // Status Codes Tests
+  testStatusCreate("visitors", {
+    zooId: 1,
+    firstName: "Johnny",
+    lastName: "Samston",
+    ticketType: "ADULT",
+    ticketCost: 11,
+    visitDate: "2021-01-01T00:00:00.000Z",
+});
+  testStatusGetAll("visitors");
+  testStatusGetOne("visitors");
+  testStatusUpdate("visitors", {
+    visitDate: "2021-05-01T00:00:00.000Z",
+});
+  testStatusDelete("visitors");
 });

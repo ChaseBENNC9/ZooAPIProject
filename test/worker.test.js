@@ -1,6 +1,7 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
+import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
 
 import app from "../index.js";
 
@@ -139,4 +140,18 @@ describe("Workers", () => {
         done();
       });
   });
+
+  testStatusCreate("workers", {
+    zooId: 1,
+    firstName: "Works",
+    lastName: "atAZoo",
+    hireDate: "2021-01-01T00:00:00.000Z",
+});
+  testStatusGetAll("workers");
+  testStatusGetOne("workers");
+  testStatusUpdate("workers", {
+    firstName: "Worked",
+    terminationDate: "2023-10-06T00:00:00.000Z",
+});
+  testStatusDelete("workers");
 });
