@@ -27,14 +27,14 @@ it("should sort animals descending by id", (done) => {
         .end((req, res) => {
             chai.expect(res.body.data).to.be.a("array");
             console.log(res.body.data.length);
-            chai.expect(res.body.data[0].id).to.be.equal(res.body.data.length);
+            chai.expect(res.body.data[0].id).to.be.greaterThan(res.body.data[1].id);
             done();
         });
 });
 //Filtering
 it("Should return an Orca", (done) => {
   chai.request(app)
-  .get("/api/v1/zoos?cspecies=Orca")
+  .get("/api/v1/animals?species=Orca")
   .end((req, res) => {
       chai.expect(res.body.data).to.be.a("array");
       chai.expect(res.body.data[0].country).to.be.equal("Orca");
