@@ -4,6 +4,7 @@ import { describe, it } from "mocha";
 import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
 
 import app from "../index.js";
+import { testFiltering, testPagination, testSorting } from "./queryTests.js";
 
 chai.use(chaiHttp);
 
@@ -17,36 +18,12 @@ const Visitor = {
 };
 
 describe("Visitors", () => {
-  it("should sort visitors descending by ID", (done) => {
-    chai
-      .request(app)
-      .get("/api/v1/visitors?sortBy=id&sortOrder=desc")
-      .end((req, res) => {
-        chai.expect(res.body.data).to.be.a("array");
-        console.log(res.body.data.length);
-        chai.expect(res.body.data[0].id).to.be.greaterThan(res.body.data[1].id);
-        done();
-      });
-  });
-  it("Get visitors that have a Senior Ticket ", (done) => {
-    chai.request(app)
-      .get("/api/v1/visitors?ticketType=SENIOR")
-      .end((req, res) => {
-        chai.expect(res.body.data).to.be.a("array");
-        chai.expect(res.body.data[0].ticketType).to.be.equal("SENIOR");
-        done();
-      });
-  });
-  it("should get 5 Workers", (done) => {
-    chai
-      .request(app)
-      .get("/api/v1/visitors?count=5")
-      .end((req, res) => {
-        chai.expect(res.body.data).to.be.a("array");
-        chai.expect(res.body.data.length).to.be.equal(5);
-        done();
-      });
-  });
+
+  testSorting("visitors");
+
+  testFiltering("visitors", "ticketType", "ADULT");
+
+  testPagination("visitors", 5);
   it("should create Visitor", (done) => {
     chai
       .request(app)

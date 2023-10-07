@@ -4,6 +4,7 @@ import { describe, it } from "mocha";
 import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
 
 import app from "../index.js";
+import { testFiltering, testPagination, testSorting } from "./queryTests.js";
 chai.use(chaiHttp);
 
 const Animal = {
@@ -16,40 +17,11 @@ const Animal = {
 
 
 describe("Animals", () => {
-    //Sorting
-    it("should sort animals descending by id", (done) => {
-        chai
-            .request(app)
-            .get("/api/v1/animals?sortBy=id&sortOrder=desc")
-            .end((req, res) => {
-                chai.expect(res.body.data).to.be.a("array");
-                console.log(res.body.data.length);
-                chai.expect(res.body.data[0].id).to.be.greaterThan(res.body.data[1].id);
-                done();
-            });
-    });
-    //Filtering
-    it("Should return an Orca", (done) => {
-        chai.request(app)
-            .get("/api/v1/animals?species=Orca")
-            .end((req, res) => {
-                chai.expect(res.body.data).to.be.a("array");
-                chai.expect(res.body.data[0].species).to.be.equal("Orca");
-                done();
-            });
-    });
 
-    //Pagination
-    it("Should return `12 Animals", (done) => {
-        chai
-            .request(app)
-            .get("/api/v1/animals?count=12")
-            .end((req, res) => {
-                chai.expect(res.body.data).to.be.a("array");
-                chai.expect(res.body.data.length).to.be.equal(12);
-                done();
-            });
-    });
+    testSorting("animals");
+
+testFiltering("animals", "species", "Orca");
+    testPagination("animals", 12);
 
 
 

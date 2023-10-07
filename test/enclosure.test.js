@@ -2,7 +2,7 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
 import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
-
+import { testFiltering, testPagination, testSorting } from "./queryTests.js";
 import app from "../index.js";
 
 chai.use(chaiHttp);
@@ -15,37 +15,10 @@ const Enclosure = {
 };
 
 describe("Enclosures", () => {
-  it("should sort enclosures descending by ID", (done) => {
-    chai
-      .request(app)
-      .get("/api/v1/enclosures?sortBy=id&sortOrder=desc")
-      .end((req, res) => {
-        chai.expect(res.body.data).to.be.a("array");
-        console.log(res.body.data.length);
-        chai.expect(res.body.data[0].id).to.be.greaterThan(res.body.data[1].id);
-        done();
-    });
-  });
-  it("Get Enclosures that are Aquariums", (done) => {
-    chai.request(app)
-    .get("/api/v1/enclosures?type=Aquarium")
-    .end((req, res) => {
-        chai.expect(res.body.data).to.be.a("array");
-        chai.expect(res.body.data[0].type).to.be.equal("Aquarium");
-        done();
-    });
-  });
-  it("should get 5 Enclosures", (done) => {
-    chai
-      .request(app)
-      .get("/api/v1/enclosures?count=5")
-      .end((req, res) => {
-        chai.expect(res.body.data).to.be.a("array");
-        chai.expect(res.body.data.length).to.be.equal(5);
-        done();
-    });
-  });
 
+  testSorting("enclosures");
+  testFiltering("enclosures", "type", "Aquarium");
+  testPagination("enclosures",5);
 
   it("should create Enclosure", (done) => {
     chai

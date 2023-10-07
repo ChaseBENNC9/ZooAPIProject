@@ -3,6 +3,7 @@ import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
 
 import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
+import { testFiltering, testPagination, testSorting } from "./queryTests.js";
 
 import app from "../index.js";
 
@@ -16,40 +17,11 @@ const Zoo = {
 };
 
 describe("Zoos", () => {
-//Sorting
-  it("should sort Zoos descending by id", (done) => {
-    chai
-        .request(app)
-        .get("/api/v1/zoos?sortBy=id&sortOrder=desc")
-        .end((req, res) => {
-            chai.expect(res.body.data).to.be.a("array");
-            console.log(res.body.data.length);
-            chai.expect(res.body.data[0].id).to.be.greaterThan(res.body.data[1].id);
-            done();
-        });
-});
-//Filtering
-it("Should show all Zoos in Australia", (done) => {
-  chai.request(app)
-  .get("/api/v1/zoos?country=Australia")
-  .end((req, res) => {
-      chai.expect(res.body.data).to.be.a("array");
-      chai.expect(res.body.data[0].country).to.be.equal("Australia");
-      done();
-  });
-});
 
-//Pagination
-it("Should return 2 Zoos", (done) => {
-  chai
-      .request(app)
-      .get("/api/v1/zoos?count=2")
-      .end((req, res) => {
-          chai.expect(res.body.data).to.be.a("array");
-          chai.expect(res.body.data.length).to.be.equal(2);
-          done();
-      });
-});
+testSorting("zoos");
+testFiltering("zoos", "country", "Australia");
+testPagination("zoos", 2);
+
   it("should create Zoo", (done) => {
     chai
       .request(app)
@@ -61,7 +33,21 @@ it("Should return 2 Zoos", (done) => {
         done();
       });
   });
-
+  it("should not create Zoo", (done) => {
+    chai
+      .request(app)
+      .post("/api/v1/zoos")
+      .send({
+        name: "Zoo of Otago",
+        city: "Dunedin",
+        established: "2021-01-01T00:00:00.000Z"
+      })
+      .end((req, res) => {
+        chai.expect(res.body).to.be.a("object");
+        chai.expect(res.body.msg).to.be.equal("Country is required");
+        done();
+      });
+  });
   it("should get all Zoos", (done) => {
     chai
       .request(app)
@@ -102,7 +88,23 @@ it("Should return 2 Zoos", (done) => {
         done();
       });
   });
+  it("should Not update Zoo by id", (done) => {
+    chai
+      .request(app)
+      .put("/api/v1/zoos/1")
+      .send({
 
+        country: 12,
+
+      })
+      .end((req, res) => {
+        chai.expect(res.body).to.be.a("object");
+        chai
+          .expect(res.body.msg)
+          .to.be.equal("Country should be a string");
+        done();
+      });
+  });
   it("should delete Zoo by id", (done) => {
     chai
       .request(app)

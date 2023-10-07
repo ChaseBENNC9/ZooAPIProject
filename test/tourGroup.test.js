@@ -63,7 +63,7 @@ describe("TourGroups", () => {
   it("should get tourGroup by id", (done) => {
     chai
       .request(app)
-      .get("/api/v1/tourGroups/1")
+      .get("/api/v1/tourGroups/3")
       .end((req, res) => {
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
@@ -75,7 +75,7 @@ describe("TourGroups", () => {
   it("should update TourGroup by id", (done) => {
     chai
       .request(app)
-      .put("/api/v1/tourGroups/1")
+      .put("/api/v1/tourGroups/3")
       .send({
         description: "Come and see the famous Bottlenosed Dolphins!",
       })
@@ -84,7 +84,7 @@ describe("TourGroups", () => {
         chai.expect(res.body).to.be.a("object");
         chai
           .expect(res.body.msg)
-          .to.be.equal("TourGroup with the id: 1 successfully updated");
+          .to.be.equal("TourGroup with the id: 3 successfully updated");
         done();
       });
   });
@@ -92,7 +92,7 @@ describe("TourGroups", () => {
   it("should not update TourGroup by id", (done) => {
     chai
       .request(app)
-      .put("/api/v1/tourGroups/1")
+      .put("/api/v1/tourGroups/3")
       .send({
         description: "Twelve",
       })
@@ -107,26 +107,28 @@ describe("TourGroups", () => {
   it("should delete TourGroup by id", (done) => {
     chai
       .request(app)
-      .delete("/api/v1/tourGroups/1")
+      .delete("/api/v1/tourGroups/3")
       .end((req, res) => {
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
           .expect(res.body.msg)
-          .to.be.equal("TourGroup with the id: 1 successfully deleted");
+          .to.be.equal("TourGroup with the id: 3 successfully deleted");
         done();
       });
   });
-  testStatusCreate("tourGroups",    {
-    zooId: 1,
-    name: "The Other Penguin TourGroup",
-    type: "Habitat",
-    temporary: false,
-});
+  testStatusCreate("tourGroups",  
+    {
+        workerId: 5,
+        enclosureId: 15,
+        startTime: "2019-01-01T10:00:00Z",
+        description: "Come see the famouus Dolphins!"
+    }
+);
 testStatusGetAll("tourGroups");
 testStatusGetOne("tourGroups");
 testStatusUpdate("tourGroups", {
-  name: "The Old Penguin TourGroup",
+  description: "This was the Old Penguin TourGroup",
 });
 testStatusDelete("tourGroups");
 });
