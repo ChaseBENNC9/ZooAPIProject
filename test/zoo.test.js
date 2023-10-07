@@ -1,13 +1,19 @@
 /**
  * @file This file manages the testing for the Zoo model, it tests for CRUD operations , validation and imports testing for queries and status codes
  * @author Chase Bennett-Hill
-*/
+ */
 
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
 
-import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
+import {
+  testStatusCreate,
+  testStatusGetAll,
+  testStatusGetOne,
+  testStatusUpdate,
+  testStatusDelete,
+} from "./statusCodesTests.js";
 import { testFiltering, testPagination, testSorting } from "./queryTests.js";
 
 import app from "../index.js";
@@ -22,10 +28,9 @@ const Zoo = {
 };
 
 describe("Zoos", () => {
-
-testSorting("zoos");
-testFiltering("zoos", "country", "Australia");
-testPagination("zoos", 2);
+  testSorting("zoos");
+  testFiltering("zoos", "country", "Australia");
+  testPagination("zoos", 2);
 
   it("should create Zoo", (done) => {
     chai
@@ -45,7 +50,7 @@ testPagination("zoos", 2);
       .send({
         name: "Zoo of Otago",
         city: "Dunedin",
-        established: "2021-01-01T00:00:00.000Z"
+        established: "2021-01-01T00:00:00.000Z",
       })
       .end((req, res) => {
         chai.expect(res.body).to.be.a("object");
@@ -98,15 +103,11 @@ testPagination("zoos", 2);
       .request(app)
       .put("/api/v1/zoos/1")
       .send({
-
         country: 12,
-
       })
       .end((req, res) => {
         chai.expect(res.body).to.be.a("object");
-        chai
-          .expect(res.body.msg)
-          .to.be.equal("Country should be a string");
+        chai.expect(res.body.msg).to.be.equal("Country should be a string");
         done();
       });
   });
@@ -124,18 +125,18 @@ testPagination("zoos", 2);
   });
 
   //Status Codes
-  testStatusCreate("zoos",    {
+  testStatusCreate("zoos", {
     name: "Some Zoo in Dunedin",
     city: "Dunedin",
     country: "New Zealand",
     established: "2021-01-01T00:00:00.000Z",
-});
-testStatusGetAll("zoos");
-testStatusGetOne("zoos");
-testStatusUpdate("zoos", {
-  name: "Some Zoo in Auckland",
-  city: "Auckland"
-});
+  });
+  testStatusGetAll("zoos");
+  testStatusGetOne("zoos");
+  testStatusUpdate("zoos", {
+    name: "Some Zoo in Auckland",
+    city: "Auckland",
+  });
 
-testStatusDelete("zoos");
+  testStatusDelete("zoos");
 });

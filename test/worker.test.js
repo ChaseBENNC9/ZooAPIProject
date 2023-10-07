@@ -1,11 +1,17 @@
 /**
  * @file This file manages the testing for the Worker model, it tests for CRUD operations , validation and imports testing for queries and status codes
  * @author Chase Bennett-Hill
-*/
+ */
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
-import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
+import {
+  testStatusCreate,
+  testStatusGetAll,
+  testStatusGetOne,
+  testStatusUpdate,
+  testStatusDelete,
+} from "./statusCodesTests.js";
 
 import app from "../index.js";
 import { testFiltering, testPagination, testSorting } from "./queryTests.js";
@@ -13,15 +19,14 @@ import { testFiltering, testPagination, testSorting } from "./queryTests.js";
 chai.use(chaiHttp);
 
 const Worker = {
-    zooId: 1,
-    firstName: "Works",
-    lastName: "atAZoo",
-    hireDate: "2021-01-01T00:00:00.000Z",
+  zooId: 1,
+  firstName: "Works",
+  lastName: "atAZoo",
+  hireDate: "2021-01-01T00:00:00.000Z",
 };
 
 describe("Workers", () => {
-
-testSorting("workers")
+  testSorting("workers");
 
   testFiltering("workers", "firstName", "John");
 
@@ -41,20 +46,17 @@ testSorting("workers")
     chai
       .request(app)
       .post("/api/v1/workers")
-      .send(
-        {
-          zooId: 1,
-          lastName: "atAZoo",
-          hireDate: "2021-01-01T00:00:00.000Z",
-      }
-      )
+      .send({
+        zooId: 1,
+        lastName: "atAZoo",
+        hireDate: "2021-01-01T00:00:00.000Z",
+      })
       .end((req, res) => {
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.msg).to.be.equal("First Name is required");
         done();
       });
   });
-
 
   it("should get all Workers", (done) => {
     chai
@@ -102,9 +104,7 @@ testSorting("workers")
       })
       .end((req, res) => {
         chai.expect(res.body).to.be.a("object");
-        chai
-          .expect(res.body.msg)
-          .to.be.equal("First Name should be a string");
+        chai.expect(res.body.msg).to.be.equal("First Name should be a string");
         done();
       });
   });
@@ -127,12 +127,12 @@ testSorting("workers")
     firstName: "Works",
     lastName: "atAZoo",
     hireDate: "2021-01-01T00:00:00.000Z",
-});
+  });
   testStatusGetAll("workers");
   testStatusGetOne("workers");
   testStatusUpdate("workers", {
     firstName: "Worked",
     terminationDate: "2023-10-06T00:00:00.000Z",
-});
+  });
   testStatusDelete("workers");
 });

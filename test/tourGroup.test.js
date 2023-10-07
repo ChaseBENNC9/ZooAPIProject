@@ -6,24 +6,29 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
-import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
+import {
+  testStatusCreate,
+  testStatusGetAll,
+  testStatusGetOne,
+  testStatusUpdate,
+  testStatusDelete,
+} from "./statusCodesTests.js";
 import { testFiltering, testPagination, testSorting } from "./queryTests.js";
 import app from "../index.js";
 
 chai.use(chaiHttp);
 
-const TourGroup =     {
-    workerId: 5,
-    enclosureId: 15,
-    startTime: "2019-01-01T10:00:00Z",
-    description: "Come see the famouus Dolphins!"
+const TourGroup = {
+  workerId: 5,
+  enclosureId: 15,
+  startTime: "2019-01-01T10:00:00Z",
+  description: "Come see the famouus Dolphins!",
 };
 
 describe("TourGroups", () => {
-
   testSorting("tourGroups");
   testFiltering("tourGroups", "workerId", 3);
-  testPagination("tourGroups",2);
+  testPagination("tourGroups", 2);
 
   it("should create TourGroup", (done) => {
     chai
@@ -45,7 +50,7 @@ describe("TourGroups", () => {
         workerId: 5,
         enclosureId: 15,
         startTime: "2019-01-01T10:00:00Z",
-    })
+      })
       .end((req, res) => {
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.msg).to.be.equal("Description is required");
@@ -122,18 +127,16 @@ describe("TourGroups", () => {
         done();
       });
   });
-  testStatusCreate("tourGroups",  
-    {
-        workerId: 5,
-        enclosureId: 15,
-        startTime: "2019-01-01T10:00:00Z",
-        description: "Come see the famouus Dolphins!"
-    }
-);
-testStatusGetAll("tourGroups");
-testStatusGetOne("tourGroups");
-testStatusUpdate("tourGroups", {
-  description: "This was the Old Penguin TourGroup",
-});
-testStatusDelete("tourGroups");
+  testStatusCreate("tourGroups", {
+    workerId: 5,
+    enclosureId: 15,
+    startTime: "2019-01-01T10:00:00Z",
+    description: "Come see the famouus Dolphins!",
+  });
+  testStatusGetAll("tourGroups");
+  testStatusGetOne("tourGroups");
+  testStatusUpdate("tourGroups", {
+    description: "This was the Old Penguin TourGroup",
+  });
+  testStatusDelete("tourGroups");
 });

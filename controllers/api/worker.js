@@ -52,7 +52,14 @@ const getWorkers = async (req, res) => {
         [sortBy]: sortOrder,
       },
     };
-    if(req.query.id || req.query.zooId || req.query.firstName || req.query.lastName || req.query.hireDate || req.query.terminationDate) {
+    if (
+      req.query.id ||
+      req.query.zooId ||
+      req.query.firstName ||
+      req.query.lastName ||
+      req.query.hireDate ||
+      req.query.terminationDate
+    ) {
       query.where = {
         id: {
           in: parseInt(req.query.id) || undefined,
@@ -71,10 +78,8 @@ const getWorkers = async (req, res) => {
         },
         terminationDate: {
           in: req.query.terminationDate || undefined,
-        }
+        },
       };
-
-
     }
     const Workers = await prisma.worker.findMany(query);
 

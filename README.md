@@ -47,13 +47,14 @@ this project uses prettier for all formatting
 to format all the files run the command `npm run format`
 
 ### Seed
+
 to seed the database run the command `npm run seed`
 
 ### Testing
+
 To run all the tests for the API run the command `npm run test`
 
-
 ### Referencing
+
 - ChatGPT was used to generate seed data for visitor model
   <img width="493" alt="image" src="https://github.com/otago-polytechnic-bit-courses/s2-23-project-ChaseBENNC9/assets/104808214/34eb6720-32b0-405d-b476-f61ea8b8dec0">
-

@@ -1,12 +1,18 @@
 /**
  * @file This file manages the testing for the visitor model, it tests for CRUD operations , validation and imports testing for queries and status codes
  * @author Chase Bennett-Hill
-*/
+ */
 
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
-import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodesTests.js";
+import {
+  testStatusCreate,
+  testStatusGetAll,
+  testStatusGetOne,
+  testStatusUpdate,
+  testStatusDelete,
+} from "./statusCodesTests.js";
 
 import app from "../index.js";
 import { testFiltering, testPagination, testSorting } from "./queryTests.js";
@@ -23,7 +29,6 @@ const Visitor = {
 };
 
 describe("Visitors", () => {
-
   testSorting("visitors");
 
   testFiltering("visitors", "ticketType", "ADULT");
@@ -45,17 +50,13 @@ describe("Visitors", () => {
     chai
       .request(app)
       .post("/api/v1/visitors")
-      .send(
-        {
-
-          zooId: 1,
-          lastName: "ThePlatypus",
-          ticketType: "ADULT",
-          ticketCost: 11,
-          visitDate: "2021-01-01T00:00:00.000Z",
-
-        }
-      )
+      .send({
+        zooId: 1,
+        lastName: "ThePlatypus",
+        ticketType: "ADULT",
+        ticketCost: 11,
+        visitDate: "2021-01-01T00:00:00.000Z",
+      })
       .end((req, res) => {
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.msg).to.be.equal("First Name is required");
@@ -111,9 +112,7 @@ describe("Visitors", () => {
       })
       .end((req, res) => {
         chai.expect(res.body).to.be.a("object");
-        chai
-          .expect(res.body.msg)
-          .to.be.equal("First Name should be a string");
+        chai.expect(res.body.msg).to.be.equal("First Name should be a string");
         done();
       });
   });
@@ -140,11 +139,11 @@ describe("Visitors", () => {
     ticketType: "ADULT",
     ticketCost: 11,
     visitDate: "2021-01-01T00:00:00.000Z",
-});
+  });
   testStatusGetAll("visitors");
   testStatusGetOne("visitors");
   testStatusUpdate("visitors", {
     visitDate: "2021-05-01T00:00:00.000Z",
-});
+  });
   testStatusDelete("visitors");
 });

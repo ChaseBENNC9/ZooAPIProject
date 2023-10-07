@@ -51,7 +51,13 @@ const getTourGroups = async (req, res) => {
         [sortBy]: sortOrder,
       },
     };
-    if ( req.query.id || req.query.workerId || req.query.enclosureId || req.query.startTime || req.query.description) {
+    if (
+      req.query.id ||
+      req.query.workerId ||
+      req.query.enclosureId ||
+      req.query.startTime ||
+      req.query.description
+    ) {
       query.where = {
         id: {
           in: parseInt(req.query.id) || undefined,
