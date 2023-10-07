@@ -35,6 +35,16 @@ describe("Enclosures", () => {
         done();
     });
   });
+  it("should get 5 Enclosures", (done) => {
+    chai
+      .request(app)
+      .get("/api/v1/enclosures?count=5")
+      .end((req, res) => {
+        chai.expect(res.body.data).to.be.a("array");
+        chai.expect(res.body.data.length).to.be.equal(5);
+        done();
+    });
+  });
 
 
   it("should create Enclosure", (done) => {
