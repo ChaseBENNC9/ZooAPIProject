@@ -84,8 +84,8 @@ model TourGroup {
   visitors      Visitor[]
   startTime     DateTime //The Time That the tour is going to start
   description   String //A description for the focus of the tour
-  guide         Worker    @relation(fields: [workerId], references: [id]) //The Guide references the workerId field 
-  startLocation Enclosure @relation(fields: [enclosureId], references: [id]) //the starting location of the tour will be an enclosure
+  guide         Worker    @relation(fields: [workerId], references: [id], onDelete: Cascade) //The Guide references the workerId field 
+  startLocation Enclosure @relation(fields: [enclosureId], references: [id], onDelete: Cascade) //the starting location of the tour will be an enclosure
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
