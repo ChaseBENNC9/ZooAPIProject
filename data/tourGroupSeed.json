@@ -1,0 +1,26 @@
+[
+    {
+        "workerId": 1,
+        "enclosureId": 1,
+        "startTime": "2019-01-01 10:00:00",
+        "description": "Learn about the King of the Jungle, the lion!"
+    },
+    {
+        "workerId": 2,
+        "enclosureId": 4,
+        "startTime": "2023-01-06 10:45:00",
+        "description": "Learn about the Giraffe, the tallest animal in the world!"
+    },
+    {
+        "workerId": 3,
+        "enclosureId": 11,
+        "startTime": "2022-01-01 10:00:00",
+        "description": "Come see our orca show!"
+    },
+    {
+        "workerId": 4,
+        "enclosureId": 16,
+        "startTime": "2019-01-01 10:00:00",
+        "description": "Come see the famouus Kiwi"
+    }
+]
