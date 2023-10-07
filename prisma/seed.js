@@ -3,6 +3,8 @@ import animalSeed from "../data/animalSeed.json" assert { type: "json" };
 import zooSeed from "../data/zooSeed.json" assert { type: "json" };
 import visitorSeed from "../data/visitorSeed.json" assert { type: "json" }; 
 import enclosureSeed from "../data/enclosureSeed.json" assert { type: "json" };
+import workerSeed from "../data/workerSeed.json" assert { type: "json" };
+import tourGroupSeed from "../data/tourGroupSeed.json" assert { type: "json" };
 const prisma = new PrismaClient();
 
 const main = async () => {
@@ -24,6 +26,12 @@ const main = async () => {
     });
     await prisma.animal.createMany({
       data: animalSeed,
+    });
+    await prisma.worker.createMany({
+      data: workerSeed,
+    });
+    await prisma.tourGroup.createMany({
+      data: tourGroupSeed,
     });
 
     console.log("Database successfully seeded");
