@@ -1,6 +1,8 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
+import { testStatusCreate, testStatusGetAll,testStatusGetOne,testStatusUpdate,testStatusDelete } from "./statusCodes.js";
+
 
 import app from "../index.js";
 
@@ -12,7 +14,12 @@ const Zoo = {
   country: "New Zealand",
   established: "2021-01-01T00:00:00.000Z",
 };
-
+const Zoo2 = {
+  name: "Another Zoo in Otago",
+  city: "Dunedin",
+  country: "New Zealand",
+  established: "2021-01-01T00:00:00.000Z",
+};
 describe("Zoos", () => {
 //Sorting
   it("should sort Zoos descending by id", (done) => {
@@ -54,7 +61,6 @@ it("Should return 2 Zoos", (done) => {
       .post("/api/v1/zoos")
       .send(Zoo)
       .end((req, res) => {
-        chai.expect(res.status).to.be.equal(201);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.msg).to.be.equal("Zoo successfully created");
         done();
@@ -66,7 +72,6 @@ it("Should return 2 Zoos", (done) => {
       .request(app)
       .get("/api/v1/zoos")
       .end((req, res) => {
-        chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("array");
         done();
@@ -78,7 +83,6 @@ it("Should return 2 Zoos", (done) => {
       .request(app)
       .get("/api/v1/zoos/1")
       .end((req, res) => {
-        chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("object");
         done();
@@ -96,7 +100,6 @@ it("Should return 2 Zoos", (done) => {
         established: "2023-01-01T00:00:00.000Z",
       })
       .end((req, res) => {
-        chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
           .expect(res.body.msg)
@@ -110,7 +113,6 @@ it("Should return 2 Zoos", (done) => {
       .request(app)
       .delete("/api/v1/zoos/1")
       .end((req, res) => {
-        chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
           .expect(res.body.msg)
@@ -118,4 +120,9 @@ it("Should return 2 Zoos", (done) => {
         done();
       });
   });
+  testStatusCreate("zoos", Zoo2);
+  testStatusGetAll("zoos");
+  testStatusGetOne("zoos");
+  testStatusUpdate("zoos", {name: "Zoo of Pavlova 2023"});
+  testStatusDelete("zoos");
 });
