@@ -26,8 +26,6 @@ const testStatusCreate = (route,data) => {
             .post(`/api/v1/${route}`)
             .send(data)
             .end((req, res) => {
-                console.log(res.body);
-                console.log(res.body.msg);
                 chai.expect(res.status).to.be.equal(201);
 
                 done();
@@ -41,8 +39,6 @@ const testStatusGetOne = (route) => {
             .request(app)
             .get(`/api/v1/${route}/2`)
             .end((req, res) => {
-                console.log(res.body);
-                console.log(res.body.msg);
                 chai.expect(res.status).to.be.equal(200);
                 done();
             });
@@ -53,25 +49,21 @@ const testStatusUpdate = (route,data,id) => {
     it(`should respond with status: 200 for ${route}`, (done) => {
         chai
             .request(app)
-            .put(`/api/v1/${route}/${id}`)
+            .put(`/api/v1/${route}/2`)
             .send(data)
             .end((req, res) => {
-                console.log(res.body);
-                console.log(res.body.msg);
                 chai.expect(res.status).to.be.equal(200);
                 done();
             });
     });
 }
 
-const testStatusDelete = (route,id) => {
+const testStatusDelete = (route) => {
     it(`should respond with status: 200 for ${route}`, (done) => {
         chai
             .request(app)
-            .delete(`/api/v1/${route}/${id}`)
+            .delete(`/api/v1/${route}/2`)
             .end((req, res) => {
-                console.log(res.body);
-                console.log(res.body.msg);
                 chai.expect(res.status).to.be.equal(200);
                 done();
             });

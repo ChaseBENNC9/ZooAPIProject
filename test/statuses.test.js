@@ -4,19 +4,17 @@ import { describe, it } from "mocha";
 import { testStatusCreate, testStatusGetAll, testStatusGetOne, testStatusUpdate, testStatusDelete } from "./statusCodes.js";
 const statusCreate = 201;
 const statusGood = 200;
-const endpoints = ["zoos", "visitors", "animals", "enclosures", "workers", "tourGroups"];
+const endpoints = ["tourGroups","animals", "enclosures","visitors", "workers", "zoos"];
 const postData =
 {
     zoos:
     {
-        id:100,
         name: "Some Zoo in Dunedin",
         city: "Dunedin",
         country: "New Zealand",
         established: "2021-01-01T00:00:00.000Z",
     },
     visitors: {
-        id:100,
         zooId: 1,
         firstName: "Johnny",
         lastName: "Samston",
@@ -25,7 +23,6 @@ const postData =
         visitDate: "2021-01-01T00:00:00.000Z",
     },
     workers: {
-        id:100,
         zooId: 1,
         firstName: "Works",
         lastName: "atAZoo",
@@ -33,7 +30,6 @@ const postData =
     },
     animals:
     {
-        id:100,
         enclosureId: 1,
         name: "LarryBarry",
         species: "Lion",
@@ -42,7 +38,6 @@ const postData =
     },
     enclosures:
     {
-        id:100,
         zooId: 1,
         name: "The Other Penguin Enclosure",
         type: "Habitat",
@@ -50,11 +45,10 @@ const postData =
     },
     tourGroups:
     {
-        id:100,
         workerId: 3,
         enclosureId: 11,
         startTime: "2019-01-01T10:00:00Z",
-        description: "generic description!"
+        description: "here is a generic description!!"
     }
 }
 
@@ -83,7 +77,7 @@ const putData =
     },
     tourGroups:
     {
-        description: "some really generic description!"
+        description: "here is a new generic description!!"
     }
 }
 describe("Status Codes", () => {
@@ -91,7 +85,7 @@ describe("Status Codes", () => {
         testStatusCreate(endpoint,postData[endpoint]);
         testStatusGetAll(endpoint);
         testStatusGetOne(endpoint);
-        testStatusUpdate(endpoint,putData[endpoint],100);
-        testStatusDelete(endpoint,100);
+        testStatusUpdate(endpoint,putData[endpoint]);
+        testStatusDelete(endpoint);
     });
 });
