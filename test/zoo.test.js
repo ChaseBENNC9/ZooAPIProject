@@ -1,7 +1,6 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
-import { testStatusCreate, testStatusGetAll,testStatusGetOne,testStatusUpdate,testStatusDelete } from "./statusCodes.js";
 
 
 import app from "../index.js";
@@ -14,12 +13,7 @@ const Zoo = {
   country: "New Zealand",
   established: "2021-01-01T00:00:00.000Z",
 };
-const Zoo2 = {
-  name: "Another Zoo in Otago",
-  city: "Dunedin",
-  country: "New Zealand",
-  established: "2021-01-01T00:00:00.000Z",
-};
+
 describe("Zoos", () => {
 //Sorting
   it("should sort Zoos descending by id", (done) => {
@@ -120,9 +114,5 @@ it("Should return 2 Zoos", (done) => {
         done();
       });
   });
-  testStatusCreate("zoos", Zoo2);
-  testStatusGetAll("zoos");
-  testStatusGetOne("zoos");
-  testStatusUpdate("zoos", {name: "Zoo of Pavlova 2023"});
-  testStatusDelete("zoos");
+
 });

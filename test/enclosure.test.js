@@ -1,7 +1,6 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
-import { testStatusCreate, testStatusGetAll,testStatusGetOne,testStatusUpdate,testStatusDelete } from "./statusCodes.js";
 
 import app from "../index.js";
 
@@ -121,13 +120,13 @@ describe("Enclosures", () => {
       .request(app)
       .put("/api/v1/enclosures/1")
       .send({
-        temporary: "probably",
+        visitorCapacity: "Twelve",
       })
       .end((req, res) => {
         chai.expect(res.body).to.be.a("object");
         chai
           .expect(res.body.msg)
-          .to.be.equal("Temporary should be true or false");
+          .to.be.equal("Visitor Capacity should be an Integer");
         done();
       });
   });

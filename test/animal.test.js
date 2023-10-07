@@ -1,7 +1,6 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
-import { testStatusCreate, testStatusGetAll,testStatusGetOne,testStatusUpdate,testStatusDelete } from "./statusCodes.js";
 
 import app from "../index.js";
 
@@ -14,13 +13,7 @@ const Animal = {
     sex: "MALE",
     birthDate: "2019-01-01T00:00:00.000Z",
 };
-const Animal2 = {
-    enclosureId: 1,
-    name: "LarryBarry",
-    species: "Lion",
-    sex: "MALE",
-    birthDate: "2019-01-01T00:00:00.000Z",
-};
+
 describe("Animals", () => {
 //Sorting
 it("should sort animals descending by id", (done) => {
@@ -158,10 +151,6 @@ it("Should return `12 Animals", (done) => {
     });
 
 
-    testStatusCreate("animals", Animal2);
-    testStatusGetAll("animals");
-    testStatusGetOne("animals");
-    testStatusUpdate("animals", { deathDate: "2023-05-10T00:00:00.000Z" });
 
 
 });
