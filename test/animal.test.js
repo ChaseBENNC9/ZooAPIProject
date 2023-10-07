@@ -1,11 +1,8 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
-import { testStatusCreate } from "./statusCodes.js";
-import { testStatusGetAll } from "./statusCodes.js";
-import { testStatusGetOne } from "./statusCodes.js";
-import { testStatusUpdate } from "./statusCodes.js";
-import { testStatusDelete } from "./statusCodes.js";
+import { testStatusCreate, testStatusGetAll,testStatusGetOne,testStatusUpdate,testStatusDelete } from "./statusCodes.js";
+
 import app from "../index.js";
 
 chai.use(chaiHttp);
@@ -17,7 +14,13 @@ const Animal = {
     sex: "MALE",
     birthDate: "2019-01-01T00:00:00.000Z",
 };
-
+const Animal2 = {
+    enclosureId: 1,
+    name: "LarryBarry",
+    species: "Lion",
+    sex: "MALE",
+    birthDate: "2019-01-01T00:00:00.000Z",
+};
 describe("Animals", () => {
 //Sorting
 it("should sort animals descending by id", (done) => {
@@ -37,7 +40,7 @@ it("Should return an Orca", (done) => {
   .get("/api/v1/animals?species=Orca")
   .end((req, res) => {
       chai.expect(res.body.data).to.be.a("array");
-      chai.expect(res.body.data[0].country).to.be.equal("Orca");
+      chai.expect(res.body.data[0].species).to.be.equal("Orca");
       done();
   });
 });
@@ -46,7 +49,7 @@ it("Should return an Orca", (done) => {
 it("Should return `12 Animals", (done) => {
   chai
       .request(app)
-      .get("/api/v1/zoos?count=12")
+      .get("/api/v1/animals?count=12")
       .end((req, res) => {
           chai.expect(res.body.data).to.be.a("array");
           chai.expect(res.body.data.length).to.be.equal(12);
@@ -68,6 +71,23 @@ it("Should return `12 Animals", (done) => {
                 done();
             });
     });
+    
+    it("should not create an Animal", (done) => {
+        chai.request(app)
+        .post("/api/v1/animals")
+        .send({
+            enclosureId: 1,
+            species: "Lion",
+            sex: "MALE",
+            birthDate: "2019-01-01T00:00:00.000Z",
+        })
+        .end((req, res) => {
+            chai.expect(res.body).to.be.a("object");
+            chai.expect(res.body.msg).to.be.equal("Name is required");
+            done();
+        });
+
+    });
 
 
     it("should get all Animals", (done) => {
@@ -75,7 +95,6 @@ it("Should return `12 Animals", (done) => {
             .request(app)
             .get("/api/v1/animals")
             .end((req, res) => {
-                chai.expect(res.status).to.be.equal(200);
                 chai.expect(res.body).to.be.a("object");
                 chai.expect(res.body.data).to.be.a("array");
                 done();
@@ -87,7 +106,6 @@ it("Should return `12 Animals", (done) => {
             .request(app)
             .get("/api/v1/animals/1")
             .end((req, res) => {
-                chai.expect(res.status).to.be.equal(200);
                 chai.expect(res.body).to.be.a("object");
                 chai.expect(res.body.data).to.be.a("object");
                 done();
@@ -102,7 +120,6 @@ it("Should return `12 Animals", (done) => {
                 deathDate: "2023-05-10T00:00:00.000Z",
             })
             .end((req, res) => {
-                chai.expect(res.status).to.be.equal(200);
                 chai.expect(res.body).to.be.a("object");
                 chai
                     .expect(res.body.msg)
@@ -110,13 +127,28 @@ it("Should return `12 Animals", (done) => {
                 done();
             });
     });
+    it("should not update animal by id", (done) => {
+        chai
+            .request(app)
+            .put("/api/v1/animals/1")
+            .send({
+                name: 7
+            })
+            .end((req, res) => {
+                chai.expect(res.body).to.be.a("object");
+                chai
+                    .expect(res.body.msg)
+                    .to.be.equal("Name should be a string");
+                done();
+            });
+    });
+
 
     it("should delete animals by id", (done) => {
         chai
             .request(app)
             .delete("/api/v1/animals/1")
             .end((req, res) => {
-                chai.expect(res.status).to.be.equal(200);
                 chai.expect(res.body).to.be.a("object");
                 chai
                     .expect(res.body.msg)
@@ -126,7 +158,7 @@ it("Should return `12 Animals", (done) => {
     });
 
 
-    testStatusCreate("animals", Animal);
+    testStatusCreate("animals", Animal2);
     testStatusGetAll("animals");
     testStatusGetOne("animals");
     testStatusUpdate("animals", { deathDate: "2023-05-10T00:00:00.000Z" });
