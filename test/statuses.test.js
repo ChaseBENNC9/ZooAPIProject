@@ -30,7 +30,7 @@ const postData =
     },
     animals:
     {
-        enclosureId: 1,
+        enclosureId: 3,
         name: "LarryBarry",
         species: "Lion",
         sex: "MALE",
