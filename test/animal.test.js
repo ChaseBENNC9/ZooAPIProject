@@ -12,26 +12,49 @@ chai.use(chaiHttp);
 
 const Animal = {
     enclosureId: 1,
-    name: "Larry",
+    name: "Larry2",
     species: "Lion",
     sex: "MALE",
     birthDate: "2019-01-01T00:00:00.000Z",
 };
 
 describe("Animals", () => {
+//Sorting
+it("should sort animals descending by id", (done) => {
+    chai
+        .request(app)
+        .get("/api/v1/animals?sortBy=id&sortOrder=desc")
+        .end((req, res) => {
+            chai.expect(res.body.data).to.be.a("array");
+            console.log(res.body.data.length);
+            chai.expect(res.body.data[0].id).to.be.equal(res.body.data.length);
+            done();
+        });
+});
+//Filtering
+it("Should return an Orca", (done) => {
+  chai.request(app)
+  .get("/api/v1/zoos?cspecies=Orca")
+  .end((req, res) => {
+      chai.expect(res.body.data).to.be.a("array");
+      chai.expect(res.body.data[0].country).to.be.equal("Orca");
+      done();
+  });
+});
+
+//Pagination
+it("Should return `12 Animals", (done) => {
+  chai
+      .request(app)
+      .get("/api/v1/zoos?count=12")
+      .end((req, res) => {
+          chai.expect(res.body.data).to.be.a("array");
+          chai.expect(res.body.data.length).to.be.equal(12);
+          done();
+      });
+});
 
 
-    it("should sort animals descending by id", (done) => {
-        chai
-            .request(app)
-            .get("/api/v1/animals?sortBy=id&sortOrder=desc")
-            .end((req, res) => {
-                chai.expect(res.body.data).to.be.a("array");
-                console.log(res.body.data.length);
-                chai.expect(res.body.data[0].id).to.be.equal(res.body.data.length);
-                done();
-            });
-    });
 
 
     it("should create Animal", (done) => {
