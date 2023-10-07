@@ -1,6 +1,7 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
+import { testStatusCreate, testStatusGetAll,testStatusGetOne,testStatusUpdate,testStatusDelete } from "./statusCodes.js";
 
 import app from "../index.js";
 
@@ -23,6 +24,21 @@ describe("Enclosures", () => {
         chai.expect(res.status).to.be.equal(201);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.msg).to.be.equal("Enclosure successfully created");
+        done();
+      });
+  });
+  it("should not create Enclosure", (done) => {
+    chai
+      .request(app)
+      .post("/api/v1/enclosures")
+      .send({
+        zooId: 1,
+        name: "The Penguin Enclosure",
+        temporary: false,
+      })
+      .end((req, res) => {
+        chai.expect(res.body).to.be.a("object");
+        chai.expect(res.body.msg).to.be.equal("Type is required");
         done();
       });
   });
@@ -68,6 +84,21 @@ describe("Enclosures", () => {
       });
   });
 
+  it("should not update Enclosure by id", (done) => {
+    chai
+      .request(app)
+      .put("/api/v1/enclosures/1")
+      .send({
+        temporary: "probably",
+      })
+      .end((req, res) => {
+        chai.expect(res.body).to.be.a("object");
+        chai
+          .expect(res.body.msg)
+          .to.be.equal("Temporary should be true or false");
+        done();
+      });
+  });
   it("should delete Enclosure by id", (done) => {
     chai
       .request(app)
