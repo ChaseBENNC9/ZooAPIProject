@@ -9,22 +9,387 @@
     {
         "enclosureId": 1,
         "name": "Nala",
-        "species":"Lion",
-        "sex":"FEMALE",
-        "birthDate":"2019-02-03T00:00:00.000Z"
+        "species": "Lion",
+        "sex": "FEMALE",
+        "birthDate": "2019-02-03T00:00:00.000Z"
     },
     {
         "enclosureId": 1,
         "name": "Mufasa",
-        "species":"Lion",
-        "sex":"MALE",
-        "birthDate":"2015-03-03T00:00:00.000Z"
+        "species": "Lion",
+        "sex": "MALE",
+        "birthDate": "2015-03-03T00:00:00.000Z"
     },
     {
         "enclosureId": 2,
         "name": "Timon",
         "species": "Kea",
-        "sex":"MALE",
-        "birthDate":"2018-01-01T00:00:00.000Z"
+        "sex": "MALE",
+        "birthDate": "2018-01-01T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 2,
+        "name": "Polly",
+        "species": "Kea",
+        "sex": "FEMALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 2,
+        "name": "Tully",
+        "species": "Tui",
+        "sex": "FEMALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 2,
+        "name": "Kenny",
+        "species": "Kaka",
+        "sex": "MALE",
+        "birthDate": "2012-02-03T00:00:00.000Z",
+        "deathDate": "2019-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 2,
+        "name": "Kyle",
+        "species": "Kaka",
+        "sex": "MALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 2,
+        "name": "Stan",
+        "species": "Fantail",
+        "sex": "MALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 2,
+        "name": "Wendy",
+        "species": "Fantail",
+        "sex": "FEMALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 3,
+        "name": "Skipper",
+        "species": "Penguin",
+        "sex": "MALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 3,
+        "name": "Rico",
+        "species": "Penguin",
+        "sex": "MALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 3,
+        "name": "Private",
+        "species": "Penguin",
+        "sex": "MALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 3,
+        "name": "Kowalski",
+        "sex": "MALE",
+        "species": "Penguin",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 4,
+        "name": "Marty",
+        "species": "Giraffe",
+        "sex": "MALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 4,
+        "name": "Gerald",
+        "species": "Giraffe",
+        "sex": "MALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 5,
+        "name": "Alex",
+        "species": "Tiger",
+        "sex": "MALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 5,
+        "name": "Terry",
+        "species": "Tiger",
+        "sex": "MALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 6,
+        "name": "Speedy",
+        "species": "Cheetah",
+        "sex": "FEMALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 7,
+        "name": "Cesaur",
+        "species": "Ape",
+        "sex": "MALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 7,
+        "name": "Maurice",
+        "species": "Orangatung",
+        "sex": "MALE",
+        "birthDate": "2011-07-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 7,
+        "name": "Blue",
+        "species": "Ape",
+        "sex": "FEMALE",
+        "birthDate": "2018-02-03T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 8,
+        "name": "Loki",
+        "species": "Bearded Dragon",
+        "sex": "MALE",
+        "birthDate": "2016-01-07T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 8,
+        "name": "Maggie",
+        "species": "Bearded Dragon",
+        "sex": "FEMALE",
+        "birthDate": "2016-01-07T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 8,
+        "name": "Fangs",
+        "species": "Python",
+        "sex": "MALE",
+        "birthDate": "2022-01-07T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 9,
+        "name": "Dory",
+        "species": "Blue Tang",
+        "sex": "FEMALE",
+        "birthDate": "2022-03-15T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 9,
+        "name": "Scarface",
+        "species": "Lionfish",
+        "sex": "FEMALE",
+        "birthDate": "2021-11-28T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 9,
+        "name": "Neon",
+        "species": "Angelfish",
+        "sex": "MALE",
+        "birthDate": "2022-01-05T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 9,
+        "name": "Zigzag",
+        "species": "Regal Angelfish",
+        "sex": "FEMALE",
+        "birthDate": "2021-12-10T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 9,
+        "name": "Nemo",
+        "species": "Clownfish",
+        "sex": "MALE",
+        "birthDate": "2022-02-20T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 10,
+        "name": "Bubbles",
+        "species": "Turtle",
+        "sex": "FEMALE",
+        "birthDate": "2021-12-10T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 10,
+        "name": "Crush",
+        "species": "Turtle",
+        "sex": "MALE",
+        "birthDate": "2021-12-10T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 11,
+        "name": "Penny",
+        "species": "Orca",
+        "sex": "FEMALE",
+        "birthDate": "2021-12-10T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 12,
+        "name": "Stingy",
+        "species": "Southern Stingray",
+        "sex": "MALE",
+        "birthDate": "2022-05-12T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 12,
+        "name": "Spotty",
+        "species": "Atlantic Stingray",
+        "sex": "FEMALE",
+        "birthDate": "2022-04-25T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 12,
+        "name": "Raymond",
+        "species": "Short-tail Stingray",
+        "sex": "MALE",
+        "birthDate": "2022-03-30T00:00:00.000Z"
+    },
+    {
+        "enclosureId": 13,
+        "name": "Charlie",
+        "species": "Kaka",
+        "sex": "MALE",
+        "birthDate": "2022-06-05T00:00:00Z"
+    },
+    {
+        "enclosureId": 13,
+        "name": "Olivia",
+        "species": "Kaka",
+        "sex": "FEMALE",
+        "birthDate": "2022-05-20T00:00:00Z"
+    },
+    {
+        "enclosureId": 13,
+        "name": "Max",
+        "species": "Kaka",
+        "sex": "MALE",
+        "birthDate": "2022-05-15T00:00:00Z"
+    },
+    {
+        "enclosureId": 14,
+        "name": "Liam",
+        "species": "Kea",
+        "sex": "MALE",
+        "birthDate": "2022-07-10T00:00:00Z"
+    },
+    {
+        "enclosureId": 14,
+        "name": "Sophia",
+        "species": "Kea",
+        "sex": "FEMALE",
+        "birthDate": "2022-06-25T00:00:00Z"
+    },
+    {
+        "enclosureId": 14,
+        "name": "Noah",
+        "species": "Kea",
+        "sex": "MALE",
+        "birthDate": "2022-06-20T00:00:00Z"
+    },
+    {
+        "enclosureId": 15,
+        "name": "Fanny",
+        "species": "Fantail",
+        "sex": "FEMALE",
+        "birthDate": "2022-08-02T00:00:00Z"
+    },
+    {
+        "enclosureId": 15,
+        "name": "Felix",
+        "species": "Fantail",
+        "sex": "MALE",
+        "birthDate": "2022-07-20T00:00:00Z"
+    },
+    {
+        "enclosureId": 15,
+        "name": "Flora",
+        "species": "Fantail",
+        "sex": "FEMALE",
+        "birthDate": "2022-07-15T00:00:00Z"
+    },
+    {
+        "enclosureId": 15,
+        "name": "Tom",
+        "species": "Tui",
+        "sex": "MALE",
+        "birthDate": "2022-08-10T00:00:00Z"
+    },
+    {
+        "enclosureId": 15,
+        "name": "Tina",
+        "species": "Tui",
+        "sex": "FEMALE",
+        "birthDate": "2022-08-05T00:00:00Z"
+    },
+    {
+        "enclosureId": 15,
+        "name": "Teddy",
+        "species": "Tui",
+        "sex": "MALE",
+        "birthDate": "2022-07-30T00:00:00Z"
+    },
+    {
+        "enclosureId": 15,
+        "name": "Willow",
+        "species": "Wood Pigeon",
+        "sex": "FEMALE",
+        "birthDate": "2022-09-02T00:00:00Z"
+    },
+    {
+        "enclosureId": 15,
+        "name": "Winston",
+        "species": "Wood Pigeon",
+        "sex": "MALE",
+        "birthDate": "2022-08-20T00:00:00Z"
+    },
+    {
+        "enclosureId": 15,
+        "name": "Wendy",
+        "species": "Wood Pigeon",
+        "sex": "FEMALE",
+        "birthDate": "2022-08-15T00:00:00Z"
+    },
+    {
+        "enclosureId": 16,
+        "name": "Karl",
+        "species": "Kiwi",
+        "sex": "MALE",
+        "birthDate": "2022-09-10T00:00:00Z"
+    },
+    {
+        "enclosureId": 16,
+        "name": "Kylie",
+        "species": "Kiwi",
+        "sex": "FEMALE",
+        "birthDate": "2022-09-05T00:00:00Z"
+    },
+    {
+        "enclosureId": 16,
+        "name": "Kevin",
+        "species": "Kiwi",
+        "sex": "MALE",
+        "birthDate": "2022-08-30T00:00:00Z"
+    },
+    {
+        "enclosureId": 16,
+        "name": "Kira",
+        "species": "Kiwi",
+        "sex": "FEMALE",
+        "birthDate": "2022-08-25T00:00:00Z"
+    },
+    {
+        "enclosureId": 16,
+        "name": "Kobe",
+        "species": "Kiwi",
+        "sex": "MALE",
+        "birthDate": "2022-08-20T00:00:00Z"
     }
 ]
