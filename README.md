@@ -1,3 +1,9 @@
+## Description
+This is the branch for my CRUD react app for project 2 of intro app dev. I will be developing a front end for my Zoo Rest API that I developed in project 1. 
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
