@@ -3,7 +3,7 @@ import { useState ,forceUpdate} from "react";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
 import { Navigate } from "react-router-dom";
 
-const ZooCreateForm = (props) => {
+const ZooCreateForm = ({onCreateZoo}) => {
     const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState("");
@@ -24,7 +24,15 @@ const ZooCreateForm = (props) => {
       });
 
       if (res.status === 201) {
-        // handle 
+        const data =  {
+          name: name,
+          city: city,
+          country: country,
+          established: established
+        }
+        console.log("1)",res.data.data);
+        console.log("2)",data);
+        onCreateZoo(data);
       }
     } catch (error) {
       console.log(error);

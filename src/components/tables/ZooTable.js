@@ -3,7 +3,7 @@ import axios from "axios";
 import { Table,Button } from "reactstrap";
 import ZooCreateForm from "../forms/ZooCreateForm";
 
-const ZoosTable = () => {
+const ZoosTable = ({ newData }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com"; // replace with your Render application's URL
 
   const [data, setData] = useState([])
@@ -30,7 +30,9 @@ const ZoosTable = () => {
         })
       );
   };
-
+  const handleCreateZoo = (newZoo) => {
+    setData([...data, newZoo]);
+  };
   const displayZoosData = (
     data.map((d) => {
       let date = new Date(d.established).toDateString()
@@ -63,7 +65,7 @@ const ZoosTable = () => {
         {displayZoosData}
       </tbody>
     </Table>
-    <ZooCreateForm></ZooCreateForm>
+    <ZooCreateForm onCreateZoo={handleCreateZoo} />
     </>
   );
 };
