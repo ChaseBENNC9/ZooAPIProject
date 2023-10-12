@@ -95,9 +95,10 @@ const ZooCreateForm = (props) => {
                   {
                     setEstablishedDate(e.target.value);
                     let objdate = new Date(e.target.value);
-                    console.log(objdate.toISOString());
-                    setEstablished(objdate.toISOString());
-
+                    if(!isNaN(objdate)){
+                      console.log(objdate.toISOString());
+                      setEstablished(objdate.toISOString());
+                    }
                   }
                   }
             />
