@@ -11,7 +11,6 @@ const ZooCreateForm = (props) => {
   const [country, setCountry] = useState("");
   const [established,setEstablished] = useState("");
   const [establishedDate,setEstablishedDate] = useState("");
-  const [establishedTime,setEstablishedTime] = useState("");
   const [isError, setIsError] = useState(false);
  
 
@@ -92,23 +91,17 @@ const ZooCreateForm = (props) => {
                 name="established"
                 placeholder="Established Date"
                 value={establishedDate}
-                onChange={(e) => setEstablishedDate(e.target.value)}
-            />
-                <Input
-                type="time"
-                name="established"
-                placeholder="Established Date"
-                value={establishedTime}
-                onChange={(e) => {
-                    setEstablishedTime(e.target.value)
-                    let objdate = new Date(`${establishedDate},${establishedTime}`);
+                onChange={(e) => 
+                  {
+                    setEstablishedDate(e.target.value);
+                    let objdate = new Date(e.target.value);
                     console.log(objdate.toISOString());
                     setEstablished(objdate.toISOString());
-                }
-                    
-                }
 
+                  }
+                  }
             />
+
 
             
         </FormGroup>
