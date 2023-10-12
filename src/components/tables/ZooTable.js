@@ -33,12 +33,13 @@ const ZoosTable = () => {
 
   const displayZoosData = (
     data.map((d) => {
+      let date = new Date(d.established).toDateString()
       return (
         <tr key={d.id}>
           <td>{d.name}</td>
           <td>{d.city}</td>
           <td>{d.country}</td>
-          <td>{d.established}</td>
+          <td>{date}</td>
           <td> <Button color="primary" >Update</Button></td>
           <td> <Button color="danger" onClick={() => deleteZoo(d.id)}>Delete</Button></td>
 
