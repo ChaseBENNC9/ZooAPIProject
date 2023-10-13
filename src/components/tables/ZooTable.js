@@ -22,13 +22,16 @@ const ZoosTable = ({ newData }) => {
 
 
   const deleteZoo =  (id) => {
-   
+      if(window.confirm("Are you Sure? \n If you Delete this row it will be lost forever!"))
+    {
       axios.delete(`${BASE_URL}/api/v1/zoos/${id}`)
       setData(
         data.filter((data) => {
           return data.id !== id;
         })
       );
+    }
+
   };
   const handleCreateZoo = (newZoo) => {
     setData([...data, newZoo]);
