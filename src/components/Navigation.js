@@ -15,6 +15,7 @@ import {
 
 // Import the following component:
 import ZoosTable from "./tables/ZooTable";
+import EnclosuresTable from "./tables/EnclosureTable"
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,11 +32,16 @@ const Navigation = () => {
             <NavItem>
               <NavLink href="/zoos">Zoo's</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/enclosures">Enclosure's</NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
       <Routes>
         <Route path="/zoos" element={<ZoosTable />} />
+        <Route path="/enclosures" element={<EnclosuresTable />} />
+
       </Routes>
     </Router>
   );
