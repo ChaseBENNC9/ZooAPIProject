@@ -24,14 +24,10 @@ const ZooCreateForm = ({onCreateZoo}) => {
       });
 
       if (res.status === 201) {
-        const data =  {
-          name: name,
-          city: city,
-          country: country,
-          established: established
-        }
-        console.log("1)",res.data.data);
+        const data =  res.data.data[res.data.data.length - 1]
         console.log("2)",data);
+  
+
         onCreateZoo(data);
       }
     } catch (error) {
