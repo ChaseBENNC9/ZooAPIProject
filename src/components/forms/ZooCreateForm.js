@@ -1,7 +1,6 @@
 import axios from "axios";
-import { useState ,forceUpdate} from "react";
+import { useState} from "react";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
-import { Navigate } from "react-router-dom";
 
 const ZooCreateForm = ({onCreateZoo}) => {
     const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
@@ -51,6 +50,8 @@ const ZooCreateForm = ({onCreateZoo}) => {
         with forms
       */}
       <Form onSubmit={handleSubmit}>
+
+
         <FormGroup>
           <Input
             type="text"
@@ -110,6 +111,7 @@ const ZooCreateForm = ({onCreateZoo}) => {
 
             
         </FormGroup>
+
 
         {/* 
           Display an alert message if there is an error
