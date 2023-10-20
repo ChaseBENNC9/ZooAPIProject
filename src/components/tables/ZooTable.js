@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Table,Button } from "reactstrap";
 import ZooCreateForm from "../forms/ZooCreateForm";
+import ZooUpdateForm from "../forms/ZooUpdateForm";
 
 const ZoosTable = ({ newData }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com"; // replace with your Render application's URL
 
   const [data, setData] = useState([])
+  const [isUpdate,setIsUpdate] = useState([{id: 0,value: false}])
+  
 
   useEffect(() => {
     const getZoosData = async () => {
@@ -36,8 +39,9 @@ const ZoosTable = ({ newData }) => {
   const handleCreateZoo = (newZoo) => {
     setData([...data, newZoo]);
   };
+
   const displayZoosData = (
-    data.map((d) => {
+    data.map((d,index) => {
       let date = new Date(d.established).toDateString()
       return (
         <tr key={d.id}>
@@ -45,13 +49,19 @@ const ZoosTable = ({ newData }) => {
           <td>{d.city}</td>
           <td>{d.country}</td>
           <td>{date}</td>
-          <td> <Button color="primary" >Update</Button></td>
+          <td> {(!isUpdate[index].value) ? <Button color="primary" onClick={() => test(index,true)}>Update</Button> :<Button color="danger" onClick={() => test(index,false)}>Cancel</Button> }</td>
           <td> <Button color="danger" onClick={() => deleteZoo(d.id)}>Delete</Button></td>
 
         </tr>
       )
     })
   )
+
+    function test(i,bool)
+    {
+      console.log(i);
+      console.log(isUpdate[i]);
+    }
 
   return (
     <>
@@ -68,7 +78,10 @@ const ZoosTable = ({ newData }) => {
         {displayZoosData}
       </tbody>
     </Table>
-    <ZooCreateForm onCreateZoo={handleCreateZoo} />
+    {(!isUpdate) ? <ZooCreateForm onCreateZoo={handleCreateZoo} /> :  <ZooUpdateForm/>}
+    
+   
+    
     </>
   );
 };
