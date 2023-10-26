@@ -34,12 +34,12 @@ const EnclosuresTable = ({ newData }) => {
   };
   const displayEnclosuresData = (
     data.map((d) => {
-      let temp = d.temporary.toString()
       console.log(d)
       return (
         <tr key={d.id}>
           <td>{d.name}</td>
           <td>{d.type}</td>
+          <td>{(d.temporary) ? "True" : "False"}</td>
           <td> <Button color="primary" >Update</Button></td>
           <td> <Button color="danger" onClick={() => deleteZoo(d.id)}>Delete</Button></td>
 
@@ -55,6 +55,7 @@ const EnclosuresTable = ({ newData }) => {
         <tr>
           <th>Name</th>
           <th>Type</th>
+          <th>Temporary</th>
         </tr>
       </thead>
       <tbody>
