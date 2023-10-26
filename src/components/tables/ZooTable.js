@@ -87,11 +87,12 @@ const ZoosTable = ({ newData }) => {
     }
     const isAnyUpdateActive = isUpdate.some(item => item.value === true);
     let activeZooId = 0;
+    let activeZoo = {}
     if(isAnyUpdateActive)
     {
       const activeUpdateIndex = isUpdate.findIndex(item => item.value === true);
        activeZooId = data[activeUpdateIndex].id;
-
+      activeZoo = data[activeUpdateIndex];
     }
 
   return (
@@ -109,7 +110,7 @@ const ZoosTable = ({ newData }) => {
         {displayZoosData}
       </tbody>
     </Table>
-   {(!isAnyUpdateActive) ? <ZooCreateForm onCreateZoo={handleCreateZoo} /> :  <ZooUpdateForm zooId={activeZooId} OnUpdateZoo={handleUpdateZoo}/>}
+   {(!isAnyUpdateActive) ? <ZooCreateForm onCreateZoo={handleCreateZoo} /> :  <ZooUpdateForm zooId={activeZooId} OnUpdateZoo={handleUpdateZoo} currentData={activeZoo}/>}
 
     
    

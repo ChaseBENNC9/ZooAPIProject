@@ -1,17 +1,20 @@
 import axios from "axios";
 import { useState} from "react";
+import { format } from "date-fns";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
 
-const ZooUpdateForm = ({zooId,OnUpdateZoo}) => {
+const ZooUpdateForm = ({zooId,OnUpdateZoo,currentData}) => {
     const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
-  const [name, setName] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
-  const [established,setEstablished] = useState("");
-  const [establishedDate,setEstablishedDate] = useState("");
+  const [name, setName] = useState(currentData.name);
+  const [city, setCity] = useState(currentData.city);
+  const [country, setCountry] = useState(currentData.country);
+  const [established,setEstablished] = useState(currentData.established);
+  const [establishedDate,setEstablishedDate] = useState(format(new Date(currentData.established),"yyyy-MM-dd"));
+  
   const [isError, setIsError] = useState(false);
  
+
 
   const UpdateZoo = async () => {
     try {
@@ -24,7 +27,7 @@ const ZooUpdateForm = ({zooId,OnUpdateZoo}) => {
 
       if (res.status === 200) {
         const data =  res.data.data
-  
+        console.log("2)",data);
         OnUpdateZoo(data,zooId);
       }
     } catch (error) {
@@ -60,6 +63,7 @@ const ZooUpdateForm = ({zooId,OnUpdateZoo}) => {
             name="name"
             placeholder="Name"
             value={name}
+
             /*
               This attribute detects when the value of an input element changes
             */
