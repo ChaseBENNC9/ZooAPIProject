@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState} from "react";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
 
-const ZooCreateForm = ({onCreateZoo}) => {
+const ZooCreateForm = ({onCreateZoo, hideForm}) => {
     const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState("");
@@ -43,6 +43,7 @@ const ZooCreateForm = ({onCreateZoo}) => {
     setCountry("");
     setEstablished("");
     setEstablishedDate("");
+    hideForm();
     
   };
 

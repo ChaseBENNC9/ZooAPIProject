@@ -9,6 +9,7 @@ const ZoosTable = ({ newData }) => {
 
   const [data, setData] = useState([])
   const [isUpdate,setIsUpdate] = useState([{value: false}])
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const getZoosData = async () => {
@@ -67,7 +68,7 @@ const ZoosTable = ({ newData }) => {
           <td>{d.city}</td>
           <td>{d.country}</td>
           <td>{date}</td>
-          <td> {(!isUpdate[index].value) ? <Button color="primary" onClick={() => test(index,true)}>Update</Button> :<Button color="danger" onClick={() => test(index,false)}>Cancel</Button> }</td>
+          <td> <Button color="primary" onClick={() => test(index,true)}>Update</Button></td>
           <td> <Button color="danger" onClick={() => deleteZoo(d.id)}>Delete</Button></td>
 
         </tr>
@@ -77,6 +78,7 @@ const ZoosTable = ({ newData }) => {
 
     function test(i,bool)
     {
+      toggleForm();
        // Create a copy of the current state
   const updatedIsUpdate =  data.map((d) => {return {value: false}});
   // Update the value of the specified index
@@ -94,9 +96,38 @@ const ZoosTable = ({ newData }) => {
        activeZooId = data[activeUpdateIndex].id;
       activeZoo = data[activeUpdateIndex];
     }
-
+    const toggleForm = () => {
+      setShowForm(!showForm);
+    };
   return (
     <>
+      
+      {showForm && (
+        <div className="TEST" style={{ 
+          position: 'absolute', 
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          
+          left: 0, 
+          bottom: 0,
+          width: '100%', 
+          height: '100%', 
+          background: 'rgba(0, 0, 0, 0.75)', 
+          zIndex: 1 
+        }}>
+          <div style={{
+            background: 'white',
+            padding: '20px',
+            width: '50%',
+          }} >
+              <Button onClick={toggleForm}>X</Button>
+              {(!isAnyUpdateActive) ? <ZooCreateForm onCreateZoo={handleCreateZoo} hideForm={toggleForm} /> :  <ZooUpdateForm zooId={activeZooId} OnUpdateZoo={handleUpdateZoo} currentData={activeZoo} hideForm={toggleForm}/>}
+              </div>
+        </div>
+   
+      )}
     <Table>
       <thead>
         <tr>
@@ -108,9 +139,9 @@ const ZoosTable = ({ newData }) => {
       </thead>
       <tbody>
         {displayZoosData}
+        <Button color="success" onClick={toggleForm}>Create Zoo</Button>
       </tbody>
     </Table>
-   {(!isAnyUpdateActive) ? <ZooCreateForm onCreateZoo={handleCreateZoo} /> :  <ZooUpdateForm zooId={activeZooId} OnUpdateZoo={handleUpdateZoo} currentData={activeZoo}/>}
 
     
    

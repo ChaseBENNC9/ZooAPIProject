@@ -3,7 +3,7 @@ import { useState} from "react";
 import { format } from "date-fns";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
 
-const ZooUpdateForm = ({zooId,OnUpdateZoo,currentData}) => {
+const ZooUpdateForm = ({zooId,OnUpdateZoo,currentData,hideForm}) => {
     const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState(currentData.name);
@@ -44,6 +44,7 @@ const ZooUpdateForm = ({zooId,OnUpdateZoo,currentData}) => {
     setCountry("");
     setEstablished("");
     setEstablishedDate("");
+    hideForm();
   };
   return (
     <>
