@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState} from "react";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
 
-const ZooUpdateForm = ({onCreateZoo}) => {
+const ZooUpdateForm = ({zooId,OnUpdateZoo}) => {
     const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState("");
@@ -13,14 +13,33 @@ const ZooUpdateForm = ({onCreateZoo}) => {
   const [isError, setIsError] = useState(false);
  
 
+  const UpdateZoo = async () => {
+    try {
+      const res = await axios.put(`${BASE_URL}/api/v1/zoos/${zooId}`, {
+        name: name,
+        city: city,
+        country: country,
+        established: established
+      });
+
+      if (res.status === 200) {
+        const data =  res.data.data
+  
+        OnUpdateZoo(data,zooId);
+      }
+    } catch (error) {
+      console.log(error);
+      setIsError(true);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    UpdateZoo();
   };
-
   return (
     <>
-      <h1 style={{ marginTop: "10px" }}>Update Zoo ID:</h1>
+      <h1 style={{ marginTop: "10px" }}>Update Zoo ID: {zooId}</h1>
       {/* 
         When the form is submitted, it will call the handleSubmit 
         function above. You do not need to worry about specifying
@@ -44,7 +63,7 @@ const ZooUpdateForm = ({onCreateZoo}) => {
               You can fetch validation messages from the request. There are plenty 
               of online resources that show you how to do this 
             */
-            required
+             
           />
         </FormGroup>
         <FormGroup>
@@ -54,7 +73,7 @@ const ZooUpdateForm = ({onCreateZoo}) => {
             placeholder="City"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-            required
+             
           />
         </FormGroup>
         <FormGroup>
@@ -64,7 +83,7 @@ const ZooUpdateForm = ({onCreateZoo}) => {
             placeholder="Country"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
-            required
+             
           />
         </FormGroup>
         <h4>Established</h4>

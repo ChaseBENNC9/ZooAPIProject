@@ -8,14 +8,15 @@ const ZoosTable = ({ newData }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com"; // replace with your Render application's URL
 
   const [data, setData] = useState([])
-  const [isUpdate,setIsUpdate] = useState([{id: 0,value: false}])
-  
+  const [isUpdate,setIsUpdate] = useState([{value: false}])
 
   useEffect(() => {
     const getZoosData = async () => {
       try {
         const res = await axios.get(`${BASE_URL}/api/v1/zoos`)
+        
         setData(res.data.data)
+        setIsUpdate(res.data.data.map((d) => {return {value: false}}))
       } catch (error) {
         console.log(error)
       }   
@@ -38,10 +39,23 @@ const ZoosTable = ({ newData }) => {
   };
   const handleCreateZoo = (newZoo) => {
     setData([...data, newZoo]);
+    const updatedIsUpdate =  [...isUpdate];
+    updatedIsUpdate.push({value: false});
+    setIsUpdate(updatedIsUpdate);
+
   };
 
+  const handleUpdateZoo = (updatedZoo, id) => {
+    setData(
+      data.map((zoo) => {
+        return zoo.id === id ? updatedZoo : zoo;
+      })
+    );
+  };
   const displayZoosData = (
+    
     data.map((d,index) => {
+
       let date = new Date(d.established).toDateString()
       return (
         <tr key={d.id}>
@@ -59,8 +73,21 @@ const ZoosTable = ({ newData }) => {
 
     function test(i,bool)
     {
-      console.log(i);
-      console.log(isUpdate[i]);
+       // Create a copy of the current state
+  const updatedIsUpdate =  data.map((d) => {return {value: false}});
+  // Update the value of the specified index
+  updatedIsUpdate[i].value = bool;
+  
+  // Update the state
+  setIsUpdate(updatedIsUpdate);
+    }
+    const isAnyUpdateActive = isUpdate.some(item => item.value === true);
+    let activeZooId = 0;
+    if(isAnyUpdateActive)
+    {
+      const activeUpdateIndex = isUpdate.findIndex(item => item.value === true);
+       activeZooId = data[activeUpdateIndex].id;
+
     }
 
   return (
@@ -78,7 +105,8 @@ const ZoosTable = ({ newData }) => {
         {displayZoosData}
       </tbody>
     </Table>
-    {(!isUpdate) ? <ZooCreateForm onCreateZoo={handleCreateZoo} /> :  <ZooUpdateForm/>}
+   {(!isAnyUpdateActive) ? <ZooCreateForm onCreateZoo={handleCreateZoo} /> :  <ZooUpdateForm zooId={activeZooId} OnUpdateZoo={handleUpdateZoo}/>}
+
     
    
     
