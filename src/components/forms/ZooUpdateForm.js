@@ -36,6 +36,11 @@ const ZooUpdateForm = ({zooId,OnUpdateZoo}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     UpdateZoo();
+    setName("");
+    setCity("");
+    setCountry("");
+    setEstablished("");
+    setEstablishedDate("");
   };
   return (
     <>
