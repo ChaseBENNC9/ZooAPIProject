@@ -38,6 +38,12 @@ const ZooCreateForm = ({onCreateZoo}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createZoo();
+    setName("");
+    setCity("");
+    setCountry("");
+    setEstablished("");
+    setEstablishedDate("");
+    
   };
 
   return (
