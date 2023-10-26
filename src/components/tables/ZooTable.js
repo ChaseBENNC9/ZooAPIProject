@@ -50,7 +50,11 @@ const ZoosTable = ({ newData }) => {
       data.map((zoo) => {
         return zoo.id === id ? updatedZoo : zoo;
       })
+      
+
     );
+    setIsUpdate(data.map((d) => {return {value: false}}))
+    console.log(isUpdate);
   };
   const displayZoosData = (
     
