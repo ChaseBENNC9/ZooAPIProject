@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table,Button } from "reactstrap";
+import { Table,Button,Modal, ModalHeader, ModalBody, } from "reactstrap";
 import ZooCreateForm from "../forms/ZooCreateForm";
 import ZooUpdateForm from "../forms/ZooUpdateForm";
 
@@ -8,16 +8,16 @@ const ZoosTable = ({ newData }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com"; // replace with your Render application's URL
 
   const [data, setData] = useState([])
-  const [isUpdate,setIsUpdate] = useState([{value: false}])
-  const [showForm, setShowForm] = useState(false);
-
+  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [UpdateFormVisible, setUpdateFormVisible] = useState(false);
+  const [activeUpdateZooId, setActiveUpdateZooId] = useState(null);
+  const [activeUpdateZooData, setActiveUpdateZooData] = useState(null);
   useEffect(() => {
     const getZoosData = async () => {
       try {
         const res = await axios.get(`${BASE_URL}/api/v1/zoos`)
         
         setData(res.data.data)
-        setIsUpdate(res.data.data.map((d) => {return {value: false}}))
       } catch (error) {
         console.log(error)
       }   
@@ -39,10 +39,10 @@ const ZoosTable = ({ newData }) => {
 
   };
   const handleCreateZoo = (newZoo) => {
+    console.log("ELLO MATE")
+    console.log(newZoo);
+    console.log(...data, newZoo);
     setData([...data, newZoo]);
-    const updatedIsUpdate =  [...isUpdate];
-    updatedIsUpdate.push({value: false});
-    setIsUpdate(updatedIsUpdate);
 
   };
 
@@ -54,8 +54,6 @@ const ZoosTable = ({ newData }) => {
       
 
     );
-    setIsUpdate(data.map((d) => {return {value: false}}))
-    console.log(isUpdate);
   };
   const displayZoosData = (
     
@@ -68,7 +66,7 @@ const ZoosTable = ({ newData }) => {
           <td>{d.city}</td>
           <td>{d.country}</td>
           <td>{date}</td>
-          <td> <Button color="primary" onClick={() => test(index,true)}>Update</Button></td>
+          <td> <Button color="primary" onClick={() => showUpdateForm(d)}>Update</Button></td>
           <td> <Button color="danger" onClick={() => deleteZoo(d.id)}>Delete</Button></td>
 
         </tr>
@@ -76,58 +74,42 @@ const ZoosTable = ({ newData }) => {
     })
   )
 
-    function test(i,bool)
-    {
-      toggleForm();
-       // Create a copy of the current state
-  const updatedIsUpdate =  data.map((d) => {return {value: false}});
-  // Update the value of the specified index
-  updatedIsUpdate[i].value = bool;
-  
-  // Update the state
-  setIsUpdate(updatedIsUpdate);
-    }
-    const isAnyUpdateActive = isUpdate.some(item => item.value === true);
-    let activeZooId = 0;
-    let activeZoo = {}
-    if(isAnyUpdateActive)
-    {
-      const activeUpdateIndex = isUpdate.findIndex(item => item.value === true);
-       activeZooId = data[activeUpdateIndex].id;
-      activeZoo = data[activeUpdateIndex];
-    }
-    const toggleForm = () => {
-      setShowForm(!showForm);
+
+  const showUpdateForm = (zoo) => {
+    setActiveUpdateZooId(zoo.id);
+    setActiveUpdateZooData(zoo);
+    setUpdateFormVisible(true);
+  };
+
+const hideUpdateForm = () => {
+  setUpdateFormVisible(false);
+};
+
+    const toggleCreateForm = () => {
+      setShowCreateForm(!showCreateForm);
     };
+
+
   return (
     <>
-      
-      {showForm && (
-        <div className="TEST" style={{ 
-          position: 'absolute', 
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          
-          left: 0, 
-          bottom: 0,
-          width: '100%', 
-          height: '100%', 
-          background: 'rgba(0, 0, 0, 0.75)', 
-          zIndex: 1 
-        }}>
-          <div style={{
-            background: 'white',
-            padding: '20px',
-            width: '50%',
-          }} >
-              <Button onClick={toggleForm}>X</Button>
-              {(!isAnyUpdateActive) ? <ZooCreateForm onCreateZoo={handleCreateZoo} hideForm={toggleForm} /> :  <ZooUpdateForm zooId={activeZooId} OnUpdateZoo={handleUpdateZoo} currentData={activeZoo} hideForm={toggleForm}/>}
-              </div>
-        </div>
+          <Modal isOpen={showCreateForm} toggle={toggleCreateForm} backdrop="static">
+      <ModalHeader toggle={toggleCreateForm}>Create new Zoo</ModalHeader>
+      <ModalBody>
+        <ZooCreateForm onCreateZoo={handleCreateZoo} hideForm={toggleCreateForm}/>
+      </ModalBody>
+
+    </Modal>
+
+      <Modal isOpen={UpdateFormVisible} toggle={hideUpdateForm} backdrop="static">
+      <ModalHeader toggle={hideUpdateForm}>Update Zoo with ID: {activeUpdateZooId}</ModalHeader>
+      <ModalBody>
+      <ZooUpdateForm zooId={activeUpdateZooId} OnUpdateZoo={handleUpdateZoo} currentData={activeUpdateZooData} hideForm={hideUpdateForm}/>
+      </ModalBody>
+
+    </Modal>
+
    
-      )}
+      
     <Table>
       <thead>
         <tr>
@@ -139,9 +121,10 @@ const ZoosTable = ({ newData }) => {
       </thead>
       <tbody>
         {displayZoosData}
-        <Button color="success" onClick={toggleForm}>Create Zoo</Button>
       </tbody>
+      
     </Table>
+    <Button color="success" onClick={toggleCreateForm} style={{width:"100%",height:"50px"}}>Create Zoo</Button>
 
     
    
