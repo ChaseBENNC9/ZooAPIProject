@@ -48,7 +48,6 @@ const ZooUpdateForm = ({zooId,OnUpdateZoo,currentData,hideForm}) => {
   };
   return (
     <>
-      <h1 style={{ marginTop: "10px" }}>Update Zoo ID: {zooId}</h1>
       {/* 
         When the form is submitted, it will call the handleSubmit 
         function above. You do not need to worry about specifying
@@ -129,6 +128,10 @@ const ZooUpdateForm = ({zooId,OnUpdateZoo,currentData,hideForm}) => {
           </Alert>
         ) : null}
         <Button>Submit</Button>
+        <Button color="danger" onClick={hideForm} style={{
+          marginLeft: "15px"
+        
+        }}>Cancel</Button>
 
       </Form>
     </>
