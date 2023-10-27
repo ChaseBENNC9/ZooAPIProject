@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState} from "react";
-import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
+import { Alert, Button, Form, Label,FormGroup, Input } from "reactstrap";
 
 const ZooCreateForm = ({onCreateZoo, hideForm}) => {
     const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
@@ -49,21 +49,22 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
 
   return (
     <>
-      <h1 style={{ marginTop: "10px" }}>Create Zoo</h1>
       {/* 
         When the form is submitted, it will call the handleSubmit 
         function above. You do not need to worry about specifying
         a method and action as you would typically do when dealing 
         with forms
       */}
+      <h style={{color:"red", fontSize:12}}>* required input</h>
       <Form onSubmit={handleSubmit}>
 
 
         <FormGroup>
+          <Label>Zoo Name</Label>
           <Input
             type="text"
             name="name"
-            placeholder="Name"
+            placeholder="Name *"
             value={name}
             /*
               This attribute detects when the value of an input element changes
@@ -80,7 +81,7 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
           <Input
             type="text"
             name="city"
-            placeholder="City"
+            placeholder="City *"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required
@@ -90,13 +91,13 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
           <Input
             type="text"
             name="country"
-            placeholder="Country"
+            placeholder="Country *"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             required
           />
         </FormGroup>
-        <h4>Established</h4>
+        <h>Established *</h>
         <FormGroup>
             <Input
                 type="date"
@@ -129,6 +130,10 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
           </Alert>
         ) : null}
         <Button>Submit</Button>
+        <Button color="danger" onClick={hideForm} style={{
+          marginLeft: "15px"
+        
+        }}>Cancel</Button>
       </Form>
     </>
   );
