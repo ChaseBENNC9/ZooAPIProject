@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table,Button } from "reactstrap";
+import {Modal, ModalHeader, ModalBody, Table,Button } from "reactstrap";
+import EnclosureCreateForm from "../forms/EnclosureCreateForm";
 
 const EnclosuresTable = ({ newData }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com"; // replace with your Render application's URL
 
   const [data, setData] = useState([])
+  const [showForm, setShowForm] = useState(false);
+
 
   useEffect(() => {
     const getZoosData = async () => {
@@ -48,8 +51,16 @@ const EnclosuresTable = ({ newData }) => {
     })
   )
 
+  const toggleForm = () => setShowForm(!showForm);
   return (
     <>
+    <Modal isOpen={showForm} toggle={toggleForm} backdrop="static">
+      <ModalHeader toggle={toggleForm}></ModalHeader>
+      <ModalBody>
+        <EnclosureCreateForm onCreateEnclosure={handleCreateEnclosure} hideForm={toggleForm} />
+      </ModalBody>
+
+    </Modal>
     <Table>
       <thead>
         <tr>
@@ -60,9 +71,10 @@ const EnclosuresTable = ({ newData }) => {
       </thead>
       <tbody>
         {displayEnclosuresData}
+        <Button color="success" onClick={toggleForm}>Create Zoo</Button>
+
       </tbody>
     </Table>
-
     </>
   );
 };
