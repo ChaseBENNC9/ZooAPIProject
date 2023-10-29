@@ -57,21 +57,18 @@ const validateUpdateZoo = (req, res, next) => {
       "string.empty": "Name cannot be empty",
       "string.min": "Name should have a minimum length of {#limit}",
       "string.max": "Name should have a maximum length of {#limit}",
-      "any.required": "Name is required",
     }),
     city: Joi.string().min(3).max(100).messages({
       "string.base": "City should be a string",
       "string.empty": "City cannot be empty",
       "string.min": "City should have a minimum length of {#limit}",
       "string.max": "City should have a maximum length of {#limit}",
-      "any.required": "City is required",
     }),
     country: Joi.string().min(3).max(100).messages({
       "string.base": "Country should be a string",
       "string.empty": "Country cannot be empty",
       "string.min": "Country should have a minimum length of {#limit}",
       "string.max": "Country should have a maximum length of {#limit}",
-      "any.required": "Country is required",
     }),
     established: Joi.date().messages({
       "date.base": "Established should be a Date",
@@ -117,7 +114,7 @@ const validatePostEnclosure = (req, res, next) => {
       "string.max": "Type should have a maximum length of {#limit}",
       "any.required": "Type is required",
     }),
-    visitorCapacity: Joi.number().min(1).max(50).messages({
+    visitorCapacity: Joi.number().min(1).max(50).allow(null).messages({
       "number.base": "Visitor Capacity should be an Integer",
       "number.min": "Visitor Capacity should have a minimum length of {#limit}",
     }),
@@ -162,10 +159,9 @@ const validateUpdateEnclosure = (req, res, next) => {
       "string.max": "Type should have a maximum length of {#limit}",
       "string.empty": "Type cannot be empty",
     }),
-    visitorCapacity: Joi.number().min(1).max(50).messages({
+    visitorCapacity: Joi.number().min(1).max(50).allow(null).messages({
       "number.base": "Visitor Capacity should be an Integer",
       "number.min": "Visitor Capacity should have a minimum length of {#limit}",
-      "string.null": "Visitor Capacity cannot be null",
     }),
     temporary: Joi.bool().messages({
       "bool.base": "Temporary should be true or false",
