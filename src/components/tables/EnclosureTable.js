@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import {Modal, ModalHeader, ModalBody, Table,Button } from "reactstrap";
-import EnclosureCreateForm from "../forms/EnclosureCreateForm";
+import EnclosureCreateForm from "../forms/Enclosure/EnclosureCreateForm";
 
 const EnclosuresTable = ({ newData }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com"; // replace with your Render application's URL
@@ -37,7 +37,6 @@ const EnclosuresTable = ({ newData }) => {
   };
   const displayEnclosuresData = (
     data.map((d) => {
-      console.log(d)
       return (
         <tr key={d.id}>
           <td>{d.name}</td>

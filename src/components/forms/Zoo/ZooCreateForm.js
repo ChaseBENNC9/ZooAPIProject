@@ -60,11 +60,11 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
 
 
         <FormGroup>
-          <Label>Zoo Name</Label>
+          <Label>Zoo Name *</Label>
           <Input
             type="text"
             name="name"
-            placeholder="Name *"
+            placeholder="Name"
             value={name}
             /*
               This attribute detects when the value of an input element changes
@@ -78,26 +78,27 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
           />
         </FormGroup>
         <FormGroup>
+        <Label>City *</Label>
           <Input
             type="text"
             name="city"
-            placeholder="City *"
+            placeholder="City"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             required
           />
         </FormGroup>
         <FormGroup>
+        <Label>Country *</Label>
           <Input
             type="text"
             name="country"
-            placeholder="Country *"
+            placeholder="Country"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
             required
           />
         </FormGroup>
-        <h>Established *</h>
         <FormGroup>
             <Input
                 type="date"

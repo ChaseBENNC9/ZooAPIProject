@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Table,Button,Modal, ModalHeader, ModalBody, } from "reactstrap";
-import ZooCreateForm from "../forms/ZooCreateForm";
-import ZooUpdateForm from "../forms/ZooUpdateForm";
+import ZooCreateForm from "../forms/Zoo/ZooCreateForm";
+import ZooUpdateForm from "../forms/Zoo/ZooUpdateForm";
 
 const ZoosTable = ({ newData }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com"; // replace with your Render application's URL
@@ -62,6 +62,7 @@ const ZoosTable = ({ newData }) => {
       let date = new Date(d.established).toDateString()
       return (
         <tr key={d.id}>
+          <td>{d.id}</td>
           <td>{d.name}</td>
           <td>{d.city}</td>
           <td>{d.country}</td>
@@ -113,6 +114,7 @@ const hideUpdateForm = () => {
     <Table>
       <thead>
         <tr>
+          <th>ID</th>
           <th>Name</th>
           <th>City</th>
           <th>Country</th>
