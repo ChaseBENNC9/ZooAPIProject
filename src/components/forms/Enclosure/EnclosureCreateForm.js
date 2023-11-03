@@ -8,7 +8,7 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
   const [name, setName] = useState("");
   const [zooId, setZooId] = useState("");
   const [type, setType] = useState("");
-  const [temporary,setTemporary] = useState("");
+  const [temporary,setTemporary] = useState(false);
   const [visitorCapacity,setVisitorCapacity] = useState(undefined);
   const [isError, setIsError] = useState(false);
  const [isOpen, setIsOpen] = useState(false);
