@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import {Modal, ModalHeader, ModalBody, Table,Button } from "reactstrap";
 import EnclosureCreateForm from "../forms/Enclosure/EnclosureCreateForm";
 import { deleteRow ,GetTableData} from "./GenericTable";

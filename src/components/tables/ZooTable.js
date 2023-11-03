@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Table,Button,Modal, ModalHeader, ModalBody, } from "reactstrap";
 import ZooCreateForm from "../forms/Zoo/ZooCreateForm";
 import ZooUpdateForm from "../forms/Zoo/ZooUpdateForm";
