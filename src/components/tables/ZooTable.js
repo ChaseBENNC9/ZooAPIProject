@@ -3,9 +3,9 @@ import axios from "axios";
 import { Table,Button,Modal, ModalHeader, ModalBody, } from "reactstrap";
 import ZooCreateForm from "../forms/Zoo/ZooCreateForm";
 import ZooUpdateForm from "../forms/Zoo/ZooUpdateForm";
+import { deleteRow,GetTableData } from "./GenericTable";
 
-const ZoosTable = ({ newData }) => {
-  const BASE_URL = "https://id607001-bennc9-bit.onrender.com"; // replace with your Render application's URL
+const ZoosTable = () => {
 
   const [data, setData] = useState([])
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -13,31 +13,11 @@ const ZoosTable = ({ newData }) => {
   const [activeUpdateZooId, setActiveUpdateZooId] = useState(null);
   const [activeUpdateZooData, setActiveUpdateZooData] = useState(null);
   useEffect(() => {
-    const getZoosData = async () => {
-      try {
-        const res = await axios.get(`${BASE_URL}/api/v1/zoos`)
-        
-        setData(res.data.data)
-      } catch (error) {
-        console.log(error)
-      }   
-    }
-    getZoosData()
+    GetTableData("zoos").then((res) => setData(res))
   }, [])
 
 
-  const deleteZoo =  (id) => {
-      if(window.confirm("Are you Sure? \n If you Delete this row it will be lost forever!"))
-    {
-      axios.delete(`${BASE_URL}/api/v1/zoos/${id}`)
-      setData(
-        data.filter((data) => {
-          return data.id !== id;
-        })
-      );
-    }
 
-  };
   const handleCreateZoo = (newZoo) => {
     console.log("ELLO MATE")
     console.log(newZoo);
@@ -68,7 +48,7 @@ const ZoosTable = ({ newData }) => {
           <td>{d.country}</td>
           <td>{date}</td>
           <td> <Button color="primary" onClick={() => showUpdateForm(d)}>Update</Button></td>
-          <td> <Button color="danger" onClick={() => deleteZoo(d.id)}>Delete</Button></td>
+          <td> <Button color="danger" onClick={() => setData(deleteRow(d.id,data,"zoos"))}>Delete</Button></td>
 
         </tr>
       )
@@ -126,7 +106,7 @@ const hideUpdateForm = () => {
       </tbody>
       
     </Table>
-    <Button color="success" onClick={toggleCreateForm} style={{width:"100%",height:"50px"}}>Create Zoo</Button>
+    <Button color="success" onClick={toggleCreateForm}>Create Zoo</Button>
 
     
    

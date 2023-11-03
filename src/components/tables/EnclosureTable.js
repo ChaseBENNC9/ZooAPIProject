@@ -2,38 +2,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import {Modal, ModalHeader, ModalBody, Table,Button } from "reactstrap";
 import EnclosureCreateForm from "../forms/Enclosure/EnclosureCreateForm";
-
-const EnclosuresTable = ({ newData }) => {
-  const BASE_URL = "https://id607001-bennc9-bit.onrender.com"; // replace with your Render application's URL
+import { deleteRow ,GetTableData} from "./GenericTable";
+const EnclosuresTable = () => {
 
   const [data, setData] = useState([])
   const [showForm, setShowForm] = useState(false);
 
 
   useEffect(() => {
-    const getZoosData = async () => {
-      try {
-        const res = await axios.get(`${BASE_URL}/api/v1/enclosures`)
-        setData(res.data.data)
-      } catch (error) {
-        console.log(error)
-      }   
-    }
-    getZoosData()
+    GetTableData("enclosures").then((res) => setData(res))
   }, [])
 
 
-  const deleteZoo =  (id) => {
-   
-      axios.delete(`${BASE_URL}/api/v1/enclosures/${id}`)
-      setData(
-        data.filter((data) => {
-          return data.id !== id;
-        })
-      );
-  };
-  const handleCreateEnclosure = (newZoo) => {
-    setData([...data, newZoo]);
+
+  const handleCreateEnclosure = (newEnclosure) => {
+    setData([...data, newEnclosure]);
   };
   const displayEnclosuresData = (
     data.map((d) => {
@@ -43,7 +26,7 @@ const EnclosuresTable = ({ newData }) => {
           <td>{d.type}</td>
           <td>{(d.temporary) ? "True" : "False"}</td>
           <td> <Button color="primary" >Update</Button></td>
-          <td> <Button color="danger" onClick={() => deleteZoo(d.id)}>Delete</Button></td>
+          <td> <Button color="danger" onClick={() => setData(deleteRow(d.id,data,"enclosures"))}>Delete</Button></td>
 
         </tr>
       )
@@ -70,10 +53,11 @@ const EnclosuresTable = ({ newData }) => {
       </thead>
       <tbody>
         {displayEnclosuresData}
-        <Button color="success" onClick={toggleForm}>Create Zoo</Button>
 
       </tbody>
     </Table>
+    <Button color="success" onClick={toggleForm}>Create Enclosure</Button>
+
     </>
   );
 };
