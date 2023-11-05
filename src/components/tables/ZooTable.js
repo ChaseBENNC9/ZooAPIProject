@@ -25,10 +25,10 @@ const ZoosTable = () => {
 
   };
 
-  const handleUpdateZoo = (updatedZoo, id) => {
+  const handleUpdateZoo = (updatedZoo) => {
     setData(
       data.map((zoo) => {
-        return zoo.id === id ? updatedZoo : zoo;
+        return zoo.id === updatedZoo.id ? updatedZoo : zoo;
       })
       
 
@@ -56,8 +56,8 @@ const ZoosTable = () => {
 
 
   const showUpdateForm = (zoo) => {
-    setActiveUpdateZooId(zoo.id);
     setActiveUpdateZooData(zoo);
+    setActiveUpdateZooId(zoo.id);
     setUpdateFormVisible(true);
   };
 
@@ -83,7 +83,7 @@ const hideUpdateForm = () => {
       <Modal isOpen={UpdateFormVisible} toggle={hideUpdateForm} backdrop="static">
       <ModalHeader toggle={hideUpdateForm}>Update Zoo with ID: {activeUpdateZooId}</ModalHeader>
       <ModalBody>
-      <ZooUpdateForm zooId={activeUpdateZooId} OnUpdateZoo={handleUpdateZoo} currentData={activeUpdateZooData} hideForm={hideUpdateForm}/>
+      <ZooUpdateForm OnUpdateZoo={handleUpdateZoo} currentData={activeUpdateZooData} hideForm={hideUpdateForm}/>
       </ModalBody>
 
     </Modal>

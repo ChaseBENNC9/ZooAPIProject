@@ -3,7 +3,7 @@ import { useState} from "react";
 import { format } from "date-fns";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
 
-const ZooUpdateForm = ({zooId,OnUpdateZoo,currentData,hideForm}) => {
+const ZooUpdateForm = ({OnUpdateZoo,currentData,hideForm}) => {
     const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState(currentData.name);
@@ -11,14 +11,13 @@ const ZooUpdateForm = ({zooId,OnUpdateZoo,currentData,hideForm}) => {
   const [country, setCountry] = useState(currentData.country);
   const [established,setEstablished] = useState(currentData.established);
   const [establishedDate,setEstablishedDate] = useState(format(new Date(currentData.established),"yyyy-MM-dd"));
-  
   const [isError, setIsError] = useState(false);
  
 
 
   const UpdateZoo = async () => {
     try {
-      const res = await axios.put(`${BASE_URL}/api/v1/zoos/${zooId}`, {
+      const res = await axios.put(`${BASE_URL}/api/v1/zoos/${currentData.id}`, {
         name: name,
         city: city,
         country: country,
@@ -27,8 +26,7 @@ const ZooUpdateForm = ({zooId,OnUpdateZoo,currentData,hideForm}) => {
 
       if (res.status === 200) {
         const data =  res.data.data
-        console.log("2)",data);
-        OnUpdateZoo(data,zooId);
+        OnUpdateZoo(data);
       }
     } catch (error) {
       console.log(error);
@@ -48,6 +46,7 @@ const ZooUpdateForm = ({zooId,OnUpdateZoo,currentData,hideForm}) => {
   };
   return (
     <>
+
       {/* 
         When the form is submitted, it will call the handleSubmit 
         function above. You do not need to worry about specifying
