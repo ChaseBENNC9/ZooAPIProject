@@ -2,17 +2,17 @@ import axios from "axios";
 import { useState} from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 
-const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
+const EnclosureCreateForm = ({onUpdateEnclosure,currentData, hideForm}) => {
     const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
-  const [name, setName] = useState("");
-  const [zooid, setzooid] = useState("");
-  const [type, setType] = useState("");
-  const [temporary,setTemporary] = useState(false);
-  const [visitorCapacity,setVisitorCapacity] = useState();
+  const [name, setName] = useState(currentData.name);
+  const [zooid, setzooid] = useState(currentData.zooId);
+  const [type, setType] = useState(currentData.type);
+  const [temporary,setTemporary] = useState(currentData.temporary);
+  const [visitorCapacity,setVisitorCapacity] = useState(currentData.visitorCapacity);
   const [isError, setIsError] = useState(false);
 
-  const createEnclosure = async () => {
+  const updateEnclosure = async () => {
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/enclosures`, {
         name: name,
@@ -27,7 +27,7 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
         console.log("2)",data);
   
 
-        onCreateEnclosure(data);
+        onUpdateEnclosure(data);
       }
     } catch (error) {
       console.log(error);
@@ -37,7 +37,7 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createEnclosure();
+    updateEnclosure();
     setName("");
     setType("");
     setTemporary("");
@@ -52,7 +52,6 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
   return (
     <>
 
-      <p style={{color:"red", fontSize:12}}>* required input</p>
       <Form onSubmit={handleSubmit}>
       <FormGroup>
         <Label>Zoo ID *</Label>
@@ -62,7 +61,7 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
             placeholder="Enter Zoo ID"
             value={zooid}
             onChange={(e) => setzooid(Number(e.target.value))}
-            required
+             
           />
 
           
@@ -75,7 +74,7 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
             placeholder="Enter Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            required
+             
           />
         </FormGroup>
         <FormGroup>
@@ -86,7 +85,7 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
             placeholder="Enter Type"
             value={type}
             onChange={(e) => setType(e.target.value)}
-            required
+             
           />
         </FormGroup>
         <FormGroup>
@@ -106,7 +105,7 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
           type="select" 
           name="temporary" 
           onChange={(e) => {setTemporary((e.target.value === "true") ); console.log(temporary)}}
-          required>
+           >
             <option>false</option>
             <option>true</option>
           </Input>
