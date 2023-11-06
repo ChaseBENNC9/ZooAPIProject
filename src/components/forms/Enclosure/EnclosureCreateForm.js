@@ -1,15 +1,15 @@
 import axios from "axios";
-import { useState} from "react";
+import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 
-const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
-    const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
+const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
+  const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState("");
   const [zooid, setzooid] = useState("");
   const [type, setType] = useState("");
-  const [temporary,setTemporary] = useState(false);
-  const [visitorCapacity,setVisitorCapacity] = useState();
+  const [temporary, setTemporary] = useState(false);
+  const [visitorCapacity, setVisitorCapacity] = useState();
   const [isError, setIsError] = useState(false);
 
   const createEnclosure = async () => {
@@ -17,15 +17,14 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
       const res = await axios.post(`${BASE_URL}/api/v1/enclosures`, {
         name: name,
         type: type,
-        temporary: temporary,     
+        temporary: temporary,
         visitorCapacity: visitorCapacity,
-        zooId: zooid 
+        zooId: zooid,
       });
 
       if (res.status === 201) {
-        const data =  res.data.data[res.data.data.length - 1]
-        console.log("2)",data);
-  
+        const data = res.data.data[res.data.data.length - 1];
+        console.log("2)", data);
 
         onCreateEnclosure(data);
       }
@@ -43,20 +42,17 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
     setTemporary("");
     setVisitorCapacity("");
     setzooid("");
-    
-    hideForm();
-    
-  };
 
+    hideForm();
+  };
 
   return (
     <>
-
-      <p style={{color:"red", fontSize:12}}>* required input</p>
+      <p style={{ color: "red", fontSize: 12 }}>* required input</p>
       <Form onSubmit={handleSubmit}>
-      <FormGroup>
-        <Label>Zoo ID *</Label>
-          <Input 
+        <FormGroup>
+          <Label>Zoo ID *</Label>
+          <Input
             type="text"
             name="zooid"
             placeholder="Enter Zoo ID"
@@ -64,12 +60,10 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
             onChange={(e) => setzooid(Number(e.target.value))}
             required
           />
-
-          
         </FormGroup>
         <FormGroup>
           <Label>Enclosure Name *</Label>
-        <Input 
+          <Input
             type="text"
             name="name"
             placeholder="Enter Name"
@@ -80,7 +74,7 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
         </FormGroup>
         <FormGroup>
           <Label>Enclosure Type *</Label>
-        <Input 
+          <Input
             type="text"
             name="name"
             placeholder="Enter Type"
@@ -91,42 +85,46 @@ const EnclosureCreateForm = ({onCreateEnclosure, hideForm}) => {
         </FormGroup>
         <FormGroup>
           <Label>Visitor Capacity</Label>
-        <Input 
+          <Input
             type="text"
             name="name"
             placeholder="Enter Visitor Capacity"
             value={visitorCapacity}
             onChange={(e) => setVisitorCapacity(Number(e.target.value))}
-          
           />
         </FormGroup>
-      <FormGroup>
-        <Label>Temporary Enclosure *</Label>
-          <Input 
-          type="select" 
-          name="temporary" 
-          onChange={(e) => {setTemporary((e.target.value === "true") ); console.log(temporary)}}
-          required>
+        <FormGroup>
+          <Label>Temporary Enclosure *</Label>
+          <Input
+            type="select"
+            name="temporary"
+            onChange={(e) => {
+              setTemporary(e.target.value === "true");
+              console.log(temporary);
+            }}
+            required
+          >
             <option>false</option>
             <option>true</option>
           </Input>
         </FormGroup>
 
-       
-
         {/* 
           Display an alert message if there is an error
         */}
         {isError ? (
-          <Alert color="danger">
-            Something went wrong. Please try again.
-          </Alert>
+          <Alert color="danger">Something went wrong. Please try again.</Alert>
         ) : null}
         <Button>Submit</Button>
-        <Button color="danger" onClick={hideForm} style={{
-          marginLeft: "15px"
-        
-        }}>Cancel</Button>
+        <Button
+          color="danger"
+          onClick={hideForm}
+          style={{
+            marginLeft: "15px",
+          }}
+        >
+          Cancel
+        </Button>
       </Form>
     </>
   );

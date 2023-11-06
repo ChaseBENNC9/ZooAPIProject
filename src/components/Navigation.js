@@ -46,7 +46,6 @@ const Navigation = () => {
         <Route path="/zoos" element={<ZoosTable />} />
         <Route path="/enclosures" element={<EnclosuresTable />} />
         <Route path="/animals" element={<AnimalsTable />} />
-
       </Routes>
     </Router>
   );

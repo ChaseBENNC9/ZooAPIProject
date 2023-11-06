@@ -1,19 +1,19 @@
 import axios from "axios";
-import { useState} from "react";
+import { useState } from "react";
 import { format } from "date-fns";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
 
-const ZooUpdateForm = ({OnUpdateZoo,currentData,hideForm}) => {
-    const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
+const ZooUpdateForm = ({ OnUpdateZoo, currentData, hideForm }) => {
+  const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState(currentData.name);
   const [city, setCity] = useState(currentData.city);
   const [country, setCountry] = useState(currentData.country);
-  const [established,setEstablished] = useState(currentData.established);
-  const [establishedDate,setEstablishedDate] = useState(format(new Date(currentData.established),"yyyy-MM-dd"));
+  const [established, setEstablished] = useState(currentData.established);
+  const [establishedDate, setEstablishedDate] = useState(
+    format(new Date(currentData.established), "yyyy-MM-dd"),
+  );
   const [isError, setIsError] = useState(false);
- 
-
 
   const UpdateZoo = async () => {
     try {
@@ -21,11 +21,11 @@ const ZooUpdateForm = ({OnUpdateZoo,currentData,hideForm}) => {
         name: name,
         city: city,
         country: country,
-        established: established
+        established: established,
       });
 
       if (res.status === 200) {
-        const data =  res.data.data
+        const data = res.data.data;
         OnUpdateZoo(data);
       }
     } catch (error) {
@@ -46,7 +46,6 @@ const ZooUpdateForm = ({OnUpdateZoo,currentData,hideForm}) => {
   };
   return (
     <>
-
       {/* 
         When the form is submitted, it will call the handleSubmit 
         function above. You do not need to worry about specifying
@@ -54,15 +53,12 @@ const ZooUpdateForm = ({OnUpdateZoo,currentData,hideForm}) => {
         with forms
       */}
       <Form onSubmit={handleSubmit}>
-
-
         <FormGroup>
           <Input
             type="text"
             name="name"
             placeholder="Name"
             value={name}
-
             /*
               This attribute detects when the value of an input element changes
             */
@@ -71,7 +67,6 @@ const ZooUpdateForm = ({OnUpdateZoo,currentData,hideForm}) => {
               You can fetch validation messages from the request. There are plenty 
               of online resources that show you how to do this 
             */
-             
           />
         </FormGroup>
         <FormGroup>
@@ -81,7 +76,6 @@ const ZooUpdateForm = ({OnUpdateZoo,currentData,hideForm}) => {
             placeholder="City"
             value={city}
             onChange={(e) => setCity(e.target.value)}
-             
           />
         </FormGroup>
         <FormGroup>
@@ -91,47 +85,42 @@ const ZooUpdateForm = ({OnUpdateZoo,currentData,hideForm}) => {
             placeholder="Country"
             value={country}
             onChange={(e) => setCountry(e.target.value)}
-             
           />
         </FormGroup>
         <h4>Established</h4>
         <FormGroup>
-            <Input
-                type="date"
-                name="established"
-                placeholder="Established Date"
-                value={establishedDate}
-                onChange={(e) => 
-                  {
-                    setEstablishedDate(e.target.value);
-                    let objdate = new Date(e.target.value);
-                    if(!isNaN(objdate)){
-                      console.log(objdate.toISOString());
-                      setEstablished(objdate.toISOString());
-                    }
-                  }
-                  }
-            />
-
-
-            
+          <Input
+            type="date"
+            name="established"
+            placeholder="Established Date"
+            value={establishedDate}
+            onChange={(e) => {
+              setEstablishedDate(e.target.value);
+              let objdate = new Date(e.target.value);
+              if (!isNaN(objdate)) {
+                console.log(objdate.toISOString());
+                setEstablished(objdate.toISOString());
+              }
+            }}
+          />
         </FormGroup>
-
 
         {/* 
           Display an alert message if there is an error
         */}
         {isError ? (
-          <Alert color="danger">
-            Something went wrong. Please try again.
-          </Alert>
+          <Alert color="danger">Something went wrong. Please try again.</Alert>
         ) : null}
         <Button>Submit</Button>
-        <Button color="danger" onClick={hideForm} style={{
-          marginLeft: "15px"
-        
-        }}>Cancel</Button>
-
+        <Button
+          color="danger"
+          onClick={hideForm}
+          style={{
+            marginLeft: "15px",
+          }}
+        >
+          Cancel
+        </Button>
       </Form>
     </>
   );

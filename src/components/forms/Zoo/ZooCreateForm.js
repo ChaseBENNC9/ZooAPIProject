@@ -1,17 +1,16 @@
 import axios from "axios";
-import { useState} from "react";
-import { Alert, Button, Form, Label,FormGroup, Input } from "reactstrap";
+import { useState } from "react";
+import { Alert, Button, Form, Label, FormGroup, Input } from "reactstrap";
 
-const ZooCreateForm = ({onCreateZoo, hideForm}) => {
-    const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
+const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
+  const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [established,setEstablished] = useState("");
-  const [establishedDate,setEstablishedDate] = useState("");
+  const [established, setEstablished] = useState("");
+  const [establishedDate, setEstablishedDate] = useState("");
   const [isError, setIsError] = useState(false);
- 
 
   const createZoo = async () => {
     try {
@@ -19,13 +18,12 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
         name: name,
         city: city,
         country: country,
-        established: established
+        established: established,
       });
 
       if (res.status === 201) {
-        const data =  res.data.data[res.data.data.length - 1]
-        console.log("2)",data);
-  
+        const data = res.data.data[res.data.data.length - 1];
+        console.log("2)", data);
 
         onCreateZoo(data);
       }
@@ -44,7 +42,6 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
     setEstablished("");
     setEstablishedDate("");
     hideForm();
-    
   };
 
   return (
@@ -55,10 +52,8 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
         a method and action as you would typically do when dealing 
         with forms
       */}
-      <h style={{color:"red", fontSize:12}}>* required input</h>
+      <h style={{ color: "red", fontSize: 12 }}>* required input</h>
       <Form onSubmit={handleSubmit}>
-
-
         <FormGroup>
           <Label>Zoo Name *</Label>
           <Input
@@ -78,7 +73,7 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
           />
         </FormGroup>
         <FormGroup>
-        <Label>City *</Label>
+          <Label>City *</Label>
           <Input
             type="text"
             name="city"
@@ -89,7 +84,7 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
           />
         </FormGroup>
         <FormGroup>
-        <Label>Country *</Label>
+          <Label>Country *</Label>
           <Input
             type="text"
             name="country"
@@ -100,41 +95,38 @@ const ZooCreateForm = ({onCreateZoo, hideForm}) => {
           />
         </FormGroup>
         <FormGroup>
-            <Input
-                type="date"
-                name="established"
-                placeholder="Established Date"
-                value={establishedDate}
-                onChange={(e) => 
-                  {
-                    setEstablishedDate(e.target.value);
-                    let objdate = new Date(e.target.value);
-                    if(!isNaN(objdate)){
-                      console.log(objdate.toISOString());
-                      setEstablished(objdate.toISOString());
-                    }
-                  }
-                  }
-            />
-
-
-            
+          <Input
+            type="date"
+            name="established"
+            placeholder="Established Date"
+            value={establishedDate}
+            onChange={(e) => {
+              setEstablishedDate(e.target.value);
+              let objdate = new Date(e.target.value);
+              if (!isNaN(objdate)) {
+                console.log(objdate.toISOString());
+                setEstablished(objdate.toISOString());
+              }
+            }}
+          />
         </FormGroup>
-
 
         {/* 
           Display an alert message if there is an error
         */}
         {isError ? (
-          <Alert color="danger">
-            Something went wrong. Please try again.
-          </Alert>
+          <Alert color="danger">Something went wrong. Please try again.</Alert>
         ) : null}
         <Button>Submit</Button>
-        <Button color="danger" onClick={hideForm} style={{
-          marginLeft: "15px"
-        
-        }}>Cancel</Button>
+        <Button
+          color="danger"
+          onClick={hideForm}
+          style={{
+            marginLeft: "15px",
+          }}
+        >
+          Cancel
+        </Button>
       </Form>
     </>
   );
