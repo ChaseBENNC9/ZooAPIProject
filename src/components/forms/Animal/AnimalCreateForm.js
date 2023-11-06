@@ -14,6 +14,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
   const [deathDate, setDeathDate] = useState(""); //The Date object of the animals death date
   const [death,setDeath] = useState(null);  //The string of the animals death date
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const createAnimal = async () => {
     try {
@@ -42,23 +43,31 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
         console.log("2)", data);
 
         onCreateAnimal(data);
+        setName("");
+        setSpecies("");
+        setSex("");
+        setBirthDate("");
+        setDeathDate("");
+    
+        hideForm();
       }
     } catch (error) {
-      console.log(error.response.data.msg);
-      setIsError(true);
-    }
+        console.log(error);
+  
+        setIsError(true);
+
+        if (error.response.data.msg === "\nInvalid `prisma.animal.create()` invocation:\n\n\nForeign key constraint failed on the field: `Animal_enclosureId_fkey (index)`") {
+          setErrorMessage("Enclosure ID does not exist");
+        }
+        else
+          setErrorMessage(error.response.data.msg);
+      }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createAnimal();
-    setName("");
-    setSpecies("");
-    setSex("");
-    setBirthDate("");
-    setDeathDate("");
 
-    hideForm();
   };
 
   return (
@@ -151,7 +160,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
           Display an alert message if there is an error
         */}
         {isError ? (
-          <Alert color="danger">Something went wrong. Please try again.</Alert>
+          <Alert color="danger">{errorMessage}</Alert>
         ) : null}
         <Button>Submit</Button>
         <Button
