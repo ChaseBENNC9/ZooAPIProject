@@ -106,6 +106,7 @@ const EnclosuresTable = () => {
             <th>Name</th>
             <th>Type</th>
             <th>Temporary</th>
+            <th>Visitor Capacity</th>
           </tr>
         </thead>
         <tbody>{displayEnclosuresData}</tbody>
