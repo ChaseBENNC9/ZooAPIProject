@@ -31,20 +31,18 @@ const ZoosTable = () => {
   const displayZoosData = data.map((d, index) => {
     let date = new Date(d.established).toDateString();
     return (
-      <tr key={d.id}>
-        <td>{d.id}</td>
+      <tr key={index}>
         <td>{d.name}</td>
         <td>{d.city}</td>
         <td>{d.country}</td>
         <td>{date}</td>
         <td>
-          {" "}
           <Button color="primary" onClick={() => showUpdateForm(d)}>
             Update
           </Button>
         </td>
         <td>
-          {" "}
+
           <Button
             color="danger"
             onClick={() => setData(deleteRow(d.id, data, "zoos"))}
@@ -106,7 +104,6 @@ const ZoosTable = () => {
       <Table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>City</th>
             <th>Country</th>

@@ -14,16 +14,12 @@ const AnimalsTable = () => {
     GetTableData("animals").then((res) => setData(res));
   }, []);
 
-  const displayAnimalsData = data.map((d) => {
+  const displayAnimalsData = data.map((d,index) => {
     let birthDate = new Date(d.birthDate).toDateString();
     let deathDate =
       d.deathDate != null ? new Date(d.deathDate).toDateString() : "N/A";
-
-
-
     return (
-      <tr key={d.id}>
-        <td>{d.id}</td>
+      <tr key={index}>
         <td>{d.name}</td>
         <td>{d.species}</td>
         <td>{d.sex}</td>
@@ -106,7 +102,6 @@ const AnimalsTable = () => {
       <Table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>Species</th>
             <th>Sex</th>

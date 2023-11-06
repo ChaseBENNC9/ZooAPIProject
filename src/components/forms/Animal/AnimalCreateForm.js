@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
-
 const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
