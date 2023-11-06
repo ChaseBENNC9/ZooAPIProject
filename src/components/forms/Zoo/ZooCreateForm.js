@@ -23,8 +23,12 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
       });
 
       if (res.status === 201) {
-        const data = res.data.data[res.data.data.length - 1];
-        console.log("2)", data);
+        const data = {
+          name: name,
+          city: city,
+          country: country,
+          established: established,
+        }
 
         onCreateZoo(data);
         setName("");

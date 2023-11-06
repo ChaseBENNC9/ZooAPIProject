@@ -29,7 +29,16 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
       });
 
       if (res.status === 201) {
-        const data = res.data.data[res.data.data.length - 1];
+        const data = {
+            enclosureId: enclosureid,
+            name: name,
+            species: species,
+            sex: sex,
+            birthDate: birth,
+            deathDate: death,
+    
+    
+          }
         console.log("2)", data);
 
         onCreateAnimal(data);
@@ -57,10 +66,10 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
       <p style={{ color: "red", fontSize: 12 }}>* required input</p>
       <Form onSubmit={handleSubmit}>
         <FormGroup>
-          <Label>Zoo ID *</Label>
+          <Label>Enclosure ID *</Label>
           <Input
             type="text"
-            name="zooid"
+            name="enclosureid"
             placeholder="Enter Enclosure ID"
             value={enclosureid}
             onChange={(e) => setEnclosureid(Number(e.target.value))}
@@ -121,7 +130,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
           />
         </FormGroup>
         <FormGroup>
-        <Label>Death Date *</Label>
+        <Label>Death Date</Label>
           <Input
             type="date"
             name="death"

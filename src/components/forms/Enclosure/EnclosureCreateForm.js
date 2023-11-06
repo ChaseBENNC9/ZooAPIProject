@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
-
+import { GetTableData } from "../../tables/GenericTable";
 const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
@@ -9,7 +9,7 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
   const [zooid, setzooid] = useState("");
   const [type, setType] = useState("");
   const [temporary, setTemporary] = useState(false);
-  const [visitorCapacity, setVisitorCapacity] = useState(0);
+  const [visitorCapacity, setVisitorCapacity] = useState("");
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const createEnclosure = async () => {
@@ -18,12 +18,18 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
         name: name,
         type: type,
         temporary: temporary,
-        visitorCapacity: visitorCapacity,
+        visitorCapacity: visitorCapacity === "" ? null : visitorCapacity,
         zooId: zooid,
       });
 
       if (res.status === 201) {
-        const data = res.data.data[res.data.data.length - 1];
+        const data = {
+          name: name,
+          type: type,
+          temporary: temporary,
+          visitorCapacity: visitorCapacity === "" ? null : visitorCapacity,
+          zooId: zooid,
+        }
         console.log("2)", data);
 
         onCreateEnclosure(data);
@@ -97,12 +103,13 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
         <FormGroup>
           <Label>Visitor Capacity</Label>
           <Input
-            type="Number"
+            type="text"
             name="name"
             placeholder="Enter Visitor Capacity"
             value={visitorCapacity}
             onChange={(e) => setVisitorCapacity(Number(e.target.value))}
           />
+
         </FormGroup>
         <FormGroup>
           <Label>Temporary Enclosure *</Label>
