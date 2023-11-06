@@ -15,7 +15,8 @@ import {
 
 // Import the following component:
 import ZoosTable from "./tables/ZooTable";
-import EnclosuresTable from "./tables/EnclosureTable"
+import EnclosuresTable from "./tables/EnclosureTable";
+import AnimalsTable from "./tables/AnimalTable";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,10 +31,13 @@ const Navigation = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
             <NavItem>
-              <NavLink href="/zoos">Zoo's</NavLink>
+              <NavLink href="/zoos">Zoos</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/enclosures">Enclosure's</NavLink>
+              <NavLink href="/enclosures">Enclosures</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/animals">Animals</NavLink>
             </NavItem>
           </Nav>
         </Collapse>
@@ -41,6 +45,7 @@ const Navigation = () => {
       <Routes>
         <Route path="/zoos" element={<ZoosTable />} />
         <Route path="/enclosures" element={<EnclosuresTable />} />
+        <Route path="/animals" element={<AnimalsTable />} />
 
       </Routes>
     </Router>
