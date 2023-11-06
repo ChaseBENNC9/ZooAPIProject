@@ -17,6 +17,7 @@ import {
 import ZoosTable from "./tables/ZooTable";
 import EnclosuresTable from "./tables/EnclosureTable";
 import AnimalsTable from "./tables/AnimalTable";
+import WorkersTable from "./tables/WorkerTable";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,6 +40,9 @@ const Navigation = () => {
             <NavItem>
               <NavLink href="/animals">Animals</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/workers">Workers</NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
@@ -46,6 +50,7 @@ const Navigation = () => {
         <Route path="/zoos" element={<ZoosTable />} />
         <Route path="/enclosures" element={<EnclosuresTable />} />
         <Route path="/animals" element={<AnimalsTable />} />
+        <Route path="/workers" element={<WorkersTable />} />
       </Routes>
     </Router>
   );
