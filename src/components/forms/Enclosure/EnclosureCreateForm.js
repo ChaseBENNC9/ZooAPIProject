@@ -28,7 +28,7 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
           temporary: temporary,
           visitorCapacity: visitorCapacity === "" ? null : visitorCapacity,
           zooId: zooid,
-        }
+        };
         console.log("2)", data);
 
         onCreateEnclosure(data);
@@ -43,23 +43,23 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
       console.log(error);
 
       setIsError(true);
-      if (error.response.data.msg === "\nInvalid `prisma.enclosure.create()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)") {
+      if (
+        error.response.data.msg ===
+        "\nInvalid `prisma.enclosure.create()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)"
+      ) {
         setErrorMessage("Enclosure with that Name already exists");
-      }
-      else if (error.response.data.msg === "\nInvalid `prisma.enclosure.create()` invocation:\n\n\nForeign key constraint failed on the field: `Enclosure_zooId_fkey (index)`") {
+      } else if (
+        error.response.data.msg ===
+        "\nInvalid `prisma.enclosure.create()` invocation:\n\n\nForeign key constraint failed on the field: `Enclosure_zooId_fkey (index)`"
+      ) {
         setErrorMessage("Zoo ID does not exist");
-      }
-      else
-        setErrorMessage(error.response.data.msg);
+      } else setErrorMessage(error.response.data.msg);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createEnclosure();
-
-
-
   };
 
   return (
@@ -108,7 +108,6 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
             value={visitorCapacity}
             onChange={(e) => setVisitorCapacity(Number(e.target.value))}
           />
-
         </FormGroup>
         <FormGroup>
           <Label>Temporary Enclosure *</Label>
@@ -129,9 +128,7 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
         {/* 
           Display an alert message if there is an error
         */}
-        {isError ? (
-          <Alert color="danger">{errorMessage}</Alert>
-        ) : null}
+        {isError ? <Alert color="danger">{errorMessage}</Alert> : null}
         <Button>Submit</Button>
         <Button
           color="danger"

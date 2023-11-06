@@ -17,19 +17,22 @@ const EnclosureCreateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
 
   const updateEnclosure = async () => {
     try {
-      const res = await axios.put(`${BASE_URL}/api/v1/enclosures/${currentData.id}`, {
-        name: name,
-        type: type,
-        temporary: temporary,
-        visitorCapacity: visitorCapacity,
-        zooId: zooid,
-      });
+      const res = await axios.put(
+        `${BASE_URL}/api/v1/enclosures/${currentData.id}`,
+        {
+          name: name,
+          type: type,
+          temporary: temporary,
+          visitorCapacity: visitorCapacity,
+          zooId: zooid,
+        },
+      );
 
       if (res.status === 200) {
         const data = res.data.data;
         console.log("2)", data);
 
-       onUpdateEnclosure(data);
+        onUpdateEnclosure(data);
         setName("");
         setType("");
         setTemporary("");
@@ -38,25 +41,27 @@ const EnclosureCreateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
         hideForm();
       }
     } catch (error) {
-        console.log(error);
-  
-        setIsError(true);
-        if (error.response.data.msg === "\nInvalid `prisma.enclosure.update()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)") {
-          setErrorMessage("Enclosure with that Name already exists");
-        }
-        else if (error.response.data.msg === "\nInvalid `prisma.enclosure.update()` invocation:\n\n\nForeign key constraint failed on the field: `Enclosure_zooId_fkey (index)`") {
-          setErrorMessage("Zoo ID does not exist");
-        }
-        else
-          setErrorMessage(error.response.data.msg);
-      }
+      console.log(error);
+
+      setIsError(true);
+      if (
+        error.response.data.msg ===
+        "\nInvalid `prisma.enclosure.update()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)"
+      ) {
+        setErrorMessage("Enclosure with that Name already exists");
+      } else if (
+        error.response.data.msg ===
+        "\nInvalid `prisma.enclosure.update()` invocation:\n\n\nForeign key constraint failed on the field: `Enclosure_zooId_fkey (index)`"
+      ) {
+        setErrorMessage("Zoo ID does not exist");
+      } else setErrorMessage(error.response.data.msg);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(visitorCapacity)
+    console.log(visitorCapacity);
     updateEnclosure();
-
   };
 
   return (
@@ -120,9 +125,7 @@ const EnclosureCreateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
         {/* 
           Display an alert message if there is an error
         */}
-        {isError ? (
-          <Alert color="danger">{errorMessage}</Alert>
-        ) : null}
+        {isError ? <Alert color="danger">{errorMessage}</Alert> : null}
         <Button>Submit</Button>
         <Button
           color="danger"

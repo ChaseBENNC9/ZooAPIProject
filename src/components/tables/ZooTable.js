@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { Table, Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import ZooCreateForm from "../forms/Zoo/ZooCreateForm";
 import ZooUpdateForm from "../forms/Zoo/ZooUpdateForm";
-import { deleteRow, GetTableData,handleCreateData,handleUpdateData } from "./GenericTable";
+import {
+  deleteRow,
+  GetTableData,
+  handleCreateData,
+  handleUpdateData,
+} from "./GenericTable";
 
 const ZoosTable = () => {
   const [data, setData] = useState([]);
@@ -15,13 +20,12 @@ const ZoosTable = () => {
   }, []);
 
   const handleCreateZoo = (newZoo) => {
-    setData(handleCreateData(data,newZoo));
+    setData(handleCreateData(data, newZoo));
     GetTableData("zoos").then((res) => setData(res));
-
   };
 
   const handleUpdateZoo = (updatedZoo) => {
-    setData(handleUpdateData(updatedZoo,data));
+    setData(handleUpdateData(updatedZoo, data));
   };
   const displayZoosData = data.map((d, index) => {
     let date = new Date(d.established).toDateString();
@@ -37,7 +41,6 @@ const ZoosTable = () => {
           </Button>
         </td>
         <td>
-
           <Button
             color="danger"
             onClick={() => setData(deleteRow(d.id, data, "zoos"))}

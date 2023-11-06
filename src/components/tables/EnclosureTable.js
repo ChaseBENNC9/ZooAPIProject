@@ -2,14 +2,18 @@ import { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, Table, Button } from "reactstrap";
 import EnclosureCreateForm from "../forms/Enclosure/EnclosureCreateForm";
 import EnclosureUpdateForm from "../forms/Enclosure/EnclosureUpdateForm";
-import { deleteRow, GetTableData,handleCreateData,handleUpdateData } from "./GenericTable";
+import {
+  deleteRow,
+  GetTableData,
+  handleCreateData,
+  handleUpdateData,
+} from "./GenericTable";
 
 const EnclosuresTable = () => {
   const [data, setData] = useState([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [UpdateFormVisible, setUpdateFormVisible] = useState(false);
-  const [activeUpdateData, setActiveUpdateData] =
-    useState(null);
+  const [activeUpdateData, setActiveUpdateData] = useState(null);
   const [activeUpdateId, setActiveUpdateId] = useState(null);
 
   useEffect(() => {
@@ -17,21 +21,20 @@ const EnclosuresTable = () => {
   }, []);
 
   const handleCreateEnclosure = (newEnclosure) => {
-    setData(handleCreateData(data,newEnclosure));
+    setData(handleCreateData(data, newEnclosure));
     GetTableData("enclosures").then((res) => setData(res));
   };
 
   const handleUpdateEnclosure = (updatedEnclosure) => {
-    setData(handleUpdateData(updatedEnclosure,data));
-
+    setData(handleUpdateData(updatedEnclosure, data));
   };
-  const displayEnclosuresData = data.map((d,index) => {
+  const displayEnclosuresData = data.map((d, index) => {
     return (
       <tr key={index}>
         <td>{d.name}</td>
         <td>{d.type}</td>
         <td>{d.temporary ? "True" : "False"}</td>
-        <td>{d.visitorCapacity  || "N/A"}</td>
+        <td>{d.visitorCapacity || "N/A"}</td>
         <td>
           {" "}
           <Button color="primary" onClick={() => showUpdateForm(d)}>

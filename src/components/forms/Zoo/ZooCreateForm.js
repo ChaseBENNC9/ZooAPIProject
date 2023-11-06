@@ -28,7 +28,7 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
           city: city,
           country: country,
           established: established,
-        }
+        };
 
         onCreateZoo(data);
         setName("");
@@ -41,10 +41,12 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
     } catch (error) {
       console.log(error);
       setIsError(true);
-      if (error.response.data.msg === "\nInvalid `prisma.zoo.create()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)") {
+      if (
+        error.response.data.msg ===
+        "\nInvalid `prisma.zoo.create()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)"
+      ) {
         setErrorMessage("Zoo with that Name already exists");
-      }
-      else{
+      } else {
         setErrorMessage(error.response.data.msg);
       }
     }
@@ -53,7 +55,6 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createZoo();
-
   };
 
   return (
@@ -126,9 +127,7 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
         {/* 
           Display an alert message if there is an error
         */}
-        {isError ? (
-          <Alert color="danger">{errorMessage}</Alert>
-        ) : null}
+        {isError ? <Alert color="danger">{errorMessage}</Alert> : null}
         <Button>Submit</Button>
         <Button
           color="danger"

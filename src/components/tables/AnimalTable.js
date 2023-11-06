@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, Table, Button } from "reactstrap";
-import { deleteRow, GetTableData ,handleCreateData,handleUpdateData} from "./GenericTable";
+import {
+  deleteRow,
+  GetTableData,
+  handleCreateData,
+  handleUpdateData,
+} from "./GenericTable";
 import AnimalCreateForm from "../forms/Animal/AnimalCreateForm";
 import AnimalUpdateForm from "../forms/Animal/AnimalUpdateForm";
 const AnimalsTable = () => {
@@ -14,7 +19,7 @@ const AnimalsTable = () => {
     GetTableData("animals").then((res) => setData(res));
   }, []);
 
-  const displayAnimalsData = data.map((d,index) => {
+  const displayAnimalsData = data.map((d, index) => {
     let birthDate = new Date(d.birthDate).toDateString();
     let deathDate =
       d.deathDate != null ? new Date(d.deathDate).toDateString() : "N/A";
@@ -27,7 +32,9 @@ const AnimalsTable = () => {
         <td>{deathDate}</td>
         <td>
           {" "}
-          <Button color="primary" onClick={() => showUpdateForm(d)}>Update</Button>
+          <Button color="primary" onClick={() => showUpdateForm(d)}>
+            Update
+          </Button>
         </td>
         <td>
           {" "}
@@ -42,13 +49,12 @@ const AnimalsTable = () => {
     );
   });
   const handleCreateAnimal = (newAnimal) => {
-    setData(handleCreateData(data,newAnimal));
+    setData(handleCreateData(data, newAnimal));
     GetTableData("animals").then((res) => setData(res));
   };
 
   const handleUpdateAnimal = (updatedAnimal) => {
-    setData(handleUpdateData(updatedAnimal,data));
-
+    setData(handleUpdateData(updatedAnimal, data));
   };
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);
@@ -65,7 +71,7 @@ const AnimalsTable = () => {
   };
   return (
     <>
-          <Modal
+      <Modal
         isOpen={showCreateForm}
         toggle={toggleCreateForm}
         backdrop="static"
@@ -109,7 +115,9 @@ const AnimalsTable = () => {
         </thead>
         <tbody>{displayAnimalsData}</tbody>
       </Table>
-      <Button color="success" onClick={toggleCreateForm}>Create Animal</Button>
+      <Button color="success" onClick={toggleCreateForm}>
+        Create Animal
+      </Button>
     </>
   );
 };

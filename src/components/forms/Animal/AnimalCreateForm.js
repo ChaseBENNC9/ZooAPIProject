@@ -9,9 +9,9 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
   const [species, setSpecies] = useState("");
   const [sex, setSex] = useState("MALE");
   const [birthDate, setBirthDate] = useState(""); //The Date object of the animals birth date
-  const [birth,setBirth] = useState("");  //The string of the animals birth date
+  const [birth, setBirth] = useState(""); //The string of the animals birth date
   const [deathDate, setDeathDate] = useState(""); //The Date object of the animals death date
-  const [death,setDeath] = useState(null);  //The string of the animals death date
+  const [death, setDeath] = useState(null); //The string of the animals death date
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -24,21 +24,17 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
         sex: sex,
         birthDate: birth,
         deathDate: death,
-
-
       });
 
       if (res.status === 201) {
         const data = {
-            enclosureId: enclosureid,
-            name: name,
-            species: species,
-            sex: sex,
-            birthDate: birth,
-            deathDate: death,
-    
-    
-          }
+          enclosureId: enclosureid,
+          name: name,
+          species: species,
+          sex: sex,
+          birthDate: birth,
+          deathDate: death,
+        };
         console.log("2)", data);
 
         onCreateAnimal(data);
@@ -47,26 +43,26 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
         setSex("");
         setBirthDate("");
         setDeathDate("");
-    
+
         hideForm();
       }
     } catch (error) {
-        console.log(error);
-  
-        setIsError(true);
+      console.log(error);
 
-        if (error.response.data.msg === "\nInvalid `prisma.animal.create()` invocation:\n\n\nForeign key constraint failed on the field: `Animal_enclosureId_fkey (index)`") {
-          setErrorMessage("Enclosure ID does not exist");
-        }
-        else
-          setErrorMessage(error.response.data.msg);
-      }
+      setIsError(true);
+
+      if (
+        error.response.data.msg ===
+        "\nInvalid `prisma.animal.create()` invocation:\n\n\nForeign key constraint failed on the field: `Animal_enclosureId_fkey (index)`"
+      ) {
+        setErrorMessage("Enclosure ID does not exist");
+      } else setErrorMessage(error.response.data.msg);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createAnimal();
-
   };
 
   return (
@@ -122,7 +118,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
           </Input>
         </FormGroup>
         <FormGroup>
-        <Label>Birth Date *</Label>
+          <Label>Birth Date *</Label>
           <Input
             type="date"
             name="birth"
@@ -138,7 +134,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
           />
         </FormGroup>
         <FormGroup>
-        <Label>Death Date</Label>
+          <Label>Death Date</Label>
           <Input
             type="date"
             name="death"
@@ -154,13 +150,10 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
           />
         </FormGroup>
 
-
         {/* 
           Display an alert message if there is an error
         */}
-        {isError ? (
-          <Alert color="danger">{errorMessage}</Alert>
-        ) : null}
+        {isError ? <Alert color="danger">{errorMessage}</Alert> : null}
         <Button>Submit</Button>
         <Button
           color="danger"

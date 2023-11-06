@@ -24,21 +24,17 @@ const GetTableData = async (type) => {
   }
 };
 
-const handleCreateData = (data,newData) => {
-
- return ([...data, newData]);
+const handleCreateData = (data, newData) => {
+  return [...data, newData];
 };
 
-const handleUpdateData = (updatedItem,data) => {
-
+const handleUpdateData = (updatedItem, data) => {
   data = data.map((item) => {
     return item.id === updatedItem.id ? updatedItem : item;
   });
   console.log(data);
   console.log(updatedItem);
   return data;
-}
+};
 
-
-
-export { deleteRow, GetTableData,handleCreateData,handleUpdateData };
+export { deleteRow, GetTableData, handleCreateData, handleUpdateData };
