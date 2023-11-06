@@ -36,6 +36,7 @@ const EnclosuresTable = () => {
         <td>{d.name}</td>
         <td>{d.type}</td>
         <td>{d.temporary ? "True" : "False"}</td>
+        <td>{d.visitorCapacity  || "N/A"}</td>
         <td>
           {" "}
           <Button color="primary" onClick={() => showUpdateForm(d)}>
@@ -92,7 +93,7 @@ const EnclosuresTable = () => {
         </ModalHeader>
         <ModalBody>
           <EnclosureUpdateForm
-            OnUpdateZoo={handleUpdateEnclosure}
+            onUpdateEnclosure={handleUpdateEnclosure}
             currentData={activeUpdateEnclosureData}
             hideForm={hideUpdateForm}
           />
