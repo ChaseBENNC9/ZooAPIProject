@@ -11,7 +11,7 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
   const [temporary, setTemporary] = useState(false);
   const [visitorCapacity, setVisitorCapacity] = useState("");
   const [isError, setIsError] = useState(false);
-
+const [errorMessage,setErrorMessage] = useState("");
   const createEnclosure = async () => {
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/enclosures`, {
@@ -27,23 +27,27 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
         console.log("2)", data);
 
         onCreateEnclosure(data);
+        setName("");
+        setType("");
+        setTemporary("");
+        setVisitorCapacity("");
+        setzooid("");
+        hideForm();
       }
     } catch (error) {
       console.log(error);
+
       setIsError(true);
+      setErrorMessage(error.response.data.msg);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createEnclosure();
-    setName("");
-    setType("");
-    setTemporary("");
-    setVisitorCapacity("");
-    setzooid("");
 
-    hideForm();
+
+
   };
 
   return (
@@ -113,7 +117,7 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
           Display an alert message if there is an error
         */}
         {isError ? (
-          <Alert color="danger">Something went wrong. Please try again.</Alert>
+          <Alert color="danger">{errorMessage}</Alert>
         ) : null}
         <Button>Submit</Button>
         <Button
