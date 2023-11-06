@@ -7,8 +7,8 @@ const AnimalsTable = () => {
   const [data, setData] = useState([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [UpdateFormVisible, setUpdateFormVisible] = useState(false);
-  const [activeUpdateAnimalData, setActiveUpdateAnimalData] = useState(null);
-  const [activeUpdateAnimalId, setActiveUpdateAnimalId] = useState(null);
+  const [activeUpdateData, setActiveUpdateData] = useState(null);
+  const [activeUpdateId, setActiveUpdateId] = useState(null);
 
   useEffect(() => {
     GetTableData("animals").then((res) => setData(res));
@@ -61,8 +61,8 @@ const AnimalsTable = () => {
   };
 
   const showUpdateForm = (animal) => {
-    setActiveUpdateAnimalData(animal);
-    setActiveUpdateAnimalId(animal.id);
+    setActiveUpdateData(animal);
+    setActiveUpdateId(animal.id);
     setUpdateFormVisible(true);
   };
 
@@ -93,12 +93,12 @@ const AnimalsTable = () => {
         backdrop="static"
       >
         <ModalHeader toggle={hideUpdateForm}>
-          Update Zoo with ID: {activeUpdateAnimalId}
+          Update Zoo with ID: {activeUpdateId}
         </ModalHeader>
         <ModalBody>
           <AnimalUpdateForm
-            OnUpdateZoo={handleUpdateAnimal}
-            currentData={activeUpdateAnimalData}
+            OnUpdateAnimal={handleUpdateAnimal}
+            currentData={activeUpdateData}
             hideForm={hideUpdateForm}
           />
         </ModalBody>

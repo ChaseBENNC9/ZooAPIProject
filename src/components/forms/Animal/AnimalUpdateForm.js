@@ -1,18 +1,21 @@
 import axios from "axios";
 import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
+import { format } from "date-fns";
 
 const AnimalCreateForm = ({ onUpdateAnimal,currentData, hideForm }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
-  const [name, setName] = useState("");
-  const [enclosureid, setEnclosureid] = useState("");
-  const [species, setSpecies] = useState("");
-  const [sex, setSex] = useState("MALE");
-  const [birthDate, setBirthDate] = useState(""); //The Date object of the animals birth date
-  const [birth,setBirth] = useState("");  //The string of the animals birth date
-  const [deathDate, setDeathDate] = useState(""); //The Date object of the animals death date
-  const [death,setDeath] = useState(null);  //The string of the animals death date
+  const [name, setName] = useState(currentData.name);
+  const [enclosureid, setEnclosureid] = useState(currentData.enclosureId);
+  const [species, setSpecies] = useState(currentData.species);
+  const [sex, setSex] = useState(currentData.sex);
+  const [birth,setBirth] = useState(currentData.birthDate);  //The string of the animals birth date
+  const [birthDate, setBirthDate] = useState(format(new Date(currentData.birthDate), "yyyy-MM-dd"),); //The Date object of the animals birth date
+  
+  const [death,setDeath] = useState(currentData.deathDate);  //The string of the animals death date
+  const [deathDate, setDeathDate] = useState(death != null ? format(new Date(currentData.deathDate), "yyyy-MM-dd") : null); //The Date object of the animals death date
+  
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -29,27 +32,11 @@ const AnimalCreateForm = ({ onUpdateAnimal,currentData, hideForm }) => {
 
       });
 
-      if (res.status === 201) {
-        const data = {
-            enclosureId: enclosureid,
-            name: name,
-            species: species,
-            sex: sex,
-            birthDate: birth,
-            deathDate: death,
-    
-    
-          }
+      if (res.status === 200) {
+        const data = res.data.data;
+        onUpdateAnimal(data);
         console.log("2)", data);
 
-        onUpdateAnimal(data);
-        setName("");
-        setSpecies("");
-        setSex("");
-        setBirthDate("");
-        setDeathDate("");
-    
-        hideForm();
       }
     } catch (error) {
         console.log(error);
