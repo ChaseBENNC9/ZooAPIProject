@@ -38,7 +38,17 @@ const [errorMessage,setErrorMessage] = useState("");
       console.log(error);
 
       setIsError(true);
-      setErrorMessage(error.response.data.msg);
+      if(error.response.data.msg === "\nInvalid `prisma.enclosure.create()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)")
+
+      {
+        setErrorMessage("Enclosure name already exists");
+}
+else if(error.response.data.msg === "\nInvalid `prisma.enclosure.create()` invocation:\n\n\nForeign key constraint failed on the field: `Enclosure_zooId_fkey (index)`")
+{
+  setErrorMessage("Zoo ID does not exist");
+}
+else
+    setErrorMessage(error.response.data.msg);
     }
   };
 
