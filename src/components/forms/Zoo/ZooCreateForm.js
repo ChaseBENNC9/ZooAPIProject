@@ -11,6 +11,7 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
   const [established, setEstablished] = useState("");
   const [establishedDate, setEstablishedDate] = useState("");
   const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const createZoo = async () => {
     try {
@@ -26,22 +27,29 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
         console.log("2)", data);
 
         onCreateZoo(data);
+        setName("");
+        setCity("");
+        setCountry("");
+        setEstablished("");
+        setEstablishedDate("");
+        hideForm();
       }
     } catch (error) {
       console.log(error);
       setIsError(true);
+      if (error.response.data.msg === "\nInvalid `prisma.zoo.create()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)") {
+        setErrorMessage("Zoo with that Name already exists");
+      }
+      else{
+        setErrorMessage(error.response.data.msg);
+      }
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     createZoo();
-    setName("");
-    setCity("");
-    setCountry("");
-    setEstablished("");
-    setEstablishedDate("");
-    hideForm();
+
   };
 
   return (
@@ -52,7 +60,7 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
         a method and action as you would typically do when dealing 
         with forms
       */}
-      <h style={{ color: "red", fontSize: 12 }}>* required input</h>
+      <p style={{ color: "red", fontSize: 12 }}>* required input</p>
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label>Zoo Name *</Label>
@@ -115,7 +123,7 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
           Display an alert message if there is an error
         */}
         {isError ? (
-          <Alert color="danger">Something went wrong. Please try again.</Alert>
+          <Alert color="danger">{errorMessage}</Alert>
         ) : null}
         <Button>Submit</Button>
         <Button

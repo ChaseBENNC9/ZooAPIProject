@@ -9,9 +9,9 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
   const [zooid, setzooid] = useState("");
   const [type, setType] = useState("");
   const [temporary, setTemporary] = useState(false);
-  const [visitorCapacity, setVisitorCapacity] = useState("");
+  const [visitorCapacity, setVisitorCapacity] = useState(0);
   const [isError, setIsError] = useState(false);
-const [errorMessage,setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const createEnclosure = async () => {
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/enclosures`, {
@@ -38,17 +38,14 @@ const [errorMessage,setErrorMessage] = useState("");
       console.log(error);
 
       setIsError(true);
-      if(error.response.data.msg === "\nInvalid `prisma.enclosure.create()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)")
-
-      {
-        setErrorMessage("Enclosure name already exists");
-}
-else if(error.response.data.msg === "\nInvalid `prisma.enclosure.create()` invocation:\n\n\nForeign key constraint failed on the field: `Enclosure_zooId_fkey (index)`")
-{
-  setErrorMessage("Zoo ID does not exist");
-}
-else
-    setErrorMessage(error.response.data.msg);
+      if (error.response.data.msg === "\nInvalid `prisma.enclosure.create()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)") {
+        setErrorMessage("Enclosure with that Name already exists");
+      }
+      else if (error.response.data.msg === "\nInvalid `prisma.enclosure.create()` invocation:\n\n\nForeign key constraint failed on the field: `Enclosure_zooId_fkey (index)`") {
+        setErrorMessage("Zoo ID does not exist");
+      }
+      else
+        setErrorMessage(error.response.data.msg);
     }
   };
 
@@ -100,7 +97,7 @@ else
         <FormGroup>
           <Label>Visitor Capacity</Label>
           <Input
-            type="text"
+            type="Number"
             name="name"
             placeholder="Enter Visitor Capacity"
             value={visitorCapacity}
