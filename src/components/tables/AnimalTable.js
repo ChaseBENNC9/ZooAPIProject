@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, Table, Button } from "reactstrap";
 import { deleteRow, GetTableData } from "./GenericTable";
-import { de } from "date-fns/locale";
+import AnimalCreateForm from "../forms/Animal/AnimalCreateForm";
 
 const AnimalsTable = () => {
   const [data, setData] = useState([]);
@@ -19,8 +19,11 @@ const AnimalsTable = () => {
     let deathDate =
       d.deathDate != null ? new Date(d.deathDate).toDateString() : "N/A";
 
+
+
     return (
       <tr key={d.id}>
+        <td>{d.id}</td>
         <td>{d.name}</td>
         <td>{d.species}</td>
         <td>{d.sex}</td>
@@ -34,7 +37,7 @@ const AnimalsTable = () => {
           {" "}
           <Button
             color="danger"
-            onClick={() => setData(deleteRow(d.id, data, "enclosures"))}
+            onClick={() => setData(deleteRow(d.id, data, "animals"))}
           >
             Delete
           </Button>
@@ -42,12 +45,33 @@ const AnimalsTable = () => {
       </tr>
     );
   });
-
+  const handleCreateAnimal = (newAnimal) => {
+    setData([...data, newAnimal]);
+  };
+  const toggleCreateForm = () => {
+    setShowCreateForm(!showCreateForm);
+  };
   return (
     <>
+          <Modal
+        isOpen={showCreateForm}
+        toggle={toggleCreateForm}
+        backdrop="static"
+      >
+        <ModalHeader toggle={toggleCreateForm}>
+          Create new Enclosure
+        </ModalHeader>
+        <ModalBody>
+          <AnimalCreateForm
+            onCreateAnimal={handleCreateAnimal}
+            hideForm={toggleCreateForm}
+          />
+        </ModalBody>
+      </Modal>
       <Table>
         <thead>
           <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Species</th>
             <th>Sex</th>
@@ -57,7 +81,7 @@ const AnimalsTable = () => {
         </thead>
         <tbody>{displayAnimalsData}</tbody>
       </Table>
-      <Button color="success">Create Animal</Button>
+      <Button color="success" onClick={toggleCreateForm}>Create Animal</Button>
     </>
   );
 };

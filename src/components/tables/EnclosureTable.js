@@ -32,6 +32,7 @@ const EnclosuresTable = () => {
   const displayEnclosuresData = data.map((d) => {
     return (
       <tr key={d.id}>
+        <td>{d.id}</td>
         <td>{d.name}</td>
         <td>{d.type}</td>
         <td>{d.temporary ? "True" : "False"}</td>
@@ -100,6 +101,7 @@ const EnclosuresTable = () => {
       <Table>
         <thead>
           <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Type</th>
             <th>Temporary</th>

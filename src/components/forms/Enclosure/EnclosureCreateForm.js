@@ -9,7 +9,7 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
   const [zooid, setzooid] = useState("");
   const [type, setType] = useState("");
   const [temporary, setTemporary] = useState(false);
-  const [visitorCapacity, setVisitorCapacity] = useState();
+  const [visitorCapacity, setVisitorCapacity] = useState("");
   const [isError, setIsError] = useState(false);
 
   const createEnclosure = async () => {
