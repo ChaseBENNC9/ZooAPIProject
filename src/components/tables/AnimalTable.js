@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, Table, Button } from "reactstrap";
-import { deleteRow, GetTableData } from "./GenericTable";
+import { deleteRow, GetTableData ,handleCreateData,handleUpdateData} from "./GenericTable";
 import AnimalCreateForm from "../forms/Animal/AnimalCreateForm";
 import AnimalUpdateForm from "../forms/Animal/AnimalUpdateForm";
 const AnimalsTable = () => {
@@ -42,15 +42,13 @@ const AnimalsTable = () => {
     );
   });
   const handleCreateAnimal = (newAnimal) => {
-    setData([...data, newAnimal]);
+    setData(handleCreateData(data,newAnimal));
+    GetTableData("animals").then((res) => setData(res));
   };
 
   const handleUpdateAnimal = (updatedAnimal) => {
-    setData(
-      data.map((animal) => {
-        return animal.id === updatedAnimal.id ? updatedAnimal : animal;
-      }),
-    );
+    setData(handleUpdateData(updatedAnimal,data));
+
   };
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);

@@ -2,31 +2,26 @@ import { useEffect, useState } from "react";
 import { Table, Button, Modal, ModalHeader, ModalBody } from "reactstrap";
 import ZooCreateForm from "../forms/Zoo/ZooCreateForm";
 import ZooUpdateForm from "../forms/Zoo/ZooUpdateForm";
-import { deleteRow, GetTableData } from "./GenericTable";
+import { deleteRow, GetTableData,handleCreateData,handleUpdateData } from "./GenericTable";
 
 const ZoosTable = () => {
   const [data, setData] = useState([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [UpdateFormVisible, setUpdateFormVisible] = useState(false);
-  const [activeUpdateZooId, setActiveUpdateZooId] = useState(null);
-  const [activeUpdateZooData, setActiveUpdateZooData] = useState(null);
+  const [activeUpdateId, setActiveUpdateId] = useState(null);
+  const [activeUpdateData, setActiveUpdateData] = useState(null);
   useEffect(() => {
     GetTableData("zoos").then((res) => setData(res));
   }, []);
 
   const handleCreateZoo = (newZoo) => {
-    console.log("ELLO MATE");
-    console.log(newZoo);
-    console.log(...data, newZoo);
-    setData([...data, newZoo]);
+    setData(handleCreateData(data,newZoo));
+    GetTableData("zoos").then((res) => setData(res));
+
   };
 
   const handleUpdateZoo = (updatedZoo) => {
-    setData(
-      data.map((zoo) => {
-        return zoo.id === updatedZoo.id ? updatedZoo : zoo;
-      }),
-    );
+    setData(handleUpdateData(updatedZoo,data));
   };
   const displayZoosData = data.map((d, index) => {
     let date = new Date(d.established).toDateString();
@@ -55,8 +50,8 @@ const ZoosTable = () => {
   });
 
   const showUpdateForm = (zoo) => {
-    setActiveUpdateZooData(zoo);
-    setActiveUpdateZooId(zoo.id);
+    setActiveUpdateData(zoo);
+    setActiveUpdateId(zoo.id);
     setUpdateFormVisible(true);
   };
 
@@ -90,12 +85,12 @@ const ZoosTable = () => {
         backdrop="static"
       >
         <ModalHeader toggle={hideUpdateForm}>
-          Update Zoo with ID: {activeUpdateZooId}
+          Update Zoo with ID: {activeUpdateId}
         </ModalHeader>
         <ModalBody>
           <ZooUpdateForm
             OnUpdateZoo={handleUpdateZoo}
-            currentData={activeUpdateZooData}
+            currentData={activeUpdateData}
             hideForm={hideUpdateForm}
           />
         </ModalBody>

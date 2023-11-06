@@ -2,32 +2,28 @@ import { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, Table, Button } from "reactstrap";
 import EnclosureCreateForm from "../forms/Enclosure/EnclosureCreateForm";
 import EnclosureUpdateForm from "../forms/Enclosure/EnclosureUpdateForm";
-import { deleteRow, GetTableData } from "./GenericTable";
+import { deleteRow, GetTableData,handleCreateData,handleUpdateData } from "./GenericTable";
 
 const EnclosuresTable = () => {
   const [data, setData] = useState([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [UpdateFormVisible, setUpdateFormVisible] = useState(false);
-  const [activeUpdateEnclosureData, setActiveUpdateEnclosureData] =
+  const [activeUpdateData, setActiveUpdateData] =
     useState(null);
-  const [activeUpdateEnclosureId, setActiveUpdateEnclosureId] = useState(null);
+  const [activeUpdateId, setActiveUpdateId] = useState(null);
 
   useEffect(() => {
     GetTableData("enclosures").then((res) => setData(res));
   }, []);
 
   const handleCreateEnclosure = (newEnclosure) => {
-    setData([...data, newEnclosure]);
+    setData(handleCreateData(data,newEnclosure));
+    GetTableData("enclosures").then((res) => setData(res));
   };
 
   const handleUpdateEnclosure = (updatedEnclosure) => {
-    setData(
-      data.map((enclosure) => {
-        return enclosure.id === updatedEnclosure.id
-          ? updatedEnclosure
-          : enclosure;
-      }),
-    );
+    setData(handleUpdateData(updatedEnclosure,data));
+
   };
   const displayEnclosuresData = data.map((d,index) => {
     return (
@@ -55,8 +51,8 @@ const EnclosuresTable = () => {
     );
   });
   const showUpdateForm = (enclosure) => {
-    setActiveUpdateEnclosureData(enclosure);
-    setActiveUpdateEnclosureId(enclosure.id);
+    setActiveUpdateData(enclosure);
+    setActiveUpdateId(enclosure.id);
     setUpdateFormVisible(true);
   };
 
@@ -88,12 +84,12 @@ const EnclosuresTable = () => {
         backdrop="static"
       >
         <ModalHeader toggle={hideUpdateForm}>
-          Update Enclosure with ID: {activeUpdateEnclosureId}
+          Update Enclosure with ID: {activeUpdateId}
         </ModalHeader>
         <ModalBody>
           <EnclosureUpdateForm
             onUpdateEnclosure={handleUpdateEnclosure}
-            currentData={activeUpdateEnclosureData}
+            currentData={activeUpdateData}
             hideForm={hideUpdateForm}
           />
         </ModalBody>
