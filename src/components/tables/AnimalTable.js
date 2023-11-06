@@ -97,7 +97,7 @@ const AnimalsTable = () => {
         </ModalHeader>
         <ModalBody>
           <AnimalUpdateForm
-            OnUpdateAnimal={handleUpdateAnimal}
+            onUpdateAnimal={handleUpdateAnimal}
             currentData={activeUpdateData}
             hideForm={hideUpdateForm}
           />

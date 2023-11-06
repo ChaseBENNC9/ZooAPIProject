@@ -36,7 +36,13 @@ const AnimalCreateForm = ({ onUpdateAnimal,currentData, hideForm }) => {
         const data = res.data.data;
         onUpdateAnimal(data);
         console.log("2)", data);
-
+        setName("");
+        setSpecies("");
+        setSex("");
+        setBirthDate("");
+        setDeathDate("");
+    
+        hideForm();
       }
     } catch (error) {
         console.log(error);
