@@ -3,7 +3,7 @@ import {Modal, ModalHeader, ModalBody, Table,Button } from "reactstrap";
 import EnclosureCreateForm from "../forms/Enclosure/EnclosureCreateForm";
 import EnclosureUpdateForm from "../forms/Enclosure/EnclosureUpdateForm";
 import { deleteRow ,GetTableData} from "./GenericTable";
-import { set } from "date-fns";
+
 const EnclosuresTable = () => {
 
   const [data, setData] = useState([])
