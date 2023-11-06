@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, Table, Button } from "reactstrap";
 import { deleteRow, GetTableData } from "./GenericTable";
 import AnimalCreateForm from "../forms/Animal/AnimalCreateForm";
-
+import AnimalUpdateForm from "../forms/Animal/AnimalUpdateForm";
 const AnimalsTable = () => {
   const [data, setData] = useState([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -31,7 +31,7 @@ const AnimalsTable = () => {
         <td>{deathDate}</td>
         <td>
           {" "}
-          <Button color="primary">Update</Button>
+          <Button color="primary" onClick={() => showUpdateForm(d)}>Update</Button>
         </td>
         <td>
           {" "}
@@ -48,8 +48,26 @@ const AnimalsTable = () => {
   const handleCreateAnimal = (newAnimal) => {
     setData([...data, newAnimal]);
   };
+
+  const handleUpdateAnimal = (updatedAnimal) => {
+    setData(
+      data.map((animal) => {
+        return animal.id === updatedAnimal.id ? updatedAnimal : animal;
+      }),
+    );
+  };
   const toggleCreateForm = () => {
     setShowCreateForm(!showCreateForm);
+  };
+
+  const showUpdateForm = (animal) => {
+    setActiveUpdateAnimalData(animal);
+    setActiveUpdateAnimalId(animal.id);
+    setUpdateFormVisible(true);
+  };
+
+  const hideUpdateForm = () => {
+    setUpdateFormVisible(false);
   };
   return (
     <>
@@ -65,6 +83,23 @@ const AnimalsTable = () => {
           <AnimalCreateForm
             onCreateAnimal={handleCreateAnimal}
             hideForm={toggleCreateForm}
+          />
+        </ModalBody>
+      </Modal>
+
+      <Modal
+        isOpen={UpdateFormVisible}
+        toggle={hideUpdateForm}
+        backdrop="static"
+      >
+        <ModalHeader toggle={hideUpdateForm}>
+          Update Zoo with ID: {activeUpdateAnimalId}
+        </ModalHeader>
+        <ModalBody>
+          <AnimalUpdateForm
+            OnUpdateZoo={handleUpdateAnimal}
+            currentData={activeUpdateAnimalData}
+            hideForm={hideUpdateForm}
           />
         </ModalBody>
       </Modal>
