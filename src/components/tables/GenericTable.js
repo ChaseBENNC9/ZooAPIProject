@@ -1,6 +1,7 @@
 import axios from "axios";
-import { da } from "date-fns/locale";
 const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
+
+
 const deleteRow = (id, data, type) => {
   if (
     window.confirm(
