@@ -1,3 +1,7 @@
+/**
+ * @summary Manages the Update form for the Zoo api
+ * @author Chase Bennett-Hill
+ */
 import axios from "axios";
 import { useState } from "react";
 import { format } from "date-fns";
