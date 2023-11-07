@@ -123,6 +123,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
             type="date"
             name="birth"
             value={birthDate}
+            required
             onChange={(e) => {
               setBirthDate(e.target.value);
               let objdate = new Date(e.target.value);
