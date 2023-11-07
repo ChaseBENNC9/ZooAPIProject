@@ -1,8 +1,14 @@
+/**
+ * @summary Handles the Creation form for the Zoo table
+ * @author Chase Bennett-Hill
+ */
+
 import axios from "axios";
 import { useState } from "react";
 import { Alert, Button, Form, Label, FormGroup, Input } from "reactstrap";
 
-const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
+
+const ZooCreateForm = ({ onCreateZoo, hideForm }) => { 
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState("");
@@ -13,7 +19,10 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const createZoo = async () => {
+  /**
+   * @description Handles the Post request to the API with the specified data
+   */
+  const createZoo = async () => { 
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/zoos`, {
         name: name,
@@ -22,7 +31,7 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
         established: established,
       });
 
-      if (res.status === 201) {
+      if (res.status === 201) { //When the request is successful the data is added to the table and the modal is closed
         const data = {
           name: name,
           city: city,

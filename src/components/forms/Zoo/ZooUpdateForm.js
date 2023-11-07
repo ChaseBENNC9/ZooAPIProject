@@ -14,6 +14,7 @@ const ZooUpdateForm = ({ OnUpdateZoo, currentData, hideForm }) => {
     format(new Date(currentData.established), "yyyy-MM-dd"),
   );
   const [isError, setIsError] = useState(false);
+  const [errorMessage,setErrorMessage] = useState("");
 
   const UpdateZoo = async () => {
     try {
@@ -27,22 +28,31 @@ const ZooUpdateForm = ({ OnUpdateZoo, currentData, hideForm }) => {
       if (res.status === 200) {
         const data = res.data.data;
         OnUpdateZoo(data);
+        setName("");
+        setCity("");
+        setCountry("");
+        setEstablished("");
+        setEstablishedDate("");
+        hideForm();
       }
     } catch (error) {
       console.log(error);
       setIsError(true);
+      if (
+        error.response.data.msg ===
+        "\nInvalid `prisma.zoo.update()` invocation:\n\n\nUnique constraint failed on the fields: (`name`)"
+      ) {
+        setErrorMessage("Zoo with that Name already exists");
+      } else {
+        setErrorMessage(error.response.data.msg);
+      }
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     UpdateZoo();
-    setName("");
-    setCity("");
-    setCountry("");
-    setEstablished("");
-    setEstablishedDate("");
-    hideForm();
+
   };
   return (
     <>
@@ -109,7 +119,7 @@ const ZooUpdateForm = ({ OnUpdateZoo, currentData, hideForm }) => {
           Display an alert message if there is an error
         */}
         {isError ? (
-          <Alert color="danger">Something went wrong. Please try again.</Alert>
+          <Alert color="danger">{errorMessage}</Alert>
         ) : null}
         <Button>Submit</Button>
         <Button
