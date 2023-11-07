@@ -20,18 +20,18 @@ const WorkerCreateForm = ({ onCreateWorker, hideForm }) => {
         zooId: zooId,
         firstName: firstName,
         lastName: lastName,
-        hireDate:hire,
-        terminationDate:termination,
+        hireDate: hire,
+        terminationDate: termination,
       });
 
       if (res.status === 201) {
         const data = {
-            zooId: zooId,
-            firstName: firstName,
-            lastName: lastName,
-            hireDate:hire,
-            terminationDate:termination,
-          };
+          zooId: zooId,
+          firstName: firstName,
+          lastName: lastName,
+          hireDate: hire,
+          terminationDate: termination,
+        };
         console.log("2)", data);
 
         onCreateWorker(data);
@@ -93,11 +93,10 @@ const WorkerCreateForm = ({ onCreateWorker, hideForm }) => {
             name="lastName"
             placeholder="Enter Last Name"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value) }
+            onChange={(e) => setLastName(e.target.value)}
             required
           />
         </FormGroup>
-
 
         <FormGroup>
           <Label>Hire Date *</Label>

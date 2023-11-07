@@ -1,7 +1,6 @@
 import axios from "axios";
 const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
-
 const deleteRow = (id, data, type) => {
   if (
     window.confirm(

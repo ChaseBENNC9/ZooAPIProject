@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { format } from "date-fns";
 
-const WorkerupdateForm = ({ onUpdateWorker,currentData, hideForm }) => {
+const WorkerupdateForm = ({ onUpdateWorker, currentData, hideForm }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [firstName, setFirstName] = useState(currentData.firstName);
@@ -11,14 +11,15 @@ const WorkerupdateForm = ({ onUpdateWorker,currentData, hideForm }) => {
   const [zooId, setZooId] = useState(currentData.zooId);
 
   const [hire, setHire] = useState(currentData.hireDate); //The string of the workers hire date
-  const [hireDate, setHireDate] = useState(format(new Date(currentData.hireDate), "yyyy-MM-dd"),); //The Date object of the workers hire date
+  const [hireDate, setHireDate] = useState(
+    format(new Date(currentData.hireDate), "yyyy-MM-dd"),
+  ); //The Date object of the workers hire date
 
   const [termination, setTermination] = useState(currentData.terminationDate); //The string of the workers termination date
   const [terminationDate, setTerminationDate] = useState(
     termination != null
       ? format(new Date(currentData.terminationDate), "yyyy-MM-dd")
       : null,
-
   ); //The Date object of the workers termination date
 
   const [isError, setIsError] = useState(false);
@@ -26,13 +27,16 @@ const WorkerupdateForm = ({ onUpdateWorker,currentData, hideForm }) => {
 
   const updateWorker = async () => {
     try {
-      const res = await axios.put(`${BASE_URL}/api/v1/workers/${currentData.id}`, {
-        zooId: zooId,
-        firstName: firstName,
-        lastName: lastName,
-        hireDate:hire,
-        terminationDate:termination,
-      });
+      const res = await axios.put(
+        `${BASE_URL}/api/v1/workers/${currentData.id}`,
+        {
+          zooId: zooId,
+          firstName: firstName,
+          lastName: lastName,
+          hireDate: hire,
+          terminationDate: termination,
+        },
+      );
 
       if (res.status === 200) {
         const data = res.data.data;
@@ -76,7 +80,6 @@ const WorkerupdateForm = ({ onUpdateWorker,currentData, hideForm }) => {
             placeholder="Enter Zoo ID"
             value={zooId}
             onChange={(e) => setZooId(Number(e.target.value))}
-            
           />
         </FormGroup>
         <FormGroup>
@@ -87,7 +90,6 @@ const WorkerupdateForm = ({ onUpdateWorker,currentData, hideForm }) => {
             placeholder="Enter First Name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            
           />
         </FormGroup>
         <FormGroup>
@@ -97,11 +99,9 @@ const WorkerupdateForm = ({ onUpdateWorker,currentData, hideForm }) => {
             name="lastName"
             placeholder="Enter Last Name"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value) }
-            
+            onChange={(e) => setLastName(e.target.value)}
           />
         </FormGroup>
-
 
         <FormGroup>
           <Label>Hire Date</Label>
@@ -109,7 +109,6 @@ const WorkerupdateForm = ({ onUpdateWorker,currentData, hideForm }) => {
             type="date"
             name="hire"
             value={hireDate}
-            
             onChange={(e) => {
               setHireDate(e.target.value);
               let objdate = new Date(e.target.value);
