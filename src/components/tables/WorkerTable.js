@@ -67,7 +67,7 @@ const WorkersTable = () => {
                 backdrop="static"
             >
                 <ModalHeader toggle={toggleCreateForm}>
-                    Create new Enclosure
+                    Create new Worker
                 </ModalHeader>
                 <ModalBody>
                     <WorkerCreateForm
@@ -83,7 +83,7 @@ const WorkersTable = () => {
                 backdrop="static"
             >
                 <ModalHeader toggle={hideUpdateForm}>
-                    Update Zoo with ID: {activeUpdateId}
+                    Update Worker with ID: {activeUpdateId}
                 </ModalHeader>
                 <ModalBody>
                     <WorkerUpdateForm
