@@ -30,7 +30,7 @@ const WorkersTable = () => {
                 <td>{hireDate}</td>
                 <td>{terminationDate}</td>
                 <td>
-                    <Button color="primary" /*onClick={() => showUpdateForm(d)}*/>Update</Button>
+                    <Button color="primary" onClick={() => showUpdateForm(d)}>Update</Button>
                 </td>
                 <td>
                     <Button color="danger" onClick={() => setData(deleteRow(d.id, data, "workers"))}>Delete</Button>
@@ -52,6 +52,7 @@ const WorkersTable = () => {
 
     const showUpdateForm = (worker) => {
         setActiveUpdateData(worker);
+        console.log(worker);
         setActiveUpdateId(worker.id);
         setUpdateFormVisible(true);
     };

@@ -105,6 +105,7 @@ const WorkerCreateForm = ({ onCreateWorker, hideForm }) => {
             type="date"
             name="hire"
             value={hireDate}
+            required
             onChange={(e) => {
               setHireDate(e.target.value);
               let objdate = new Date(e.target.value);
