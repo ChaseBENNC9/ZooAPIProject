@@ -1,3 +1,7 @@
+/**
+ * @summary Handles the Creation form for the Animal Table 
+ * @author Chase Bennett-Hill
+ */
 import axios from "axios";
 import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
@@ -10,11 +14,16 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
   const [sex, setSex] = useState("MALE");
   const [birthDate, setBirthDate] = useState(""); //The Date object of the animals birth date
   const [birth, setBirth] = useState(""); //The string of the animals birth date
+
   const [deathDate, setDeathDate] = useState(""); //The Date object of the animals death date
   const [death, setDeath] = useState(null); //The string of the animals death date
-  const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
 
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); //The string of the error message, will change to something readable and display at the bottom of the form modal
+
+  /**
+   * @description Handles a Post request to the API with the specified data
+   */
   const createAnimal = async () => {
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/animals`, {
@@ -38,7 +47,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
         console.log("2)", data);
 
         onCreateAnimal(data);
-        setName("");
+        setName(""); //Clears the form only if the submission was successful
         setSpecies("");
         setSex("");
         setBirthDate("");
@@ -53,9 +62,9 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
 
       if (
         error.response.data.msg ===
-        "\nInvalid `prisma.animal.create()` invocation:\n\n\nForeign key constraint failed on the field: `Animal_enclosureId_fkey (index)`"
+        "\nInvalid `prisma.animal.create()` invocation:\n\n\nForeign key constraint failed on the field: `Animal_enclosureId_fkey (index)`" //This is the error message for an enclosure id
       ) {
-        setErrorMessage("Enclosure ID does not exist");
+        setErrorMessage("Enclosure ID does not exist"); //Here i have formatted it into something easy to understand
       } else setErrorMessage(error.response.data.msg);
     }
   };
@@ -65,7 +74,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
     createAnimal();
   };
 
-  return (
+  return ( //Form that has all the fields needed for posting, required fields are marked with a *
     <>
       <p style={{ color: "red", fontSize: 12 }}>* required input</p>
       <Form onSubmit={handleSubmit}>
@@ -124,12 +133,12 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
             name="birth"
             value={birthDate}
             required
-            onChange={(e) => {
+            onChange={(e) => { //Sets the birth date to the date object provided by the input
               setBirthDate(e.target.value);
               let objdate = new Date(e.target.value);
               if (!isNaN(objdate)) {
-                console.log(objdate.toISOString());
-                setBirth(objdate.toISOString());
+                console.log(objdate.toISOString()); 
+                setBirth(objdate.toISOString()); //Sets the Birth to the date converted to a string for posting
               }
             }}
           />
@@ -156,7 +165,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
         */}
         {isError ? <Alert color="danger">{errorMessage}</Alert> : null}
         <Button>Submit</Button>
-        <Button
+        <Button 
           color="danger"
           onClick={hideForm}
           style={{
@@ -164,7 +173,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
           }}
         >
           Cancel
-        </Button>
+        </Button> 
       </Form>
     </>
   );

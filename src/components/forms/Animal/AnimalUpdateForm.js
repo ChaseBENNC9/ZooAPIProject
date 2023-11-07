@@ -1,3 +1,8 @@
+/**
+ * @summary Handles the Update form for the animals using a PUT request 
+ * @author Chase Bennett-Hill
+ */
+
 import axios from "axios";
 import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
