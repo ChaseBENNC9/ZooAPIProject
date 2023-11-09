@@ -18,7 +18,7 @@ const ZooUpdateForm = ({ OnUpdateZoo, currentData, hideForm }) => {
     format(new Date(currentData.established), "yyyy-MM-dd"),
   );
   const [isError, setIsError] = useState(false);
-  const [errorMessage,setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const UpdateZoo = async () => {
     try {
@@ -56,7 +56,6 @@ const ZooUpdateForm = ({ OnUpdateZoo, currentData, hideForm }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     UpdateZoo();
-
   };
   return (
     <>
@@ -118,9 +117,7 @@ const ZooUpdateForm = ({ OnUpdateZoo, currentData, hideForm }) => {
         {/* 
           Display an alert message if there is an error
         */}
-        {isError ? (
-          <Alert color="danger">{errorMessage}</Alert>
-        ) : null}
+        {isError ? <Alert color="danger">{errorMessage}</Alert> : null}
         <Button>Submit</Button>
         <Button
           color="danger"

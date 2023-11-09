@@ -1,5 +1,5 @@
 /**
- * @summary Handles the Update form for the animals using a PUT request 
+ * @summary Handles the Update form for the animals using a PUT request
  * @author Chase Bennett-Hill
  */
 

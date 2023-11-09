@@ -1,5 +1,5 @@
 /**
- * @summary Handles the Creation form for the Animal Table 
+ * @summary Handles the Creation form for the Animal Table
  * @author Chase Bennett-Hill
  */
 import axios from "axios";
@@ -74,7 +74,8 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
     createAnimal();
   };
 
-  return ( //Form that has all the fields needed for posting, required fields are marked with a *
+  return (
+    //Form that has all the fields needed for posting, required fields are marked with a *
     <>
       <p style={{ color: "red", fontSize: 12 }}>* required input</p>
       <Form onSubmit={handleSubmit}>
@@ -133,11 +134,12 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
             name="birth"
             value={birthDate}
             required
-            onChange={(e) => { //Sets the birth date to the date object provided by the input
+            onChange={(e) => {
+              //Sets the birth date to the date object provided by the input
               setBirthDate(e.target.value);
               let objdate = new Date(e.target.value);
               if (!isNaN(objdate)) {
-                console.log(objdate.toISOString()); 
+                console.log(objdate.toISOString());
                 setBirth(objdate.toISOString()); //Sets the Birth to the date converted to a string for posting
               }
             }}
@@ -165,7 +167,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
         */}
         {isError ? <Alert color="danger">{errorMessage}</Alert> : null}
         <Button>Submit</Button>
-        <Button 
+        <Button
           color="danger"
           onClick={hideForm}
           style={{
@@ -173,7 +175,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
           }}
         >
           Cancel
-        </Button> 
+        </Button>
       </Form>
     </>
   );

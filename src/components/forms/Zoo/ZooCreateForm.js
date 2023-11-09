@@ -7,8 +7,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Alert, Button, Form, Label, FormGroup, Input } from "reactstrap";
 
-
-const ZooCreateForm = ({ onCreateZoo, hideForm }) => { 
+const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState("");
@@ -22,7 +21,7 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
   /**
    * @description Handles the Post request to the API with the specified data
    */
-  const createZoo = async () => { 
+  const createZoo = async () => {
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/zoos`, {
         name: name,
@@ -31,7 +30,8 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
         established: established,
       });
 
-      if (res.status === 201) { //When the request is successful the data is added to the table and the modal is closed
+      if (res.status === 201) {
+        //When the request is successful the data is added to the table and the modal is closed
         const data = {
           name: name,
           city: city,
@@ -85,7 +85,6 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
               This attribute detects when the value of an input element changes
             */
             onChange={(e) => setName(e.target.value)}
-   
             required
           />
         </FormGroup>
