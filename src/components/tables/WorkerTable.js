@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, Table, Button } from "reactstrap";
+import WorkerCreateForm from "../forms/Worker/WorkerCreateForm";
+import WorkerUpdateForm from "../forms/Worker/WorkerUpdateForm";
 import {
   deleteRow,
-  GetTableData,
+  getTableData,
   handleCreateData,
   handleUpdateData,
 } from "./GenericTable";
-import WorkerCreateForm from "../forms/Worker/WorkerCreateForm";
-import WorkerUpdateForm from "../forms/Worker/WorkerUpdateForm";
+
 const WorkersTable = () => {
   const [data, setData] = useState([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -16,7 +17,7 @@ const WorkersTable = () => {
   const [activeUpdateId, setActiveUpdateId] = useState(null);
 
   useEffect(() => {
-    GetTableData("workers").then((res) => setData(res));
+    getTableData("workers").then((res) => setData(res));
   }, []);
 
   const displayWorkersData = data.map((d, index) => {
@@ -49,7 +50,7 @@ const WorkersTable = () => {
   });
   const handleCreateWorker = (newWorker) => {
     setData(handleCreateData(data, newWorker));
-    GetTableData("workers").then((res) => setData(res));
+    getTableData("workers").then((res) => setData(res));
   };
 
   const handleUpdateWorker = (updatedWorker) => {

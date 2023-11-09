@@ -2,11 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 
-const EnclosureCreateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
+const EnclosureUpdateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState(currentData.name);
-  const [zooid, setzooid] = useState(currentData.zooId);
+  const [zooId, setZooId] = useState(currentData.zooId);
   const [type, setType] = useState(currentData.type);
   const [temporary, setTemporary] = useState(currentData.temporary);
   const [visitorCapacity, setVisitorCapacity] = useState(
@@ -24,7 +24,7 @@ const EnclosureCreateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
           type: type,
           temporary: temporary,
           visitorCapacity: visitorCapacity,
-          zooId: zooid,
+          zooId: zooId,
         },
       );
 
@@ -37,7 +37,7 @@ const EnclosureCreateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
         setType("");
         setTemporary("");
         setVisitorCapacity("");
-        setzooid("");
+        setZooId("");
         hideForm();
       }
     } catch (error) {
@@ -73,8 +73,8 @@ const EnclosureCreateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
             type="text"
             name="zooid"
             placeholder="Enter Zoo ID"
-            value={zooid}
-            onChange={(e) => setzooid(Number(e.target.value))}
+            value={zooId}
+            onChange={(e) => setZooId(Number(e.target.value))}
           />
         </FormGroup>
         <FormGroup>
@@ -141,4 +141,4 @@ const EnclosureCreateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
   );
 };
 
-export default EnclosureCreateForm;
+export default EnclosureUpdateForm;

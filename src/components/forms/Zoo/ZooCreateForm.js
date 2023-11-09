@@ -70,9 +70,7 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
     <>
       {/* 
         When the form is submitted, it will call the handleSubmit 
-        function above. You do not need to worry about specifying
-        a method and action as you would typically do when dealing 
-        with forms
+        function above. 
       */}
       <p style={{ color: "red", fontSize: 12 }}>* required input</p>
       <Form onSubmit={handleSubmit}>
@@ -87,10 +85,7 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
               This attribute detects when the value of an input element changes
             */
             onChange={(e) => setName(e.target.value)}
-            /*
-              You can fetch validation messages from the request. There are plenty 
-              of online resources that show you how to do this 
-            */
+   
             required
           />
         </FormGroup>

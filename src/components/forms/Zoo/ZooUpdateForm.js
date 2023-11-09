@@ -77,10 +77,6 @@ const ZooUpdateForm = ({ OnUpdateZoo, currentData, hideForm }) => {
               This attribute detects when the value of an input element changes
             */
             onChange={(e) => setName(e.target.value)}
-            /*
-              You can fetch validation messages from the request. There are plenty 
-              of online resources that show you how to do this 
-            */
           />
         </FormGroup>
         <FormGroup>

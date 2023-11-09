@@ -5,7 +5,7 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState("");
-  const [zooid, setzooid] = useState("");
+  const [zooId, setZooId] = useState("");
   const [type, setType] = useState("");
   const [temporary, setTemporary] = useState(false);
   const [visitorCapacity, setVisitorCapacity] = useState("");
@@ -18,7 +18,7 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
         type: type,
         temporary: temporary,
         visitorCapacity: visitorCapacity === "" ? null : visitorCapacity,
-        zooId: zooid,
+        zooId: zooId,
       });
 
       if (res.status === 201) {
@@ -27,7 +27,7 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
           type: type,
           temporary: temporary,
           visitorCapacity: visitorCapacity === "" ? null : visitorCapacity,
-          zooId: zooid,
+          zooId: zooId,
         };
         console.log("2)", data);
 
@@ -36,7 +36,7 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
         setType("");
         setTemporary("");
         setVisitorCapacity("");
-        setzooid("");
+        setZooId("");
         hideForm();
       }
     } catch (error) {
@@ -72,8 +72,8 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
             type="text"
             name="zooid"
             placeholder="Enter Zoo ID"
-            value={zooid}
-            onChange={(e) => setzooid(Number(e.target.value))}
+            value={zooId}
+            onChange={(e) => setZooId(Number(e.target.value))}
             required
           />
         </FormGroup>

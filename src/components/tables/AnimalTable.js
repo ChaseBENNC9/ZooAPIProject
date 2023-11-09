@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Modal, ModalHeader, ModalBody, Table, Button } from "reactstrap";
+import AnimalCreateForm from "../forms/Animal/AnimalCreateForm";
+import AnimalUpdateForm from "../forms/Animal/AnimalUpdateForm";
 import {
   deleteRow,
-  GetTableData,
+  getTableData,
   handleCreateData,
   handleUpdateData,
 } from "./GenericTable";
-import AnimalCreateForm from "../forms/Animal/AnimalCreateForm";
-import AnimalUpdateForm from "../forms/Animal/AnimalUpdateForm";
+
 const AnimalsTable = () => {
   const [data, setData] = useState([]);
   const [showCreateForm, setShowCreateForm] = useState(false);
@@ -16,7 +17,7 @@ const AnimalsTable = () => {
   const [activeUpdateId, setActiveUpdateId] = useState(null);
 
   useEffect(() => {
-    GetTableData("animals").then((res) => setData(res));
+    getTableData("animals").then((res) => setData(res));
   }, []);
 
   const displayAnimalsData = data.map((d, index) => {
@@ -50,7 +51,7 @@ const AnimalsTable = () => {
   });
   const handleCreateAnimal = (newAnimal) => {
     setData(handleCreateData(data, newAnimal));
-    GetTableData("animals").then((res) => setData(res));
+    getTableData("animals").then((res) => setData(res));
   };
 
   const handleUpdateAnimal = (updatedAnimal) => {

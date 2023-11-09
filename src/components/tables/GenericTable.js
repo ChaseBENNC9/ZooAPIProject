@@ -31,7 +31,7 @@ const deleteRow = (id, data, type) => {
  * @param {string} type 
  * @returns {object}
  */
-const GetTableData = async (type) => {
+const getTableData = async (type) => {
   try {
     const res = await axios.get(`${BASE_URL}/api/v1/${type}`);
     return res.data.data;
@@ -54,7 +54,7 @@ const handleCreateData = (data, newData) => {
  * @description Updates a specific row of data 
  * @param {object} updatedItem 
  * @param {object} data 
- * @returns 
+ * @returns {object}
  */
 const handleUpdateData = (updatedItem, data) => {
   data = data.map((item) => {
@@ -65,4 +65,4 @@ const handleUpdateData = (updatedItem, data) => {
   return data;
 };
 
-export { deleteRow, GetTableData, handleCreateData, handleUpdateData };
+export { deleteRow, getTableData, handleCreateData, handleUpdateData };

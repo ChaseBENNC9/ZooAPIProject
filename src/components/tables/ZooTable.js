@@ -4,7 +4,7 @@ import ZooCreateForm from "../forms/Zoo/ZooCreateForm";
 import ZooUpdateForm from "../forms/Zoo/ZooUpdateForm";
 import {
   deleteRow,
-  GetTableData,
+  getTableData,
   handleCreateData,
   handleUpdateData,
 } from "./GenericTable";
@@ -16,12 +16,12 @@ const ZoosTable = () => {
   const [activeUpdateId, setActiveUpdateId] = useState(null);
   const [activeUpdateData, setActiveUpdateData] = useState(null);
   useEffect(() => {
-    GetTableData("zoos").then((res) => setData(res));
+    getTableData("zoos").then((res) => setData(res));
   }, []);
 
   const handleCreateZoo = (newZoo) => {
     setData(handleCreateData(data, newZoo));
-    GetTableData("zoos").then((res) => setData(res));
+    getTableData("zoos").then((res) => setData(res));
   };
 
   const handleUpdateZoo = (updatedZoo) => {

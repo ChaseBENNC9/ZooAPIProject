@@ -9,7 +9,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState("");
-  const [enclosureid, setEnclosureid] = useState("");
+  const [enclosureId, setEnclosureId] = useState("");
   const [species, setSpecies] = useState("");
   const [sex, setSex] = useState("MALE");
   const [birthDate, setBirthDate] = useState(""); //The Date object of the animals birth date
@@ -27,7 +27,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
   const createAnimal = async () => {
     try {
       const res = await axios.post(`${BASE_URL}/api/v1/animals`, {
-        enclosureId: enclosureid,
+        enclosureId: enclosureId,
         name: name,
         species: species,
         sex: sex,
@@ -37,7 +37,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
 
       if (res.status === 201) {
         const data = {
-          enclosureId: enclosureid,
+          enclosureId: enclosureId,
           name: name,
           species: species,
           sex: sex,
@@ -84,8 +84,8 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
             type="text"
             name="enclosureid"
             placeholder="Enter Enclosure ID"
-            value={enclosureid}
-            onChange={(e) => setEnclosureid(Number(e.target.value))}
+            value={enclosureId}
+            onChange={(e) => setEnclosureId(Number(e.target.value))}
             required
           />
         </FormGroup>

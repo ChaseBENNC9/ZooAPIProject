@@ -8,11 +8,11 @@ import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { format } from "date-fns";
 
-const AnimalCreateForm = ({ onUpdateAnimal, currentData, hideForm }) => {
+const AnimalUpdateForm = ({ onUpdateAnimal, currentData, hideForm }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [name, setName] = useState(currentData.name);
-  const [enclosureid, setEnclosureid] = useState(currentData.enclosureId);
+  const [enclosureId, setEnclosureId] = useState(currentData.enclosureId);
   const [species, setSpecies] = useState(currentData.species);
   const [sex, setSex] = useState(currentData.sex);
   const [birth, setBirth] = useState(currentData.birthDate); //The string of the animals birth date
@@ -35,7 +35,7 @@ const AnimalCreateForm = ({ onUpdateAnimal, currentData, hideForm }) => {
       const res = await axios.put(
         `${BASE_URL}/api/v1/animals/${currentData.id}`,
         {
-          enclosureId: enclosureid,
+          enclosureId: enclosureId,
           name: name,
           species: species,
           sex: sex,
@@ -85,8 +85,8 @@ const AnimalCreateForm = ({ onUpdateAnimal, currentData, hideForm }) => {
             type="text"
             name="enclosureid"
             placeholder="Enter Enclosure ID"
-            value={enclosureid}
-            onChange={(e) => setEnclosureid(Number(e.target.value))}
+            value={enclosureId}
+            onChange={(e) => setEnclosureId(Number(e.target.value))}
           />
         </FormGroup>
         <FormGroup>
@@ -175,4 +175,4 @@ const AnimalCreateForm = ({ onUpdateAnimal, currentData, hideForm }) => {
   );
 };
 
-export default AnimalCreateForm;
+export default AnimalUpdateForm;

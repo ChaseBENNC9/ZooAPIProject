@@ -4,7 +4,7 @@ import EnclosureCreateForm from "../forms/Enclosure/EnclosureCreateForm";
 import EnclosureUpdateForm from "../forms/Enclosure/EnclosureUpdateForm";
 import {
   deleteRow,
-  GetTableData,
+  getTableData,
   handleCreateData,
   handleUpdateData,
 } from "./GenericTable";
@@ -17,12 +17,12 @@ const EnclosuresTable = () => {
   const [activeUpdateId, setActiveUpdateId] = useState(null);
 
   useEffect(() => {
-    GetTableData("enclosures").then((res) => setData(res));
+    getTableData("enclosures").then((res) => setData(res));
   }, []);
 
   const handleCreateEnclosure = (newEnclosure) => {
     setData(handleCreateData(data, newEnclosure));
-    GetTableData("enclosures").then((res) => setData(res));
+    getTableData("enclosures").then((res) => setData(res));
   };
 
   const handleUpdateEnclosure = (updatedEnclosure) => {
