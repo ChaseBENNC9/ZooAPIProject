@@ -41,7 +41,6 @@ const WorkerUpdateForm = ({ onUpdateWorker, currentData, hideForm }) => {
       if (res.status === 200) {
         const data = res.data.data;
 
-
         onUpdateWorker(data);
         setFirstName("");
         setLastName("");

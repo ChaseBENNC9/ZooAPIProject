@@ -41,7 +41,6 @@ const WorkerCreateForm = ({ onCreateWorker, hideForm }) => {
         hideForm();
       }
     } catch (error) {
-
       setIsError(true);
 
       if (
