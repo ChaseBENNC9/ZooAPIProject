@@ -19,15 +19,15 @@ import tourGroupRoutes from "./routes/api/tourGroup.js";
 // Create an Express application
 const app = express();
 app.use(cors());
-const limiter = rateLimit({
+/* const limiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   max: 100, // Limit each IP to 100 requests per `window` (1 minute)
   message:
     "You have exceeded the number of requests per minute: 100. Please try again later.",
-});
+}); */
 
 // Apply the rate limiting middleware to all requests
-app.use(limiter);
+//app.use(limiter);
 app.use(express.urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
 app.use(express.json()); // To parse the incoming requests with JSON payloads. For example, REST API requests
 
