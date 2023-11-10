@@ -62,7 +62,6 @@ const WorkersTable = () => {
 
   const showUpdateForm = (worker) => {
     setActiveUpdateData(worker);
-    console.log(worker);
     setActiveUpdateId(worker.id);
     setUpdateFormVisible(true);
   };

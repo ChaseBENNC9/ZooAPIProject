@@ -30,7 +30,6 @@ const EnclosureUpdateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
 
       if (res.status === 200) {
         const data = res.data.data;
-        console.log("2)", data);
 
         onUpdateEnclosure(data);
         setName("");
@@ -60,7 +59,6 @@ const EnclosureUpdateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(visitorCapacity);
     updateEnclosure();
   };
 
@@ -114,7 +112,6 @@ const EnclosureUpdateForm = ({ onUpdateEnclosure, currentData, hideForm }) => {
             name="temporary"
             onChange={(e) => {
               setTemporary(e.target.value === "true");
-              console.log(temporary);
             }}
           >
             <option>false</option>

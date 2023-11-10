@@ -29,7 +29,6 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
           visitorCapacity: visitorCapacity === "" ? null : visitorCapacity,
           zooId: zooId,
         };
-        console.log("2)", data);
 
         onCreateEnclosure(data);
         setName("");
@@ -116,7 +115,6 @@ const EnclosureCreateForm = ({ onCreateEnclosure, hideForm }) => {
             name="temporary"
             onChange={(e) => {
               setTemporary(e.target.value === "true");
-              console.log(temporary);
             }}
             required
           >

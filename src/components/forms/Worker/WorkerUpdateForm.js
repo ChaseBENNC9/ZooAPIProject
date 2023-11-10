@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input, Label } from "reactstrap";
 import { format } from "date-fns";
 
-const WorkerupdateForm = ({ onUpdateWorker, currentData, hideForm }) => {
+const WorkerUpdateForm = ({ onUpdateWorker, currentData, hideForm }) => {
   const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
 
   const [firstName, setFirstName] = useState(currentData.firstName);
@@ -41,7 +41,6 @@ const WorkerupdateForm = ({ onUpdateWorker, currentData, hideForm }) => {
       if (res.status === 200) {
         const data = res.data.data;
 
-        console.log("2)", data);
 
         onUpdateWorker(data);
         setFirstName("");
@@ -111,10 +110,9 @@ const WorkerupdateForm = ({ onUpdateWorker, currentData, hideForm }) => {
             value={hireDate}
             onChange={(e) => {
               setHireDate(e.target.value);
-              let objdate = new Date(e.target.value);
-              if (!isNaN(objdate)) {
-                console.log(objdate.toISOString());
-                setHire(objdate.toISOString());
+              let hireDateObj = new Date(e.target.value);
+              if (!isNaN(hireDateObj)) {
+                setHire(hireDateObj.toISOString());
               }
             }}
           />
@@ -127,10 +125,9 @@ const WorkerupdateForm = ({ onUpdateWorker, currentData, hideForm }) => {
             value={terminationDate}
             onChange={(e) => {
               setTerminationDate(e.target.value);
-              let objdate = new Date(e.target.value);
-              if (!isNaN(objdate)) {
-                console.log(objdate.toISOString());
-                setTermination(objdate.toISOString());
+              let terminationDateObj = new Date(e.target.value);
+              if (!isNaN(terminationDateObj)) {
+                setTermination(terminationDateObj.toISOString());
               }
             }}
           />
@@ -155,4 +152,4 @@ const WorkerupdateForm = ({ onUpdateWorker, currentData, hideForm }) => {
   );
 };
 
-export default WorkerupdateForm;
+export default WorkerUpdateForm;

@@ -118,10 +118,9 @@ const ZooCreateForm = ({ onCreateZoo, hideForm }) => {
             value={establishedDate}
             onChange={(e) => {
               setEstablishedDate(e.target.value);
-              let objdate = new Date(e.target.value);
-              if (!isNaN(objdate)) {
-                console.log(objdate.toISOString());
-                setEstablished(objdate.toISOString());
+              let establishedDateObj = new Date(e.target.value);
+              if (!isNaN(establishedDateObj)) {
+                setEstablished(establishedDateObj.toISOString());
               }
             }}
           />

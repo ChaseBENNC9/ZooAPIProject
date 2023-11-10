@@ -9,7 +9,7 @@ const BASE_URL = "https://id607001-bennc9-bit.onrender.com";
  * @description Generic Function that handles deletion of a specific row of data
  * @param {integer} id //The id of the row to be deleted
  * @param {object} data //Data to be deleted
- * @param {string} type //Type of data to be deleted - speicifc endpoint
+ * @param {string} type //Type of data to be deleted - specific endpoint
  * @returns {object}
  */
 const deleteRow = (id, data, type) => {
@@ -62,8 +62,7 @@ const handleUpdateData = (updatedItem, data) => {
   data = data.map((item) => {
     return item.id === updatedItem.id ? updatedItem : item; //Finds the object with the matching id and replaces it with the updated data
   });
-  console.log(data);
-  console.log(updatedItem);
+
   return data;
 };
 

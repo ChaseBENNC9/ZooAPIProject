@@ -44,7 +44,6 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
           birthDate: birth,
           deathDate: death,
         };
-        console.log("2)", data);
 
         onCreateAnimal(data);
         setName(""); //Clears the form only if the submission was successful
@@ -57,7 +56,6 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
       }
     } catch (error) {
       console.log(error);
-
       setIsError(true);
 
       if (
@@ -83,7 +81,7 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
           <Label>Enclosure ID *</Label>
           <Input
             type="text"
-            name="enclosureid"
+            name="enclosureId"
             placeholder="Enter Enclosure ID"
             value={enclosureId}
             onChange={(e) => setEnclosureId(Number(e.target.value))}
@@ -137,10 +135,9 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
             onChange={(e) => {
               //Sets the birth date to the date object provided by the input
               setBirthDate(e.target.value);
-              let objdate = new Date(e.target.value);
-              if (!isNaN(objdate)) {
-                console.log(objdate.toISOString());
-                setBirth(objdate.toISOString()); //Sets the Birth to the date converted to a string for posting
+              let birthDateObj = new Date(e.target.value);
+              if (!isNaN(birthDateObj)) {
+                setBirth(birthDateObj.toISOString()); //Sets the Birth to the date converted to a string for posting
               }
             }}
           />
@@ -153,10 +150,9 @@ const AnimalCreateForm = ({ onCreateAnimal, hideForm }) => {
             value={deathDate}
             onChange={(e) => {
               setDeathDate(e.target.value);
-              let objdate = new Date(e.target.value);
-              if (!isNaN(objdate)) {
-                console.log(objdate.toISOString());
-                setDeath(objdate.toISOString());
+              let deathDateObj = new Date(e.target.value);
+              if (!isNaN(deathDateObj)) {
+                setDeath(deathDateObj.toISOString());
               }
             }}
           />

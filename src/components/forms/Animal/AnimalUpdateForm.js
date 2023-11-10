@@ -47,7 +47,6 @@ const AnimalUpdateForm = ({ onUpdateAnimal, currentData, hideForm }) => {
       if (res.status === 200) {
         const data = res.data.data;
         onUpdateAnimal(data);
-        console.log("2)", data);
         setName("");
         setSpecies("");
         setSex("");
@@ -83,7 +82,7 @@ const AnimalUpdateForm = ({ onUpdateAnimal, currentData, hideForm }) => {
           <Label>Enclosure ID </Label>
           <Input
             type="text"
-            name="enclosureid"
+            name="enclosureId"
             placeholder="Enter Enclosure ID"
             value={enclosureId}
             onChange={(e) => setEnclosureId(Number(e.target.value))}
@@ -131,10 +130,9 @@ const AnimalUpdateForm = ({ onUpdateAnimal, currentData, hideForm }) => {
             value={birthDate}
             onChange={(e) => {
               setBirthDate(e.target.value);
-              let objdate = new Date(e.target.value);
-              if (!isNaN(objdate)) {
-                console.log(objdate.toISOString());
-                setBirth(objdate.toISOString());
+              let birthDateObj = new Date(e.target.value);
+              if (!isNaN(birthDateObj)) {
+                setBirth(birthDateObj.toISOString());
               }
             }}
           />
@@ -147,10 +145,9 @@ const AnimalUpdateForm = ({ onUpdateAnimal, currentData, hideForm }) => {
             value={deathDate}
             onChange={(e) => {
               setDeathDate(e.target.value);
-              let objdate = new Date(e.target.value);
-              if (!isNaN(objdate)) {
-                console.log(objdate.toISOString());
-                setDeath(objdate.toISOString());
+              let deathDateObj = new Date(e.target.value);
+              if (!isNaN(deathDateObj)) {
+                setDeath(deathDateObj.toISOString());
               }
             }}
           />

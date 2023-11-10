@@ -32,7 +32,6 @@ const WorkerCreateForm = ({ onCreateWorker, hideForm }) => {
           hireDate: hire,
           terminationDate: termination,
         };
-        console.log("2)", data);
 
         onCreateWorker(data);
         setFirstName("");
@@ -42,7 +41,6 @@ const WorkerCreateForm = ({ onCreateWorker, hideForm }) => {
         hideForm();
       }
     } catch (error) {
-      console.log(error);
 
       setIsError(true);
 
@@ -107,10 +105,9 @@ const WorkerCreateForm = ({ onCreateWorker, hideForm }) => {
             required
             onChange={(e) => {
               setHireDate(e.target.value);
-              let objdate = new Date(e.target.value);
-              if (!isNaN(objdate)) {
-                console.log(objdate.toISOString());
-                setHire(objdate.toISOString());
+              let hireDateObj = new Date(e.target.value);
+              if (!isNaN(hireDateObj)) {
+                setHire(hireDateObj.toISOString());
               }
             }}
           />
@@ -123,10 +120,9 @@ const WorkerCreateForm = ({ onCreateWorker, hideForm }) => {
             value={terminationDate}
             onChange={(e) => {
               setTerminationDate(e.target.value);
-              let objdate = new Date(e.target.value);
-              if (!isNaN(objdate)) {
-                console.log(objdate.toISOString());
-                setTermination(objdate.toISOString());
+              let terminationDateObj = new Date(e.target.value);
+              if (!isNaN(terminationDateObj)) {
+                setTermination(terminationDateObj.toISOString());
               }
             }}
           />
